@@ -5,3 +5,4 @@
 ## Kevin Peters
 ## Michael Simmons
 ## Michael West
+![Logo](Goof3_Logo.png)
