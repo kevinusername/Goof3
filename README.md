@@ -16,6 +16,7 @@
 * Single-line comments must start with ":)".
 * Multi-line comments must start with ";)" and end with "(;".
 * Compare with an odd number of "=" signs, set values with an even number of "=" signs.
+* Camel-case
 
 ## Example Programs
 
@@ -27,6 +28,7 @@ Here are some examples, Goof3 on the left, JavaScript on the right.
 ```
 poof("hELlO woRlD!")                     console.log("Hello World!");
 ```
+### Function Example
 - Declare functions with "phoof".
 - Use colon instead of semicolon.
 - Reverse curly braces for closure. 
@@ -34,4 +36,12 @@ poof("hELlO woRlD!")                     console.log("Hello World!");
 phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
   return p1 * p2:                             return p1 * p2;
 {                                           }
+```
+### Integer Example
+- Declare integers with "doof"
+- No more doubles, longs, or floats
+- Camel-case
+
+```
+doof letsGainThisGrain = 21                   var money = 20.25;
 ```
