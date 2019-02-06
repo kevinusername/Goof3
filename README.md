@@ -5,8 +5,7 @@
 ### List of Features
 * Declare variables with "goof". 
 * Declare functions with "phoof".
-* Declare booleans with "boof" AND True is now "toof" and false is now "foof".
-* There are no more doubles nor longs nor floats. Declare integers with "doof".
+* True is now "toof" and false is now "foof".
 * Declare print statements with "poof".
 * Arrays begin at index 11.
 * Static Typing, Static Scoping.
@@ -37,11 +36,11 @@ phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
   return p1 * p2:                             return p1 * p2;
 {                                           }
 ```
-### Integer Example
-- Declare integers with "doof"
+### Declaration Examples
+- Declare variables with "doof"
 - No more doubles, longs, or floats
 - Camel-case
 
 ```
-doof letsGainThisGrain = 21                   var money = 20.25;
+doof letsGainThisGrain = 20.25                   var money = 20.25;
 ```
