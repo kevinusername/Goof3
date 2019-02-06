@@ -26,3 +26,10 @@ Here are some examples, Goof3 on the left, JavaScript on the right.
 ```
 poof("hELlO woRlD!")                     console.log("Hello World!");
 ```
+- Declare functions with "goof"
+
+```
+phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
+  return p1 * p2:                             return p1 * p2;
+{                                           }
+```
