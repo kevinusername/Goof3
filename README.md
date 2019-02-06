@@ -3,9 +3,10 @@
 #### Blake Crowther, Nikky Rajavasireddy, Andrew Arteaga, Kevin Peters, Michael Simmons, Michael West
 
 ### List of Features
-* Declare functions with "goof"
-* Declare booleans with "boof" AND True is now "toof" and false is now "foof"
+* Declare functions with "goof".
+* Declare booleans with "boof" AND True is now "toof" and false is now "foof".
 * There are no more double nor longs nor floats. Declare integers with "doof".
+* Declare print statements with "poof".
 * Arrays begin at index 11.
 * Must use underscores, no spaces.
 * Static Typing.
