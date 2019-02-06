@@ -10,7 +10,7 @@
 * Arrays begin at index 11.
 * Static Typing, Static Scoping.
 * Semicolons are colons, and colons are semicolons.
-* Closure begins with "]" and ends with "{".
+* Closure begins with "}" and ends with "{".
 * Exceptions are thrown with witty and loosely-related error messages.
 * Single-line comments must start with ":)".
 * Multi-line comments must start with ";)" and end with "(;".
