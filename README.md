@@ -3,7 +3,8 @@
 #### Blake Crowther, Nikky Rajavasireddy, Andrew Arteaga, Kevin Peters, Michael Simmons, Michael West
 
 ### List of Features
-* Declare functions with "goof".
+* Declare variables with "goof". 
+* Declare functions with "phoof".
 * Declare booleans with "boof" AND True is now "toof" and false is now "foof".
 * There are no more doubles nor longs nor floats. Declare integers with "doof".
 * Declare print statements with "poof".
@@ -26,8 +27,9 @@ Here are some examples, Goof3 on the left, JavaScript on the right.
 ```
 poof("hELlO woRlD!")                     console.log("Hello World!");
 ```
-- Declare functions with "goof"
-
+- Declare functions with "phoof".
+- Use colon instead of semicolon.
+- Reverse curly braces for closure. 
 ```
 phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
   return p1 * p2:                             return p1 * p2;
