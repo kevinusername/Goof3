@@ -8,10 +8,9 @@
 * There are no more doubles nor longs nor floats. Declare integers with "doof".
 * Declare print statements with "poof".
 * Arrays begin at index 11.
-* Must use underscores, no spaces.
 * Static Typing, Static Scoping.
 * Semicolons are colons, and colons are semicolons.
-* Spaces are used for closure.
+* Closure begins with "]" and ends with "{".
 * Exceptions are thrown with witty and loosely-related error messages.
 * Single-line comments must start with ":)".
 * Multi-line comments must start with ";)" and end with "(;".
