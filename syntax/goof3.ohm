@@ -1,7 +1,7 @@
 Goof3 {
     Program     = Block
-    Block       = (Statement ":")+                                  -- standard
-                | Function+
+    Block       = (Line | Function | If)+                                  -- standard
+    Line        = Statement ":"
     Statement   = "goof" id "=="+ Exp                               -- assignment
                 | "goof" id                                         -- declaration
                 | VarExp "=="+ Exp                                  -- reassignment
@@ -13,13 +13,18 @@ Goof3 {
     If          = "if" "(" Exp (logOp | relop) Exp ")" "}" Block "{"
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
-    Exp1        = Exp1 mulop Exp2                                   -- binary
+    Exp1        = Exp1 relop Exp1                                   -- binary
                 | Exp2
-    Exp2        = VarExp
+    Exp2        = Exp2 addop Exp3                                   -- binary
+                | Exp3
+    Exp3        = Exp3 mulop Exp4                                       -- binary
+                | Exp4
+    Exp4        = VarExp
                 | declit
                 | intlit
                 | StringLit
     VarExp      = id
+    // Comment     = ":)" alnum* "\n"
 
     logOp       = "||" | "&&"
     relop       =  "<" "=" "=="*                                    -- leq
@@ -29,6 +34,7 @@ Goof3 {
                 | ">=" "=="*                                        -- greq
                 | ">"                                               -- greater
     mulop       =  "*" | "/" | "%"
+    addop       =  "+" | "-"
     id          = letter (alnum | "_")*
     StringLit   = "\"" alnum* "\""
     intlit      = digit+
