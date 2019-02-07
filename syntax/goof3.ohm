@@ -1,8 +1,8 @@
 Goof3 {
     Program     = Block
     Block       = (Line | Function | If | Loop)+                            -- standard
-    Line        = Statement ":"                                      -- std
-                | comment
+    Line        = comment                               
+                | Statement ":"                                      -- std
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
                 | VarExp "=="+ Exp                                   -- reassignment
@@ -29,7 +29,8 @@ Goof3 {
                 | intlit
                 | StringLit
     VarExp      = id
-    comment     = ";)" (alnum | " ")* newline
+    comment     = "xD" (alnum | " ")* newline                        -- singleLine
+                | ";)" (alnum | space)* "(;"                         -- multiLine
 
     logOp       = "||" | "&&"
     relop       =  "<" "=" "=="*                                     -- leq
