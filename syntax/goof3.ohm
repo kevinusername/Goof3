@@ -1,7 +1,8 @@
 Goof3 {
     Program     = Block
     Block       = (Line | Function | If | Loop)+                            -- standard
-    Line        = Statement ":"
+    Line        = Statement ":"                                      -- std
+                | comment
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
                 | VarExp "=="+ Exp                                   -- reassignment
@@ -14,21 +15,21 @@ Goof3 {
     Loop        = "for" "(" Statement_assignment (":" Exp)? (":" Exp)? ")" "}" Block "{"
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
-    Exp1        = Exp1 relop Exp1                                    -- binary
+    Exp1        = Exp1 relop Exp1                                    -- relative
                 | Exp2
-    Exp2        = Exp2 addop Exp3                                    -- binary
+    Exp2        = Exp2 addop Exp3                                    -- addition
                 | Exp3
-    Exp3        = Exp3 mulop Exp4                                    -- binary
+    Exp3        = Exp3 mulop Exp4                                    -- multiplication
                 | Exp4
     Exp4        = Exp5 incOp                                         -- increment
                 | Exp5 
-    Exp5        = id "(" ListOf<Exp, ","> ")"                        -- call
+    Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | VarExp
                 | declit
                 | intlit
                 | StringLit
     VarExp      = id
-    // Comment     = ":)" alnum* "\n"
+    comment     = ";)" (alnum | " ")* newline
 
     logOp       = "||" | "&&"
     relop       =  "<" "=" "=="*                                     -- leq
@@ -44,4 +45,5 @@ Goof3 {
     StringLit   = "\"" alnum* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
+    newline     = "\n"
 }
