@@ -5,6 +5,7 @@ Goof3 {
                 | Statement ":"                                      -- std
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
+                | "yeet" StringLit                                   -- throw
                 | VarExp "=="+ Exp                                   -- reassignment
                 | "poof" "(" StringLit ")"                           -- print
                 | "return" (Exp | VarExp)                            -- return
@@ -29,8 +30,8 @@ Goof3 {
                 | intlit
                 | StringLit
     VarExp      = id
-    comment     = "xD" (alnum | " ")* newline                        -- singleLine
-                | ";)" (alnum | space)* "(;"                         -- multiLine
+    comment     = "xD" (~newline any)* newline                       -- singleLine
+                | ";)" (~"(;" any)* "(;"                             -- multiLine
 
     logOp       = "||" | "&&"
     relop       =  "<" "=" "=="*                                     -- leq
@@ -42,8 +43,11 @@ Goof3 {
     mulop       =  "*" | "/" | "%"
     incOp       = "++" | "--"
     addop       =  "+" | "-"
-    id          = letter (alnum | "_")*
-    StringLit   = "\"" alnum* "\""
+
+    keyword     = "goof" | "yeet" | "poof" | "return" | "phoof" | "if" | "for" | "xD" | ";)" | "(;"
+    id          = ~keyword letter idrest*
+    idrest      = "_" | alnum
+    StringLit   = "\"" (~"\"" any)* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
     newline     = "\n"
