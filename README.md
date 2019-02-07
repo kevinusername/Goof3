@@ -40,7 +40,15 @@ phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
 - Declare variables with "doof"
 - No more doubles, longs, or floats
 - Camel-case
+- Set values with even number of "=" signs
 
 ```
-doof letsGainThisGrain = 20.25                   var money = 20.25;
+doof letsGainThisGrain ==== 20.25                   var money = 20.25;
+```
+### Comparison Examples
+- Compare values with odd number of "=" signs
+
+```
+if (1 < 4 ===== toof);
+  return troof                                      var money = 20.25;
 ```
