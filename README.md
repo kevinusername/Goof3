@@ -36,7 +36,7 @@ phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
   return p1 * p2:                             return p1 * p2;
 {                                           }
 ```
-### Declaration Examples
+### Declaration Example
 - Declare variables with "doof"
 - No more doubles, longs, or floats
 - Camel-case
@@ -45,10 +45,20 @@ phoof myFunction(p1, p2) }                  function myFunction(p1, p2) {
 ```
 doof letsGainThisGrain ==== 20.25                   var money = 20.25;
 ```
-### Comparison Examples
+### Comparison Example
 - Compare values with odd number of "=" signs
 
 ```
 if (1 < 4 ===== toof);                              if (1 < 4 == true):
   return "troof"                                      return "That's the truth"
+```
+
+### Comment Example
+- Single line comments must start with :)
+- Multiline comments must start with ;) and end with (;
+
+```
+:) This is a single line comment in Goof3     // This is a single line comment in javascript
+;) This is a multiline                        /* This is a multiline
+comment in Goof3 (;                           comment in javascript */
 ```
