@@ -98,7 +98,7 @@ function myFunction(p1, p2) {
 
 ### Declaration Example
 
-- Declare variables with "doof"
+- Declare variables with "goof"
 - No more doubles, longs, or floats
 - Camel-case
 - Set values with even number of "=" signs
@@ -113,7 +113,7 @@ function myFunction(p1, p2) {
   <td>
 
 ```
-doof letsGainThisGrain ==== 20.25:
+goof letsGainThisGrain ==== 20.25:
 ```
 
   </td>
