@@ -19,7 +19,7 @@ Goof3 is an improvement over the underappreciated and underdeveloped Goof2 langu
 - Semicolons are colons, and colons are semicolons.
 - Closure begins with "}" and ends with "{".
 - Exceptions are thrown with witty and loosely-related error messages.
-- Single-line comments must start with ":)".
+- Single-line comments must start with "XD".
 - Multi-line comments must start with ";)" and end with "(;".
 - Compare with an odd number of "=" signs, set values with an even number of "=" signs.
 - Camel-case
