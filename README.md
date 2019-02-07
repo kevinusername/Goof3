@@ -211,7 +211,7 @@ comment in javascript */
   </tr>
 
   <tr>
-  <td>
+  <td style="word-wrap: break-word;">
 
 ```
 yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!":
@@ -219,7 +219,7 @@ yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The co
 
   </td>
 
-  <td>
+  <td style="word-wrap: break-word;">
 
 ```javascript
 throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!';
