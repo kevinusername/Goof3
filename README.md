@@ -165,7 +165,7 @@ if (1 < 4 == true) {
 
 ### Comment Example
 
-- Single line comments must start with :)
+- Single line comments must start with xD
 - Multiline comments must start with ;) and end with (;
 
 <table>
@@ -178,7 +178,7 @@ if (1 < 4 == true) {
   <td>
 
 ```
-:) This is a single line comment in Goof3
+xD This is a single line comment in Goof3
 
 ;) This is a multine
 comment in Goof3 (;
