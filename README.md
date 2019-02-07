@@ -69,6 +69,7 @@ if (1 < 4 ===== toof) }                              if (1 < 4 == true) {
 comment in Goof3 (;                           comment in javascript */
 ```
 ### Throw Error Example
+- Exceptions are thrown with witty and loosely-related error messages.
 ```
 yeet "OOPSIE WOOPSIE!! Uwu We made a          throw "OOPSIE WOOPSIE!! Uwu
 fucky wucky!! A wittle fucko boingo!          We made a fucky wucky!! A wittle 
