@@ -229,3 +229,23 @@ throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The c
 
   </tr>
 </table>
+
+### Put it all together
+
+```
+phoof fib ( n) }
+    if (n <= 1) }
+        return n:
+    {
+    xD hey there
+    return fib (n - 2) + fib(n -1):
+{
+
+for (goof i ==== 11: i <  size - 11: i++) }
+	goof dog == 10:
+    ;) heres a
+    multiline
+    for you (;
+    return "wHYyyYYyYy":
+{
+```
