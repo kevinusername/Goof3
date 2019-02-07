@@ -50,5 +50,5 @@ doof letsGainThisGrain ==== 20.25                   var money = 20.25;
 
 ```
 if (1 < 4 ===== toof);
-  return troof                                      var money = 20.25;
+  return "troof"                                      var money = 20.25;
 ```
