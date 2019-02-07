@@ -20,6 +20,7 @@ Goof3 is an improvement over the underappreciated and underdeveloped Goof2 langu
 * Compare with an odd number of "=" signs, set values with an even number of "=" signs.
 * Camel-case
 * Use "not" instead of "!"
+* High-order functions
 
 ## Example Programs
 
