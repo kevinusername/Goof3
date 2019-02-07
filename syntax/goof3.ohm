@@ -9,8 +9,8 @@ Goof3 {
                 | "return" (Exp | VarExp)                           -- return
                 | If
                 | Function
-    Function    = "phoof" id "(" ListOf<id, ","> ")" "}" Block "{"     -- declaration
-    If          = "if" "(" Exp (logOp | relop) Exp ")" "}" Block "{"
+    Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"     -- declaration
+    If          = "if" "(" Exp ")" "}" Block "{"
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
     Exp1        = Exp1 relop Exp1                                   -- binary
@@ -19,7 +19,8 @@ Goof3 {
                 | Exp3
     Exp3        = Exp3 mulop Exp4                                       -- binary
                 | Exp4
-    Exp4        = VarExp
+    Exp4        = id "(" ListOf<Exp, ","> ")"                        -- call
+                | VarExp
                 | declit
                 | intlit
                 | StringLit
