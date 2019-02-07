@@ -55,7 +55,7 @@ doof letsGainThisGrain ==== 20.25                   var money = 20.25;
 
 ```
 if (1 < 4 ===== toof) }                              if (1 < 4 == true) {
-  return "troof"                                       return "That's the truth"
+  return "troof":                                      return "That's the truth";
 {                                                    }
 ```
 
