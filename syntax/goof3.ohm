@@ -1,25 +1,28 @@
 Goof3 {
     Program     = Block
-    Block       = (Line | Function | If)+                                  -- standard
+    Block       = (Line | Function | If | Loop)+                            -- standard
     Line        = Statement ":"
-    Statement   = "goof" id "=="+ Exp                               -- assignment
-                | "goof" id                                         -- declaration
-                | VarExp "=="+ Exp                                  -- reassignment
-                | "poof" "(" StringLit ")"                          -- print
-                | "return" (Exp | VarExp)                           -- return
+    Statement   = "goof" id "=="+ Exp                                -- assignment
+                | "goof" id                                          -- declaration
+                | VarExp "=="+ Exp                                   -- reassignment
+                | "poof" "(" StringLit ")"                           -- print
+                | "return" (Exp | VarExp)                            -- return
                 | If
                 | Function
-    Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"     -- declaration
+    Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
     If          = "if" "(" Exp ")" "}" Block "{"
+    Loop        = "for" "(" Statement_assignment (":" Exp)? (":" Exp)? ")" "}" Block "{"
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
-    Exp1        = Exp1 relop Exp1                                   -- binary
+    Exp1        = Exp1 relop Exp1                                    -- binary
                 | Exp2
-    Exp2        = Exp2 addop Exp3                                   -- binary
+    Exp2        = Exp2 addop Exp3                                    -- binary
                 | Exp3
-    Exp3        = Exp3 mulop Exp4                                       -- binary
+    Exp3        = Exp3 mulop Exp4                                    -- binary
                 | Exp4
-    Exp4        = id "(" ListOf<Exp, ","> ")"                        -- call
+    Exp4        = Exp5 incOp                                         -- increment
+                | Exp5 
+    Exp5        = id "(" ListOf<Exp, ","> ")"                        -- call
                 | VarExp
                 | declit
                 | intlit
@@ -28,13 +31,14 @@ Goof3 {
     // Comment     = ":)" alnum* "\n"
 
     logOp       = "||" | "&&"
-    relop       =  "<" "=" "=="*                                    -- leq
-                | "<"                                               -- less
-                | "=" "=="*                                         -- equal
-                | "!=" "=="*                                        -- notequal
-                | ">=" "=="*                                        -- greq
-                | ">"                                               -- greater
+    relop       =  "<" "=" "=="*                                     -- leq
+                | "<"                                                -- less
+                | "=" "=="*                                          -- equal
+                | "!=" "=="*                                         -- notequal
+                | ">=" "=="*                                         -- greq
+                | ">"                                                -- greater
     mulop       =  "*" | "/" | "%"
+    incOp       = "++" | "--"
     addop       =  "+" | "-"
     id          = letter (alnum | "_")*
     StringLit   = "\"" alnum* "\""
