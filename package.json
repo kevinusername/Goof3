@@ -4,7 +4,7 @@
   "description": "The goof3 language",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "lint": "./node_modules/.bin/eslint *.js"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/BlakeCrowther/Goof3#readme",
   "dependencies": {
     "fs": "0.0.1-security",
+    "jest": "^24.1.0",
     "ohm-js": "^0.14.0"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^5.2.0"
   }
 }
