@@ -68,3 +68,11 @@ if (1 < 4 ===== toof) }                              if (1 < 4 == true) {
 ;) This is a multiline                        /* This is a multiline
 comment in Goof3 (;                           comment in javascript */
 ```
+### Throw Error Example
+```
+yeet "OOPSIE WOOPSIE!! Uwu We made a          throw "OOPSIE WOOPSIE!! Uwu
+fucky wucky!! A wittle fucko boingo!          We made a fucky wucky!! A wittle 
+are working VEWY HAWD to fix this!":          fucko boingo! The code monkeys at our
+                                              headquarters are working VEWY HAWD
+                                              to fix this!";
+```
