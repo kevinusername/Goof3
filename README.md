@@ -52,7 +52,7 @@ poof("hELlO woRlD!"):
   <td>
 
 ```javascript
-console.log('hELlO woRlD!');
+console.log('hELlO woRlD!')
 ```
 
   </td>
@@ -87,7 +87,7 @@ phoof myFunction(p1, p2) }
 
 ```javascript
 function myFunction(p1, p2) {
-  return p1 * p2;
+  return p1 * p2
 }
 ```
 
@@ -121,7 +121,7 @@ doof letsGainThisGrain ==== 20.25:
   <td>
 
 ```javascript
-var money = 20.25;
+var money = 20.25
 ```
 
   </td>
@@ -154,7 +154,7 @@ if ( 1 < 4 ===== toof) }
 
 ```javascript
 if (1 < 4 == true) {
-  return "That's the truth";
+  return "That's the truth"
 }
 ```
 
@@ -222,7 +222,7 @@ yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The co
   <td style="word-wrap: break-word;">
 
 ```javascript
-throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!';
+throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!'
 ```
 
   </td>
