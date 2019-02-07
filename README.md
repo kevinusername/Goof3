@@ -204,7 +204,7 @@ comment in javascript */
 
 - Exceptions are thrown with witty and loosely-related error messages.
 
-<table>
+<table style="table-layout: fixed; width: 100%">
   <tr>
   <th>Goof3</th>
   <th>JavaScript</th>
