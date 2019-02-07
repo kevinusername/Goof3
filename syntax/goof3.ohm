@@ -1,6 +1,6 @@
 Goof3 {
     Program     = Block
-    Block       = (Line | Function | If | Loop)+                            -- standard
+    Block       = (Line | Function | If | Loop)+                     -- standard
     Line        = comment                               
                 | Statement ":"                                      -- std
     Statement   = "goof" id "=="+ Exp                                -- assignment
@@ -16,13 +16,13 @@ Goof3 {
     Loop        = "for" "(" Statement_assignment (":" Exp)? (":" Exp)? ")" "}" Block "{"
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
-    Exp1        = Exp1 relop Exp1                                    -- relative
+    Exp1        = Exp1 relOp Exp1                                    -- relative
                 | Exp2
     Exp2        = Exp2 addop Exp3                                    -- addition
                 | Exp3
-    Exp3        = Exp3 mulop Exp4                                    -- multiplication
+    Exp3        = Exp3 mulOp Exp4                                    -- multiplication
                 | Exp4
-    Exp4        = Exp5 prefixOp                                      -- increment
+    Exp4        = Exp5 sufixOp                                       -- increment
                 | Exp5 
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | VarExp
@@ -34,14 +34,14 @@ Goof3 {
                 | ";)" (~"(;" any)* "(;"                             -- multiLine
 
     logOp       = "||" | "&&"
-    relop       = "<" "=" "=="*                                      -- leq
+    relOp       = "<" "=" "=="*                                      -- leq
                 | "<"                                                -- less
                 | "=" "=="*                                          -- equal
                 | "!=" "=="*                                         -- notequal
                 | ">=" "=="*                                         -- greq
                 | ">"                                                -- greater
-    mulop       = "*" | "/" | "%"
-    prefixOp    = "++" | "--"
+    mulOp       = "*" | "/" | "%"
+    sufixOp     = "++" | "--"
     addop       = "+" | "-"
 
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
