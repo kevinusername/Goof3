@@ -22,7 +22,7 @@ Goof3 {
                 | Exp3
     Exp3        = Exp3 mulop Exp4                                    -- multiplication
                 | Exp4
-    Exp4        = Exp5 incOp                                         -- increment
+    Exp4        = Exp5 prefixOp                                      -- increment
                 | Exp5 
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | VarExp
@@ -40,11 +40,12 @@ Goof3 {
                 | "!=" "=="*                                         -- notequal
                 | ">=" "=="*                                         -- greq
                 | ">"                                                -- greater
-    mulop       =  "*" | "/" | "%"
-    incOp       = "++" | "--"
-    addop       =  "+" | "-"
+    mulop       = "*" | "/" | "%"
+    prefixOp    = "++" | "--"
+    addop       = "+" | "-"
 
-    keyword     = "goof" | "yeet" | "poof" | "return" | "phoof" | "if" | "for" | "xD" | ";)" | "(;"
+    keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
+                  "if" | "for" | "xD" | ";)" | "(;") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     StringLit   = "\"" (~"\"" any)* "\""
