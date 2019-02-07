@@ -34,7 +34,7 @@ Goof3 {
                 | ";)" (~"(;" any)* "(;"                             -- multiLine
 
     logOp       = "||" | "&&"
-    relop       =  "<" "=" "=="*                                     -- leq
+    relop       = "<" "=" "=="*                                      -- leq
                 | "<"                                                -- less
                 | "=" "=="*                                          -- equal
                 | "!=" "=="*                                         -- notequal
