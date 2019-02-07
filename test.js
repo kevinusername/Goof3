@@ -7,11 +7,13 @@ const fs = require('fs')
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/goof3.ohm'))
 
+const exampleDirectory = './examples/'
+
 describe('The grammar', () => {
-  fs.readdirSync('./examples/').forEach(name => {
+  fs.readdirSync(exampleDirectory).forEach(name => {
     if (name.endsWith('.goof')) {
       it(`matches the program ${name}`, done => {
-        fs.readFile(`./examples/${name}`, 'utf-8', (err, input) => {
+        fs.readFile(`${exampleDirectory}${name}`, 'utf-8', (err, input) => {
           // In this test we just care that it parses without errors
           assert.equal(grammar.match(input).succeeded(), true)
           done()
