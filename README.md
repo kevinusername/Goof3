@@ -19,6 +19,7 @@ Goof3 is an improvement over the underappreciated and underdeveloped Goof2 langu
 * Multi-line comments must start with ";)" and end with "(;".
 * Compare with an odd number of "=" signs, set values with an even number of "=" signs.
 * Camel-case
+* Use "not" instead of "!"
 
 ## Example Programs
 
