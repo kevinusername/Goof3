@@ -1,8 +1,8 @@
 Goof3 {
     Program     = Block
-    Block       = (Line | Function | If | Loop)+                     -- standard
+    Block       = (Line | Function | If | Loop)+
     Line        = comment                               
-                | Statement ":"                                      -- std
+                | Statement ":"                                      -- stmt
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
                 | "yeet" StringLit                                   -- throw
