@@ -8,7 +8,7 @@ Goof3 {
                 | "yeet" StringLit                                   -- throw
                 | VarExp "=="+ Exp                                   -- reassignment
                 | "poof" "(" StringLit ")"                           -- print
-                | "return" (Exp | VarExp)                            -- return
+                | "return" Exp                                       -- return
 
     Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
     If          = "if" "(" Exp ")" "}" Block "{"
