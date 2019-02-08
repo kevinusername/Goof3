@@ -19,7 +19,6 @@
   "homepage": "https://github.com/BlakeCrowther/Goof3#readme",
   "dependencies": {
     "fs": "0.0.1-security",
-    "jest": "^24.1.0",
     "ohm-js": "^0.14.0"
   },
   "devDependencies": {
