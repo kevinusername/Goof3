@@ -9,8 +9,7 @@ Goof3 {
                 | VarExp "=="+ Exp                                   -- reassignment
                 | "poof" "(" StringLit ")"                           -- print
                 | "return" (Exp | VarExp)                            -- return
-                | If
-                | Function
+
     Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
     If          = "if" "(" Exp ")" "}" Block "{"
     Loop        = "for" "(" Statement_assignment (":" Exp)? (":" Exp)? ")" "}" Block "{"
