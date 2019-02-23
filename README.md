@@ -236,6 +236,47 @@ are working VEWY HAWD to fix this!";
   </tr>
 </table>
 
+### Class example
+
+- Classes are defined using the keyword *classhole*. The word *this* is replaced with *that* for instances references.
+
+<table style="table-layout: fixed; width: 100%">
+  <tr>
+  <th>Goof3</th>
+  <th>JavaScript</th>
+  </tr>
+
+  <tr>
+  <td style="word-wrap: break-word;">
+
+```
+classhole Rectangle }
+  constructor(height, width) }
+    that.height == height:
+    that.width == width:
+    {
+{       
+```
+
+  </td>
+
+  <td style="word-wrap: break-word;">
+
+```
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+  </td>
+
+  </tr>
+</table>
+
+
 ### Put it all together
 
 ```
