@@ -131,14 +131,22 @@ var money = 20.25
   <td>
 
 ```
-goof foot = }length;"1 Foot", girth;"yes", shoeSize;"12", color;"white", numberOfToes;"12 - 3"{:
+goof foot = }length;"1 Foot", 
+girth;"yes", 
+shoeSize;"12", 
+color;"white", 
+numberOfToes;"12 - 3"{:
 ```
 
   </td>
   <td>
 
-```javascript
-var foot = {length:"1 Foot", girth:"yes", shoeSize:"12", color:"white", numberOfToes:"12 - 3"};
+```
+var foot = {length:"1 Foot",
+girth:"yes", 
+shoeSize:"12", 
+color:"white", 
+numberOfToes:"12 - 3"};
 ```
   </td>
   </tr>
