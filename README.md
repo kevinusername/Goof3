@@ -1,6 +1,6 @@
 # Goof3
 
-![Logo](Goof3_Logo.png){:height="100px" width="100px"}
+![Logo](Goof3_Logo.png = 250x250)
 
 #### Blake Crowther, Nikky Rajavasireddy, Andrew Arteaga, Kevin Peters, Michael Simmons, Michael West
 
