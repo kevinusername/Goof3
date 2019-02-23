@@ -251,9 +251,9 @@ are working VEWY HAWD to fix this!";
 
 ```
 classhole Rectangle }
-  constructor(height, width) }
-    that.height == height:
-    that.width == width:
+  constructor(hoof, woof) }
+    that.hoof == hoof:
+    that.woof == woof:
   {
 {       
 ```
