@@ -254,7 +254,7 @@ classhole Rectangle }
   constructor(height, width) }
     that.height == height:
     that.width == width:
-    {
+  {
 {       
 ```
 
