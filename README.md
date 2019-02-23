@@ -214,7 +214,9 @@ comment in javascript */
   <td style="word-wrap: break-word;">
 
 ```
-yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!":
+yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! 
+A wittle fucko boingo! The code monkeys at our 
+headquarters are working VEWY HAWD to fix this!":
 ```
 
   </td>
@@ -222,7 +224,9 @@ yeet "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The co
   <td style="word-wrap: break-word;">
 
 ```javascript
-throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!'
+throw 'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!!
+A wittle fucko boingo! The code monkeys at our 
+headquarters are working VEWY HAWD to fix this!'
 ```
 
   </td>
