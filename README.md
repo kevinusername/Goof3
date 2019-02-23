@@ -180,7 +180,7 @@ if (1 < 4 == true) {
 ```
 xD This is a single line comment in Goof3
 
-;) This is a multine
+;) This is a multiline
 comment in Goof3 (;
 ```
 
