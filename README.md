@@ -262,7 +262,7 @@ are working VEWY HAWD to fix this!";
 
 ### Class example
 
-- Classes are defined using the keyword *classhole*. The word *this* is replaced with *that* for instances references.
+- Classes are defined using the keyword *fourUnitClass*. The word *this* is replaced with *that* for instances references.
 
 <table style="table-layout: fixed; width: 100%">
   <tr>
@@ -274,7 +274,7 @@ are working VEWY HAWD to fix this!";
   <td style="word-wrap: break-word;">
 
 ```
-classhole Rectangle }
+fourUnitClass Rectangle }
   constructor(hoof, woof) }
     that.hoof == hoof:
     that.woof == woof:
