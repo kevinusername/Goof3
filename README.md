@@ -131,22 +131,26 @@ var money = 20.25
   <td>
 
 ```
-goof foot = }length;"1 Foot", 
-girth;"yes", 
-shoeSize;"12", 
-color;"white", 
-numberOfToes;"12 - 3"{:
+goof foot = }
+  length; "1 Foot", 
+  girth; "yes", 
+  shoeSize; "12", 
+  color; "white", 
+  numberOfToes; "12 - 3"
+{:
 ```
 
   </td>
   <td>
 
 ```
-var foot = {length:"1 Foot",
-girth:"yes", 
-shoeSize:"12", 
-color:"white", 
-numberOfToes:"12 - 3"};
+var foot = {
+  length: "1 Foot",
+  girth: "yes", 
+  shoeSize: "12", 
+  color: "white", 
+  numberOfToes: "12 - 3"
+};
 ```
   </td>
   </tr>
@@ -313,7 +317,7 @@ phoof fib ( n) }
 {
 
 for (goof i ==== 11: i <  size - 11: i++) }
-	goof dog == 10:
+    goof dog == 10:
     ;) heres a
     multiline
     for you (;
