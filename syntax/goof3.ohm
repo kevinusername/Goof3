@@ -1,7 +1,7 @@
 Goof3 {
     Program     = Block
     Block       = (Line | Function | If | Loop)+
-    Line        = comment                               
+    Line        = comment
                 | Statement ":"                                      -- stmt
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
@@ -22,7 +22,7 @@ Goof3 {
     Exp3        = Exp3 mulOp Exp4                                    -- multiplication
                 | Exp4
     Exp4        = Exp5 sufixOp                                       -- increment
-                | Exp5 
+                | Exp5
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | VarExp
                 | declit

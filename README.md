@@ -143,7 +143,7 @@ goof foot = }
   </td>
   <td>
 
-```
+```js
 var foot = {
   length: "1 Foot",
   girth: "yes", 
@@ -252,7 +252,7 @@ are working VEWY HAWD to fix this!":
 
   <td style="word-wrap: break-word;">
 
-```
+```js
 throw "OOPSIE WOOPSIE!! Uwu We made a 
 fucky wucky!! A wittle fucko boingo!
 The code monkeys at our headquarters
@@ -290,7 +290,7 @@ fourUnitClass Rectangle }
 
   <td style="word-wrap: break-word;">
 
-```
+```js
 class Rectangle {
   constructor(height, width) {
     this.height = height;
