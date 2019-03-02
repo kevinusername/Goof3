@@ -254,10 +254,10 @@ are working VEWY HAWD to fix this!":
   <td style="word-wrap: break-word;">
 
 ```js
-throw "OOPSIE WOOPSIE!! Uwu We made a 
+throw `OOPSIE WOOPSIE!! Uwu We made a 
 fucky wucky!! A wittle fucko boingo!
 The code monkeys at our headquarters
-are working VEWY HAWD to fix this!";
+are working VEWY HAWD to fix this!`;
 ```
 
   </td>
@@ -354,7 +354,7 @@ while (counter > 0) {
 
 ```
 phoof fib ( n) }
-    if (n <= 1) }
+    gif (n <= 1) }
         return n:
     {
     xD hey there
@@ -362,7 +362,7 @@ phoof fib ( n) }
 {
 
 four (goof i ==== 11: i <  size - 11: i++) }
-    goof dog == 10:
+	goof dog == 10:
     ;) heres a
     multiline
     for you (;
