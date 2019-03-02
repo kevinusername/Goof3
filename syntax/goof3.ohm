@@ -48,11 +48,12 @@ Goof3 {
     addop       = "+" | "-"
 
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
-                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;" |
-                  "fourUnitClass") ~idrest
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
-    StringLit   = "\"" (~"\"" any)* "\""
+    StringLit   = "\"" (~"\"" any)* "\""                            -- basic
+                | "`" (("${" Exp "}")? (~"`" any) 
+                  ("${" Exp "}")?)* "`"                             -- fancy
     intlit      = digit+
     declit      = digit+ "." digit*
     newline     = "\n"
