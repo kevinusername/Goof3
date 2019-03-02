@@ -25,6 +25,7 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Camel-case
 - Use "not" instead of "!"
 - High-order functions
+- Declare while loops with "wooloop".
 
 ## Example Programs
 
@@ -171,7 +172,7 @@ var foot = {
   <td>
 
 ```
-if ( 1 < 4 ===== toof) }
+gif ( 1 < 4 ===== toof) }
   return "troof":
 {
 ```
@@ -264,7 +265,7 @@ are working VEWY HAWD to fix this!";
   </tr>
 </table>
 
-### Class example
+<!-- ### Class Example
 
 - Classes are defined using the keyword *fourUnitClass*. The word *this* is replaced with *that* for instances references.
 
@@ -302,8 +303,52 @@ class Rectangle {
   </td>
 
   </tr>
-</table>
+</table> -->
 
+### Loop Example
+- Declare for loops with "four".
+- Declare while loops with "wooloop.
+<table style="table-layout: fixed; width: 100%">
+  <tr>
+  <th>Goof3</th>
+  <th>JavaScript</th>
+  </tr>
+
+  <tr>
+  <td style="word-wrap: break-word;">
+
+```
+four (goof i == 7: i <  size: i++) }
+    goof cat == -10:
+{
+```
+```
+goof counter == 10
+wooloop (counter > 0) } 
+    counter--:
+    poof(nOt dOnE yEt):
+{
+```
+  </td>
+
+  <td style="word-wrap: break-word;">
+
+```js
+for (var i = 7; i < size; i++) {
+  var cat = -10;
+}
+```
+```js
+var counter = 0;
+while (counter > 0) {
+  counter--;
+  print(nOt dOnE yEt);    
+}
+```
+  </td>
+
+  </tr>
+</table>
 
 ### Put it all together
 
@@ -316,7 +361,7 @@ phoof fib ( n) }
     return fib (n - 2) + fib(n -1):
 {
 
-for (goof i ==== 11: i <  size - 11: i++) }
+four (goof i ==== 11: i <  size - 11: i++) }
     goof dog == 10:
     ;) heres a
     multiline

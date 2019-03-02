@@ -1,8 +1,9 @@
 Goof3 {
     Program     = Block
-    Block       = (Line | Function | If | Loop)+
+    Block       = (Line | Advanced)+
     Line        = comment
                 | Statement ":"                                      -- stmt
+    Advanced    = Function | If | Loop
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
                 | "yeet" StringLit                                   -- throw
@@ -11,8 +12,11 @@ Goof3 {
                 | "return" Exp                                       -- return
 
     Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
-    If          = "if" "(" Exp ")" "}" Block "{"
-    Loop        = "for" "(" Statement_assignment (":" Exp)? (":" Exp)? ")" "}" Block "{"
+    If          = "gif" "(" Exp ")" "}" Block "{"
+    Loop        = "four" "(" NonemptyListOf<Statement_assignment, ","> 
+                  ":" Exp ":" Exp ")" "}" Block "{"                  -- for
+                | "wooloop" "(" Exp ")" "}" Block "{"                -- while
+    
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
     Exp1        = Exp1 relOp Exp1                                    -- relative
@@ -44,7 +48,8 @@ Goof3 {
     addop       = "+" | "-"
 
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
-                  "if" | "for" | "xD" | ";)" | "(;") ~idrest
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;" |
+                  "fourUnitClass") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     StringLit   = "\"" (~"\"" any)* "\""
