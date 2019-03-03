@@ -1,10 +1,11 @@
+/* eslint-disable no-path-concat */
 /* eslint-disable node/no-deprecated-api */
 /* eslint-disable handle-callback-err */
 /* eslint-disable no-undef */
-var parse = require('./syntax/parser');
+var parse = require('../../syntax/parser');
 const fs = require('fs');
 
-const exampleDirectory = './examples/';
+const exampleDirectory = __dirname + '/../examples/';
 
 describe('The grammar', () => {
     fs.readdirSync(exampleDirectory).forEach(name => {
