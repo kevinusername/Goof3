@@ -58,7 +58,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new BinaryExpression(op.ast(), left.ast());
     },
     Exp5_fCall (id, _1, args, _2) {
-        return new Call(id, args);
+        return new Call(id.ast(), args.ast());
     },
     numlit (_1) {
         return new NumericLiteral(+this.sourceString);
@@ -79,16 +79,15 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return this.sourceString;
     },
     Loop_for (_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
-        return new ForStatement(args, test, action, body);
+        return new ForStatement(args.ast(), test.ast(), action.ast(), body.ast());
     },
-    comment_singleLine (_1, _2, _3) {
-        return null;
-    },
-    comment_multiLine (_1, _2, _3) {
-        return null;
-    },
+    comment_singleLine (_1, _2, _3) {},
+    comment_multiLine (_1, _2, _3) {},
     NonemptyListOf (first, _, rest) {
         return [first.ast(), ...rest.ast()];
+    },
+    EmptyListOf () {
+        return [];
     },
     // prettier-ignore
     If (_1, _2, firstTest, _3, _4, firstBody, _5, _6, _7, moreTests, _8,

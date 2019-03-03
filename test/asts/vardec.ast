@@ -1,0 +1,7 @@
+Program {
+  statements:
+   [ Line {
+       stmt:
+        VariableDeclaration {
+          ids: 'letsGainThisGrain',
+          initializers: NumericLiteral { value: 20.25 } } } ] }

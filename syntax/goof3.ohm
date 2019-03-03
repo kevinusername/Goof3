@@ -53,8 +53,8 @@ Goof3 {
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     StringLit   = "\"" (~"\"" any)* "\""                            -- basic
-                | "`" (("${" Exp "}")? (~"`" any) 
-                  ("${" Exp "}")?)* "`"                             -- fancy
+                // | "`" (("${" Exp "}")? (~"`" any) 
+                //   ("${" Exp "}")?)* "`"                             -- fancy
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit

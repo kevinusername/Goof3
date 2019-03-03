@@ -1,0 +1,14 @@
+Program {
+  statements:
+   [ GifStatement {
+       tests:
+        [ BinaryExpression {
+            op: '< ',
+            left: NumericLiteral { value: 1 },
+            right:
+             BinaryExpression { op: '=====', left: NumericLiteral { value: 4 }, right: 'toof' } } ],
+       consequents:
+        [ [ Line {
+              stmt:
+               ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } } ] ],
+       alternate: null } ] }

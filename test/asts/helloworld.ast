@@ -1,0 +1,7 @@
+Program {
+  statements:
+   [ Line {
+       stmt:
+        Call {
+          callee: 'poof',
+          args: StringLiteral { value: '"hELlO woRlD!"' } } } ] }
