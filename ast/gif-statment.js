@@ -1,5 +1,5 @@
-module.exports = class gifStatement {
-    constructor (cases, alternate) {
-        Object.assign(this, { cases, alternate });
+module.exports = class GifStatement {
+    constructor (tests, consequents, alternate) {
+        Object.assign(this, { tests, consequents, alternate });
     }
 };

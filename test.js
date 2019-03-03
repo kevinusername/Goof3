@@ -2,7 +2,6 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable no-undef */
 var parse = require('./syntax/parser');
-var assert = require('assert');
 const fs = require('fs');
 
 const exampleDirectory = './examples/';
@@ -16,7 +15,7 @@ describe('The grammar', () => {
                     'utf-8',
                     (err, input) => {
                         // In this test we just care that it parses without errors
-                        assert.equal(parse(input), true);
+                        expect(parse(input)).toBeTruthy();
                         done();
                     }
                 );
@@ -28,7 +27,7 @@ describe('The grammar', () => {
                     'utf-8',
                     (err, input) => {
                         // We always wrap Ohm failures in an error with text "Syntax Error"
-                        assert.throws(() => parse(input), /Syntax Error/);
+                        expect(() => parse(input)).toThrow(/Syntax Error/);
                         done();
                     }
                 );

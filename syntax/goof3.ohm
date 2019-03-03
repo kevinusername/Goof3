@@ -13,7 +13,9 @@ Goof3 {
 
     Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
     If          = "gif" "(" Exp ")" "}" Block "{"
-    Loop        = "four" "(" NonemptyListOf<Statement_assignment, ","> 
+                  ("elsegif" "(" Exp ")" "}" Block "{")*
+                  ("else" "}" Block "{")*
+    Loop        = "four" "(" ListOf<Statement_assignment, ","> 
                   ":" Exp ":" Exp ")" "}" Block "{"                  -- for
                 | "wooloop" "(" Exp ")" "}" Block "{"                -- while
     
@@ -29,20 +31,19 @@ Goof3 {
                 | Exp5
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | VarExp
-                | declit
-                | intlit
+                | numlit
                 | StringLit
     VarExp      = id
     comment     = "xD" (~newline any)* newline                       -- singleLine
                 | ";)" (~"(;" any)* "(;"                             -- multiLine
 
     logOp       = "||" | "&&"
-    relOp       = "<" "=" "=="*                                      -- leq
-                | "<"                                                -- less
-                | "=" "=="*                                          -- equal
-                | "!=" "=="*                                         -- notequal
-                | ">=" "=="*                                         -- greq
-                | ">"                                                -- greater
+    relOp       = "<=" "=="*
+                | "<" space
+                | "=" "=="*
+                | "!=" "=="*
+                | ">=" "=="*
+                | ">" space
     mulOp       = "*" | "/" | "%"
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
@@ -56,5 +57,6 @@ Goof3 {
                   ("${" Exp "}")?)* "`"                             -- fancy
     intlit      = digit+
     declit      = digit+ "." digit*
+    numlit      = declit | intlit
     newline     = "\n"
 }
