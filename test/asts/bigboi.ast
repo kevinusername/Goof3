@@ -46,4 +46,9 @@ Program {
           undefined,
           Line {
             stmt:
-             ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] } ] }
+             ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] },
+     Line {
+       stmt:
+        Call {
+          callee: 'poof',
+          args: StringLiteral { value: '"and thats all she wrote"' } } } ] }
