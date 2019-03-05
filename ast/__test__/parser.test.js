@@ -9,10 +9,10 @@
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
-const parse = require(path.posix.normalize('../syntax/parser'));
+const parse = require(path.posix.normalize('../../syntax/parser'));
 
 const astDir = path.posix.join(__dirname, '/asts/');
-const exampleDir = path.posix.join(__dirname, '/examples/');
+const exampleDir = './examples/';
 
 describe('The parser', () => {
     fs.readdirSync(exampleDir).forEach(name => {

@@ -1,10 +1,10 @@
 /* eslint-disable handle-callback-err */
 
 const path = require('path');
-const parse = require(path.posix.normalize('../syntax/parser'));
+const parse = require(path.posix.normalize('../parser'));
 const fs = require('fs');
 
-const exampleDirectory = path.posix.join(__dirname, '/examples/');
+const exampleDirectory = './examples/';
 
 describe('The grammar', () => {
     fs.readdirSync(exampleDirectory).forEach(name => {
