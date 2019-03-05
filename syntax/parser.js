@@ -1,6 +1,5 @@
 const ohm = require('ohm-js');
 const fs = require('fs');
-const path = require('path');
 
 const Program = require('../ast/program');
 const Line = require('../ast/line');
@@ -17,7 +16,7 @@ const FunctionDeclaration = require('../ast/function-declaration');
 const ForStatement = require('../ast/for-statement');
 const GifStatement = require('../ast/gif-statment');
 
-const grammar = ohm.grammar(fs.readFileSync(path.posix.normalize('./syntax/goof3.ohm')));
+const grammar = ohm.grammar(fs.readFileSync('./syntax/goof3.ohm'));
 
 function arrayToNullable (a) {
     return a.length === 0 ? null : a[0];
