@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const parse = require(path.posix.normalize('../../syntax/parser'));
 
-const astDir = path.posix.join(__dirname, '/asts/');
+const astDir = path.posix.join(__dirname, '/example_asts/');
 const exampleDir = './examples/';
 
 describe('The parser', () => {

@@ -1,0 +1,54 @@
+Program {
+  statements:
+   [ FunctionDeclaration {
+       id: 'fib',
+       function:
+        FunctionObject {
+          id: 'fib',
+          params: [ 'n' ],
+          body:
+           [ GifStatement {
+               tests:
+                [ BinaryExpression { op: '<=', left: 'n', right: NumericLiteral { value: 1 } } ],
+               consequents: [ [ Line { stmt: ReturnStatement { returnValue: 'n' } } ] ],
+               alternate: null },
+             undefined,
+             Line {
+               stmt:
+                ReturnStatement {
+                  returnValue:
+                   BinaryExpression {
+                     op: '+',
+                     left:
+                      Call {
+                        callee: 'fib',
+                        args:
+                         [ BinaryExpression { op: '-', left: 'n', right: NumericLiteral { value: 2 } } ] },
+                     right:
+                      Call {
+                        callee: 'fib',
+                        args:
+                         [ BinaryExpression { op: '-', left: 'n', right: NumericLiteral { value: 1 } } ] } } } } ] } },
+     ForStatement {
+       assignments:
+        [ VariableDeclaration { ids: 'i', initializers: NumericLiteral { value: 11 } } ],
+       test:
+        BinaryExpression {
+          op: '< ',
+          left: 'i',
+          right:
+           BinaryExpression { op: '-', left: 'size', right: NumericLiteral { value: 11 } } },
+       action: BinaryExpression { op: '++', left: 'i', right: undefined },
+       body:
+        [ Line {
+            stmt:
+             VariableDeclaration { ids: 'dog', initializers: NumericLiteral { value: 10 } } },
+          undefined,
+          Line {
+            stmt:
+             ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] },
+     Line {
+       stmt:
+        Call {
+          callee: 'poof',
+          args: StringLiteral { value: '"and thats all she wrote"' } } } ] }
