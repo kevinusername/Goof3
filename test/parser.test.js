@@ -1,4 +1,3 @@
-/* eslint-disable no-path-concat */
 /* eslint-disable handle-callback-err */
 /*
  * Parser Tests
@@ -9,10 +8,11 @@
 
 const util = require('util');
 const fs = require('fs');
-const parse = require('../syntax/parser');
+const path = require('path');
+const parse = require(path.posix.normalize('../syntax/parser'));
 
-const astDir = __dirname + '/asts/';
-const exampleDir = __dirname + '/examples/';
+const astDir = path.posix.join(__dirname, '/asts/');
+const exampleDir = path.posix.join(__dirname, '/examples/');
 
 describe('The parser', () => {
     fs.readdirSync(exampleDir).forEach(name => {
