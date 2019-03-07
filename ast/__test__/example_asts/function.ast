@@ -1,13 +1,17 @@
 Program {
   statements:
    [ FunctionDeclaration {
-       id: 'myFunction',
+       id: Identifier { name: 'myFunction' },
        function:
         FunctionObject {
-          id: 'myFunction',
-          params: [ 'p1', 'p2' ],
+          id: Identifier { name: 'myFunction' },
+          params: [ Identifier { name: 'p1' }, Identifier { name: 'p2' } ],
           body:
            [ Line {
                stmt:
                 ReturnStatement {
-                  returnValue: BinaryExpression { op: '*', left: 'p1', right: 'p2' } } } ] } } ] }
+                  returnValue:
+                   BinaryExpression {
+                     op: '*',
+                     left: Identifier { name: 'p1' },
+                     right: Identifier { name: 'p2' } } } } ] } } ] }

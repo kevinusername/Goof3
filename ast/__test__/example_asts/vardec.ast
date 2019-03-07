@@ -3,5 +3,5 @@ Program {
    [ Line {
        stmt:
         VariableDeclaration {
-          ids: 'letsGainThisGrain',
+          ids: Identifier { name: 'letsGainThisGrain' },
           initializers: NumericLiteral { value: 20.25 } } } ] }

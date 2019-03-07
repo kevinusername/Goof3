@@ -1,16 +1,21 @@
 Program {
   statements:
    [ FunctionDeclaration {
-       id: 'fib',
+       id: Identifier { name: 'fib' },
        function:
         FunctionObject {
-          id: 'fib',
-          params: [ 'n' ],
+          id: Identifier { name: 'fib' },
+          params: [ Identifier { name: 'n' } ],
           body:
            [ GifStatement {
                tests:
-                [ BinaryExpression { op: '<=', left: 'n', right: NumericLiteral { value: 1 } } ],
-               consequents: [ [ Line { stmt: ReturnStatement { returnValue: 'n' } } ] ],
+                [ BinaryExpression {
+                    op: '<=',
+                    left: Identifier { name: 'n' },
+                    right: NumericLiteral { value: 1 } } ],
+               consequents:
+                [ [ Line {
+                      stmt: ReturnStatement { returnValue: Identifier { name: 'n' } } } ] ],
                alternate: null },
              undefined,
              Line {
@@ -21,28 +26,42 @@ Program {
                      op: '+',
                      left:
                       Call {
-                        callee: 'fib',
+                        callee: Identifier { name: 'fib' },
                         args:
-                         [ BinaryExpression { op: '-', left: 'n', right: NumericLiteral { value: 2 } } ] },
+                         [ BinaryExpression {
+                             op: '-',
+                             left: Identifier { name: 'n' },
+                             right: NumericLiteral { value: 2 } } ] },
                      right:
                       Call {
-                        callee: 'fib',
+                        callee: Identifier { name: 'fib' },
                         args:
-                         [ BinaryExpression { op: '-', left: 'n', right: NumericLiteral { value: 1 } } ] } } } } ] } },
+                         [ BinaryExpression {
+                             op: '-',
+                             left: Identifier { name: 'n' },
+                             right: NumericLiteral { value: 1 } } ] } } } } ] } },
      ForStatement {
        assignments:
-        [ VariableDeclaration { ids: 'i', initializers: NumericLiteral { value: 11 } } ],
+        [ VariableDeclaration {
+            ids: Identifier { name: 'i' },
+            initializers: NumericLiteral { value: 11 } } ],
        test:
         BinaryExpression {
           op: '< ',
-          left: 'i',
+          left: Identifier { name: 'i' },
           right:
-           BinaryExpression { op: '-', left: 'size', right: NumericLiteral { value: 11 } } },
-       action: BinaryExpression { op: '++', left: 'i', right: undefined },
+           BinaryExpression {
+             op: '-',
+             left: Identifier { name: 'size' },
+             right: NumericLiteral { value: 11 } } },
+       action:
+        BinaryExpression { op: '++', left: Identifier { name: 'i' }, right: undefined },
        body:
         [ Line {
             stmt:
-             VariableDeclaration { ids: 'dog', initializers: NumericLiteral { value: 10 } } },
+             VariableDeclaration {
+               ids: Identifier { name: 'dog' },
+               initializers: NumericLiteral { value: 10 } } },
           undefined,
           Line {
             stmt:

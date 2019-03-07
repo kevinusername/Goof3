@@ -6,7 +6,10 @@ Program {
             op: '< ',
             left: NumericLiteral { value: 1 },
             right:
-             BinaryExpression { op: '=====', left: NumericLiteral { value: 4 }, right: 'toof' } } ],
+             BinaryExpression {
+               op: '=====',
+               left: NumericLiteral { value: 4 },
+               right: Identifier { name: 'toof' } } } ],
        consequents:
         [ [ Line {
               stmt:

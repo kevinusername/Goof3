@@ -15,6 +15,7 @@ const ThrowStatement = require('../ast/throw-statement');
 const FunctionDeclaration = require('../ast/function-declaration');
 const ForStatement = require('../ast/for-statement');
 const GifStatement = require('../ast/gif-statment');
+const Id = require('../ast/id');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/goof3.ohm'));
 
@@ -75,7 +76,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new FunctionDeclaration(id.ast(), args.ast(), body.ast());
     },
     id (_1, _2) {
-        return this.sourceString;
+        return new Id(this.sourceString);
     },
     Loop_for (_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
         return new ForStatement(
