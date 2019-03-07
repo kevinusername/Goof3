@@ -10,4 +10,9 @@ Program {
               [ NumericLiteral { value: 0 },
                 NumericLiteral { value: 1 },
                 NumericLiteral { value: 2 },
-                NumericLiteral { value: 3 } ] } } } ] }
+                NumericLiteral { value: 3 } ] } } },
+     Line {
+       stmt:
+        MemberExpression {
+          object: Identifier { name: 'my_array' },
+          property: NumericLiteral { value: 1 } } } ] }

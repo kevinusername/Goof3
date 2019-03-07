@@ -32,6 +32,7 @@ Goof3 {
                 | Exp5
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
+                | VarExp "[" Exp "]"                                 -- MemberExpression
                 | VarExp
                 | numlit
                 | StringLit

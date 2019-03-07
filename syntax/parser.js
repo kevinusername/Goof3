@@ -17,6 +17,7 @@ const ForStatement = require('../ast/for-statement');
 const GifStatement = require('../ast/gif-statment');
 const Id = require('../ast/id');
 const ArrayExpression = require('../ast/array-expression');
+const MemberExpression = require('../ast/member-expression');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/goof3.ohm'));
 
@@ -111,6 +112,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     Exp5_ArrayExpression (_1, elements, _2) {
         return new ArrayExpression(elements.ast());
+    },
+    Exp5_MemberExpression (id, _1, property, _2) {
+        return new MemberExpression(id.ast(), property.ast());
     }
 });
 
