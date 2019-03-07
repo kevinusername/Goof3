@@ -10,6 +10,7 @@ Goof3 {
                 | VarExp "=="+ Exp                                   -- reassignment
                 | "poof" "(" StringLit ")"                           -- print
                 | "return" Exp                                       -- return
+                | Exp                                                -- Expression
 
     Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
     If          = "gif" "(" Exp ")" "}" Block "{"
@@ -30,6 +31,7 @@ Goof3 {
     Exp4        = Exp5 sufixOp                                       -- increment
                 | Exp5
     Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
+                | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
                 | VarExp
                 | numlit
                 | StringLit

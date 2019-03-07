@@ -1,0 +1,13 @@
+Program {
+  statements:
+   [ Line {
+       stmt:
+        VariableDeclaration {
+          ids: Identifier { name: 'my_array' },
+          initializers:
+           ArrayExpression {
+             elements:
+              [ NumericLiteral { value: 0 },
+                NumericLiteral { value: 1 },
+                NumericLiteral { value: 2 },
+                NumericLiteral { value: 3 } ] } } } ] }

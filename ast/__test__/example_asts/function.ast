@@ -14,4 +14,9 @@ Program {
                    BinaryExpression {
                      op: '*',
                      left: Identifier { name: 'p1' },
-                     right: Identifier { name: 'p2' } } } } ] } } ] }
+                     right: Identifier { name: 'p2' } } } } ] } },
+     Line {
+       stmt:
+        CallExpression {
+          callee: Identifier { name: 'myFunction' },
+          args: [ NumericLiteral { value: 1 }, NumericLiteral { value: 2 } ] } } ] }

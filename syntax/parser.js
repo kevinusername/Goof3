@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const Program = require('../ast/program');
 const Line = require('../ast/line');
-const Call = require('../ast/call');
+const Call = require('../ast/call-expression');
 const ReturnStatement = require('../ast/return-statement');
 const WhileStatement = require('../ast/while-statement');
 const AssignmentStatement = require('../ast/assignment-statement');
@@ -16,6 +16,7 @@ const FunctionDeclaration = require('../ast/function-declaration');
 const ForStatement = require('../ast/for-statement');
 const GifStatement = require('../ast/gif-statment');
 const Id = require('../ast/id');
+const ArrayExpression = require('../ast/array-expression');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/goof3.ohm'));
 
@@ -107,6 +108,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     _terminal () {
         return this.sourceString;
+    },
+    Exp5_ArrayExpression (_1, elements, _2) {
+        return new ArrayExpression(elements.ast());
     }
 });
 

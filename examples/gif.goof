@@ -1,3 +1,7 @@
 gif ( 1 < 4 ===== toof) }
   return "troof":
+{ elsegif (5 = 1) }
+    return "foof":
+{ else }
+    return "idk":
 {

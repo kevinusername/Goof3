@@ -9,9 +9,19 @@ Program {
              BinaryExpression {
                op: '=====',
                left: NumericLiteral { value: 4 },
-               right: Identifier { name: 'toof' } } } ],
+               right: Identifier { name: 'toof' } } },
+          BinaryExpression {
+            op: '=',
+            left: NumericLiteral { value: 5 },
+            right: NumericLiteral { value: 1 } } ],
        consequents:
         [ [ Line {
               stmt:
-               ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } } ] ],
-       alternate: null } ] }
+               ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } } ],
+          [ Line {
+              stmt:
+               ReturnStatement { returnValue: StringLiteral { value: '"foof"' } } } ] ],
+       alternate:
+        [ Line {
+            stmt:
+             ReturnStatement { returnValue: StringLiteral { value: '"idk"' } } } ] } ] }

@@ -25,7 +25,7 @@ Program {
                    BinaryExpression {
                      op: '+',
                      left:
-                      Call {
+                      CallExpression {
                         callee: Identifier { name: 'fib' },
                         args:
                          [ BinaryExpression {
@@ -33,7 +33,7 @@ Program {
                              left: Identifier { name: 'n' },
                              right: NumericLiteral { value: 2 } } ] },
                      right:
-                      Call {
+                      CallExpression {
                         callee: Identifier { name: 'fib' },
                         args:
                          [ BinaryExpression {
@@ -68,6 +68,6 @@ Program {
              ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] },
      Line {
        stmt:
-        Call {
+        CallExpression {
           callee: 'poof',
           args: StringLiteral { value: '"and thats all she wrote"' } } } ] }
