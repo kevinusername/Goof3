@@ -57,4 +57,10 @@
        ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } ] },
   CallExpression {
     callee: 'poof',
+    args:
+     StringLiteral {
+       value:
+        `"you should check out our 'npm run-script format' script, its cool!"` } },
+  CallExpression {
+    callee: 'poof',
     args: StringLiteral { value: '"and thats all she wrote"' } } ]
