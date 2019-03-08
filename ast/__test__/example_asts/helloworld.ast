@@ -1,7 +1,3 @@
-Program {
-  statements:
-   [ Line {
-       stmt:
-        CallExpression {
-          callee: 'poof',
-          args: StringLiteral { value: '"hELlO woRlD!"' } } } ] }
+[ CallExpression {
+    callee: 'poof',
+    args: StringLiteral { value: '"hELlO woRlD!"' } } ]

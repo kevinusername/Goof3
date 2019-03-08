@@ -2,8 +2,6 @@ const ohm = require('ohm-js');
 const fs = require('fs');
 const path = require('path');
 
-const Program = require('../ast/program');
-const Line = require('../ast/line');
 const Call = require('../ast/call-expression');
 const ReturnStatement = require('../ast/return-statement');
 const WhileStatement = require('../ast/while-statement');
@@ -30,10 +28,10 @@ function arrayToNullable (a) {
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program (body) {
-        return new Program(body.ast());
+        return body.ast();
     },
     Line (s, _) {
-        return new Line(s.ast());
+        return s.ast();
     },
     Statement_assignment (_1, v, _2, e) {
         return new VariableDeclaration(v.ast(), e.ast());

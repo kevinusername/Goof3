@@ -1,71 +1,60 @@
-Program {
-  statements:
-   [ FunctionDeclaration {
+[ FunctionDeclaration {
+    id: Identifier { name: 'fib' },
+    function:
+     FunctionObject {
        id: Identifier { name: 'fib' },
-       function:
-        FunctionObject {
-          id: Identifier { name: 'fib' },
-          params: [ Identifier { name: 'n' } ],
-          body:
-           [ GifStatement {
-               tests:
-                [ BinaryExpression {
-                    op: '<=',
-                    left: Identifier { name: 'n' },
-                    right: NumericLiteral { value: 1 } } ],
-               consequents:
-                [ [ Line {
-                      stmt: ReturnStatement { returnValue: Identifier { name: 'n' } } } ] ],
-               alternate: null },
-             Line {
-               stmt:
-                ReturnStatement {
-                  returnValue:
-                   BinaryExpression {
-                     op: '+',
-                     left:
-                      CallExpression {
-                        callee: Identifier { name: 'fib' },
-                        args:
-                         [ BinaryExpression {
-                             op: '-',
-                             left: Identifier { name: 'n' },
-                             right: NumericLiteral { value: 2 } } ] },
-                     right:
-                      CallExpression {
-                        callee: Identifier { name: 'fib' },
-                        args:
-                         [ BinaryExpression {
-                             op: '-',
-                             left: Identifier { name: 'n' },
-                             right: NumericLiteral { value: 1 } } ] } } } } ] } },
-     ForStatement {
-       assignments:
-        [ VariableDeclaration {
-            ids: Identifier { name: 'i' },
-            initializers: NumericLiteral { value: 11 } } ],
-       test:
-        BinaryExpression {
-          op: '<',
-          left: Identifier { name: 'i' },
-          right:
-           BinaryExpression {
-             op: '-',
-             left: Identifier { name: 'size' },
-             right: NumericLiteral { value: 11 } } },
-       action:
-        BinaryExpression { op: '++', left: Identifier { name: 'i' }, right: undefined },
+       params: [ Identifier { name: 'n' } ],
        body:
-        [ Line {
-            stmt:
-             VariableDeclaration {
-               ids: Identifier { name: 'dog' },
-               initializers: NumericLiteral { value: 10 } } },
-          Line {
-            stmt:
-             ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] },
-     Line {
-       stmt:
-        CallExpression {
-          callee: 'poof',
-          args: StringLiteral { value: '"and thats all she wrote"' } } } ] }
+        [ GifStatement {
+            tests:
+             [ BinaryExpression {
+                 op: '<=',
+                 left: Identifier { name: 'n' },
+                 right: NumericLiteral { value: 1 } } ],
+            consequents:
+             [ [ ReturnStatement { returnValue: Identifier { name: 'n' } } ] ],
+            alternate: null },
+          ReturnStatement {
+            returnValue:
+             BinaryExpression {
+               op: '+',
+               left:
+                CallExpression {
+                  callee: Identifier { name: 'fib' },
+                  args:
+                   [ BinaryExpression {
+                       op: '-',
+                       left: Identifier { name: 'n' },
+                       right: NumericLiteral { value: 2 } } ] },
+               right:
+                CallExpression {
+                  callee: Identifier { name: 'fib' },
+                  args:
+                   [ BinaryExpression {
+                       op: '-',
+                       left: Identifier { name: 'n' },
+                       right: NumericLiteral { value: 1 } } ] } } } ] } },
+  ForStatement {
+    assignments:
+     [ VariableDeclaration {
+         ids: Identifier { name: 'i' },
+         initializers: NumericLiteral { value: 11 } } ],
+    test:
+     BinaryExpression {
+       op: '<',
+       left: Identifier { name: 'i' },
+       right:
+        BinaryExpression {
+          op: '-',
+          left: Identifier { name: 'size' },
+          right: NumericLiteral { value: 11 } } },
+    action:
+     BinaryExpression { op: '++', left: Identifier { name: 'i' }, right: undefined },
+    body:
+     [ VariableDeclaration {
+         ids: Identifier { name: 'dog' },
+         initializers: NumericLiteral { value: 10 } },
+       ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } ] },
+  CallExpression {
+    callee: 'poof',
+    args: StringLiteral { value: '"and thats all she wrote"' } } ]

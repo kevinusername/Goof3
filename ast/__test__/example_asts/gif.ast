@@ -1,27 +1,19 @@
-Program {
-  statements:
-   [ GifStatement {
-       tests:
-        [ BinaryExpression {
-            op: '<',
-            left: NumericLiteral { value: 1 },
-            right:
-             BinaryExpression {
-               op: '==',
-               left: NumericLiteral { value: 4 },
-               right: Identifier { name: 'toof' } } },
+[ GifStatement {
+    tests:
+     [ BinaryExpression {
+         op: '<',
+         left: NumericLiteral { value: 1 },
+         right:
           BinaryExpression {
-            op: '=',
-            left: NumericLiteral { value: 5 },
-            right: NumericLiteral { value: 1 } } ],
-       consequents:
-        [ [ Line {
-              stmt:
-               ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } } ],
-          [ Line {
-              stmt:
-               ReturnStatement { returnValue: StringLiteral { value: '"foof"' } } } ] ],
-       alternate:
-        [ Line {
-            stmt:
-             ReturnStatement { returnValue: StringLiteral { value: '"idk"' } } } ] } ] }
+            op: '==',
+            left: NumericLiteral { value: 4 },
+            right: Identifier { name: 'toof' } } },
+       BinaryExpression {
+         op: '=',
+         left: NumericLiteral { value: 5 },
+         right: NumericLiteral { value: 1 } } ],
+    consequents:
+     [ [ ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } ],
+       [ ReturnStatement { returnValue: StringLiteral { value: '"foof"' } } ] ],
+    alternate:
+     [ ReturnStatement { returnValue: StringLiteral { value: '"idk"' } } ] } ]

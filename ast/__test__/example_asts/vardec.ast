@@ -1,7 +1,3 @@
-Program {
-  statements:
-   [ Line {
-       stmt:
-        VariableDeclaration {
-          ids: Identifier { name: 'letsGainThisGrain' },
-          initializers: NumericLiteral { value: 20.25 } } } ] }
+[ VariableDeclaration {
+    ids: Identifier { name: 'letsGainThisGrain' },
+    initializers: NumericLiteral { value: 20.25 } } ]

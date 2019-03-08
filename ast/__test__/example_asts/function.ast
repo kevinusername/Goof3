@@ -1,22 +1,16 @@
-Program {
-  statements:
-   [ FunctionDeclaration {
+[ FunctionDeclaration {
+    id: Identifier { name: 'myFunction' },
+    function:
+     FunctionObject {
        id: Identifier { name: 'myFunction' },
-       function:
-        FunctionObject {
-          id: Identifier { name: 'myFunction' },
-          params: [ Identifier { name: 'p1' }, Identifier { name: 'p2' } ],
-          body:
-           [ Line {
-               stmt:
-                ReturnStatement {
-                  returnValue:
-                   BinaryExpression {
-                     op: '*',
-                     left: Identifier { name: 'p1' },
-                     right: Identifier { name: 'p2' } } } } ] } },
-     Line {
-       stmt:
-        CallExpression {
-          callee: Identifier { name: 'myFunction' },
-          args: [ NumericLiteral { value: 1 }, NumericLiteral { value: 2 } ] } } ] }
+       params: [ Identifier { name: 'p1' }, Identifier { name: 'p2' } ],
+       body:
+        [ ReturnStatement {
+            returnValue:
+             BinaryExpression {
+               op: '*',
+               left: Identifier { name: 'p1' },
+               right: Identifier { name: 'p2' } } } ] } },
+  CallExpression {
+    callee: Identifier { name: 'myFunction' },
+    args: [ NumericLiteral { value: 1 }, NumericLiteral { value: 2 } ] } ]
