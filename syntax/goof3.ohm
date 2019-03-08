@@ -1,7 +1,7 @@
 Goof3 {
     Program     = Block
     Block       = (Line | Advanced)*
-    Line        = Statement ":"                                      -- stmt
+    Line        = Statement ":"
     Advanced    = Function | If | Loop
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration

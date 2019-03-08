@@ -29,7 +29,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program (body) {
         return new Program(body.ast());
     },
-    Line_stmt (s, _) {
+    Line (s, _) {
         return new Line(s.ast());
     },
     Statement_assignment (_1, v, _2, e) {
