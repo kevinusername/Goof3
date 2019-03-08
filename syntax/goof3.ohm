@@ -1,8 +1,7 @@
 Goof3 {
     Program     = Block
-    Block       = (Line | Advanced)+
-    Line        = comment
-                | Statement ":"                                      -- stmt
+    Block       = (Line | Advanced)*
+    Line        = Statement ":"                                      -- stmt
     Advanced    = Function | If | Loop
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
@@ -16,10 +15,10 @@ Goof3 {
     If          = "gif" "(" Exp ")" "}" Block "{"
                   ("elsegif" "(" Exp ")" "}" Block "{")*
                   ("else" "}" Block "{")*
-    Loop        = "four" "(" ListOf<Statement_assignment, ","> 
+    Loop        = "four" "(" ListOf<Statement_assignment, ",">
                   ":" Exp ":" Exp ")" "}" Block "{"                  -- for
                 | "wooloop" "(" Exp ")" "}" Block "{"                -- while
-    
+
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
     Exp1        = Exp1 relOp Exp1                                    -- relative
@@ -37,8 +36,8 @@ Goof3 {
                 | numlit
                 | StringLit
     VarExp      = id
-    comment     = "xD" (~newline any)* newline                       -- singleLine
-                | ";)" (~"(;" any)* "(;"                             -- multiLine
+    comment     = "xD" (~"\n" any)* "\n"                             -- singleLine
+                |";)" (~"(;" any)* "(;"                              -- multiLine
 
     logOp       = "||" | "&&"
     relOp       = "<=" "=="*
@@ -55,11 +54,10 @@ Goof3 {
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
-    StringLit   = "\"" (~"\"" any)* "\""                            -- basic
-                // | "`" (("${" Exp "}")? (~"`" any) 
-                //   ("${" Exp "}")?)* "`"                             -- fancy
+    StringLit   = "\"" (~"\"" any)* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit
-    newline     = "\n"
+    space       += comment_singleLine
+                | comment_multiLine
 }

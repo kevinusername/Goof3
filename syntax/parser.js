@@ -65,7 +65,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     numlit (_1) {
         return new NumericLiteral(+this.sourceString);
     },
-    StringLit_basic (_1, chars, _6) {
+    StringLit (_1, chars, _6) {
         return new StringLiteral(this.sourceString);
     },
     Loop_while (_1, _2, test, _3, _4, suite, _5) {
@@ -88,8 +88,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
             body.ast()
         );
     },
-    comment_singleLine (_1, _2, _3) {},
-    comment_multiLine (_1, _2, _3) {},
+    // comment_singleLine (_1, _2, _3) {},
+    // comment_multiLine (_1, _2, _3) {},
     NonemptyListOf (first, _, rest) {
         return [first.ast(), ...rest.ast()];
     },

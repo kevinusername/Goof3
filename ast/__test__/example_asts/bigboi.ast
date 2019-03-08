@@ -17,7 +17,6 @@ Program {
                 [ [ Line {
                       stmt: ReturnStatement { returnValue: Identifier { name: 'n' } } } ] ],
                alternate: null },
-             undefined,
              Line {
                stmt:
                 ReturnStatement {
@@ -62,7 +61,6 @@ Program {
              VariableDeclaration {
                ids: Identifier { name: 'dog' },
                initializers: NumericLiteral { value: 10 } } },
-          undefined,
           Line {
             stmt:
              ReturnStatement { returnValue: StringLiteral { value: '"wHYyyYYyYy"' } } } ] },
