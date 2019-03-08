@@ -3,11 +3,11 @@ Program {
    [ GifStatement {
        tests:
         [ BinaryExpression {
-            op: '< ',
+            op: '<',
             left: NumericLiteral { value: 1 },
             right:
              BinaryExpression {
-               op: '=====',
+               op: '==',
                left: NumericLiteral { value: 4 },
                right: Identifier { name: 'toof' } } },
           BinaryExpression {

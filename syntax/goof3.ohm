@@ -40,24 +40,26 @@ Goof3 {
                 |";)" (~"(;" any)* "(;"                              -- multiLine
 
     logOp       = "||" | "&&"
-    relOp       = "<=" "=="*
-                | "<" space
+    relOp       = relOp_adv
+                | relOp_sim
+    relOp_adv   = "<=" "=="*
                 | "=" "=="*
                 | "!=" "=="*
                 | ">=" "=="*
-                | ">" space
+    relOp_sim   = "<" 
+                | ">" 
     mulOp       = "*" | "/" | "%"
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
 
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
-                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;") ~idrest
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"|
+                  "elsegif" | "else") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     StringLit   = "\"" (~"\"" any)* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit
-    space       += comment_singleLine
-                | comment_multiLine
+    space       += comment
 }

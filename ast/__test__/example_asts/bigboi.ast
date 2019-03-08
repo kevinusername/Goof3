@@ -46,7 +46,7 @@ Program {
             initializers: NumericLiteral { value: 11 } } ],
        test:
         BinaryExpression {
-          op: '< ',
+          op: '<',
           left: Identifier { name: 'i' },
           right:
            BinaryExpression {

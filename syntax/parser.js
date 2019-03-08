@@ -104,8 +104,11 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         const alternate = arrayToNullable(lastBody.ast());
         return new GifStatement(tests, consequents, alternate);
     },
-    relOp (_1, _2) {
-        return this.sourceString;
+    relOp (op) {
+        if (op.sourceString.length >= 2) {
+            return op.sourceString.slice(0, 2);
+        }
+        return op.sourceString;
     },
     _terminal () {
         return this.sourceString;
