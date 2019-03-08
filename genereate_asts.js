@@ -1,14 +1,14 @@
 /* eslint-disable handle-callback-err */
+
+/**
+ * For each example problem in the /examples/ directory, this program generates
+ * an AST using parser.js. This allows each programs AST to be easily reable
+ * so that its contents can be confirmed to be what is expected.
+ */
+
 const parse = require('./syntax/parser');
 const fs = require('fs');
 const util = require('util');
-
-// const testFile = fs.readFileSync('./examples/bigboi.goof');
-
-// const ast = parse(testFile);
-// const astText = util.inspect(ast, { depth: null });
-
-// console.log(astText);
 
 const exampleDirectory = './examples/';
 
