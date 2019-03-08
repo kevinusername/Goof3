@@ -5,9 +5,9 @@ Goof3 {
     Advanced    = Function | If | Loop
     Statement   = "goof" id "=="+ Exp                                -- assignment
                 | "goof" id                                          -- declaration
-                | "yeet" StringLit                                   -- throw
+                | "yeet" stringLit                                   -- throw
                 | VarExp "=="+ Exp                                   -- reassignment
-                | "poof" "(" StringLit ")"                           -- print
+                | "poof" "(" stringLit ")"                           -- print
                 | "return" Exp                                       -- return
                 | Exp                                                -- Expression
 
@@ -27,17 +27,23 @@ Goof3 {
                 | Exp3
     Exp3        = Exp3 mulOp Exp4                                    -- multiplication
                 | Exp4
-    Exp4        = Exp5 sufixOp                                       -- increment
+    Exp4        = Exp6 sufixOp                                       -- increment
                 | Exp5
-    Exp5        = id "(" ListOf<Exp, ","> ")"                        -- fCall
+    Exp5        = PropAccess
+                | id "(" ListOf<Exp, ","> ")"                        -- fCall
                 | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
-                | VarExp "[" Exp "]"                                 -- MemberExpression
-                | VarExp
+                | Exp6
+    Exp6        = VarExp
                 | numlit
-                | StringLit
+                | stringLit
+                | PropAccess
+
+    PropAccess  = VarExp "[" Exp "]"                                 -- brackets
+                | VarExp "." id                                      -- dot
+
     VarExp      = id
     comment     = "xD" (~"\n" any)* "\n"                             -- singleLine
-                |";)" (~"(;" any)* "(;"                              -- multiLine
+                | ";)" (~"(;" any)* "(;"                             -- multiLine
 
     logOp       = "||" | "&&"
     relOp       = relOp_adv
@@ -46,8 +52,8 @@ Goof3 {
                 | "=" "=="*
                 | "!=" "=="*
                 | ">=" "=="*
-    relOp_sim   = "<" 
-                | ">" 
+    relOp_sim   = "<"
+                | ">"
     mulOp       = "*" | "/" | "%"
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
@@ -57,7 +63,7 @@ Goof3 {
                   "elsegif" | "else") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
-    StringLit   = "\"" (~"\"" any)* "\""
+    stringLit   = "\"" (~("\""|"\n") any)* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit

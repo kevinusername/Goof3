@@ -65,7 +65,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     numlit (_1) {
         return new NumericLiteral(+this.sourceString);
     },
-    StringLit (_1, chars, _6) {
+    stringLit (_1, chars, _6) {
         return new StringLiteral(this.sourceString);
     },
     Loop_while (_1, _2, test, _3, _4, suite, _5) {
@@ -88,8 +88,6 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
             body.ast()
         );
     },
-    // comment_singleLine (_1, _2, _3) {},
-    // comment_multiLine (_1, _2, _3) {},
     NonemptyListOf (first, _, rest) {
         return [first.ast(), ...rest.ast()];
     },
@@ -116,7 +114,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     Exp5_ArrayExpression (_1, elements, _2) {
         return new ArrayExpression(elements.ast());
     },
-    Exp5_MemberExpression (id, _1, property, _2) {
+    PropAccess_brackets (id, _1, property, _2) {
+        return new MemberExpression(id.ast(), property.ast());
+    },
+    PropAccess_dot (id, _1, property) {
         return new MemberExpression(id.ast(), property.ast());
     }
 });

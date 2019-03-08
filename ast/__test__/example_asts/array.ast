@@ -15,4 +15,9 @@ Program {
        stmt:
         MemberExpression {
           object: Identifier { name: 'my_array' },
-          property: NumericLiteral { value: 1 } } } ] }
+          property: NumericLiteral { value: 1 } } },
+     Line {
+       stmt:
+        MemberExpression {
+          object: Identifier { name: 'my_array' },
+          property: Identifier { name: 'a' } } } ] }

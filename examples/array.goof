@@ -1,3 +1,5 @@
 goof my_array == [0,1,2,3]:
 
 my_array[1]:
+
+my_array.a:
