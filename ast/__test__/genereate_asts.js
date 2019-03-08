@@ -6,11 +6,11 @@
  * so that its contents can be confirmed to be what is expected.
  */
 
-const parse = require('./syntax/parser');
+const parse = require('../../syntax/parser');
 const fs = require('fs');
 const util = require('util');
 
-const exampleDirectory = './examples/';
+const exampleDirectory = '../../examples/';
 
 fs.readdirSync(exampleDirectory).forEach(name => {
     if (name.endsWith('.goof')) {
@@ -18,7 +18,7 @@ fs.readdirSync(exampleDirectory).forEach(name => {
             const ast = parse(input);
             const astText = util.inspect(ast, { depth: null });
             fs.writeFileSync(
-                `./ast/__test__/example_asts/${name.slice(0, -4)}ast`,
+                `${__dirname}/example_asts/${name.slice(0, -4)}ast`,
                 astText
             );
         });
