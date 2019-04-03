@@ -18,10 +18,10 @@ const {
     ThrowStatement,
     VariableDeclaration,
     WhileStatement
-} = require('../ast');
+} = require('.');
 
 const grammar = ohm.grammar(
-    fs.readFileSync(path.join(__dirname, '/goof3.ohm'))
+    fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm'))
 );
 
 function arrayToNullable (a) {
