@@ -2,24 +2,26 @@ const ohm = require('ohm-js');
 const fs = require('fs');
 const path = require('path');
 
-const Call = require('../ast/call-expression');
-const ReturnStatement = require('../ast/return-statement');
-const WhileStatement = require('../ast/while-statement');
-const AssignmentStatement = require('../ast/assignment-statement');
-const VariableDeclaration = require('../ast/variable-declaration');
-const BinaryExpression = require('../ast/binary-expression');
-const NumericLiteral = require('../ast/numeric-literal');
-const StringLiteral = require('../ast/string-literal');
-const ThrowStatement = require('../ast/throw-statement');
-const FunctionDeclaration = require('../ast/function-declaration');
-const ForStatement = require('../ast/for-statement');
-const GifStatement = require('../ast/gif-statment');
-const Id = require('../ast/id');
-const ArrayExpression = require('../ast/array-expression');
-const MemberExpression = require('../ast/member-expression');
+const {
+    ArrayExpression,
+    AssignmentStatement,
+    BinaryExpression,
+    CallExpression,
+    ForStatement,
+    FunctionDeclaration,
+    GifStatement,
+    Identifier,
+    MemberExpression,
+    NumericLiteral,
+    ReturnStatement,
+    StringLiteral,
+    ThrowStatement,
+    VariableDeclaration,
+    WhileStatement
+} = require('.');
 
 const grammar = ohm.grammar(
-    fs.readFileSync(path.join(__dirname, '/goof3.ohm'))
+    fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm'))
 );
 
 function arrayToNullable (a) {
@@ -43,7 +45,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new ReturnStatement(e.ast());
     },
     Statement_print (callee, _1, args, _2) {
-        return new Call(callee.ast(), args.ast());
+        return new CallExpression(callee.ast(), args.ast());
     },
     Exp_logical (left, op, right) {
         return new BinaryExpression(op.ast(), left.ast(), right.ast());
@@ -61,13 +63,13 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new BinaryExpression(op.ast(), left.ast());
     },
     Exp5_fCall (id, _1, args, _2) {
-        return new Call(id.ast(), args.ast());
+        return new CallExpression(id.ast(), args.ast());
     },
     numlit (_1) {
         return new NumericLiteral(+this.sourceString);
     },
     stringLit (_1, chars, _6) {
-        return new StringLiteral(this.sourceString);
+        return new StringLiteral(this.sourceString.slice(1, -1));
     },
     Loop_while (_1, _2, test, _3, _4, suite, _5) {
         return new WhileStatement(test.ast(), suite.ast());
@@ -79,7 +81,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new FunctionDeclaration(id.ast(), args.ast(), body.ast());
     },
     id (_1, _2) {
-        return new Id(this.sourceString);
+        return new Identifier(this.sourceString);
     },
     Loop_for (_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
         return new ForStatement(

@@ -13,7 +13,7 @@
          left: NumericLiteral { value: 5 },
          right: NumericLiteral { value: 1 } } ],
     consequents:
-     [ [ ReturnStatement { returnValue: StringLiteral { value: '"troof"' } } ],
-       [ ReturnStatement { returnValue: StringLiteral { value: '"foof"' } } ] ],
+     [ [ ReturnStatement { returnValue: StringLiteral { value: 'troof' } } ],
+       [ ReturnStatement { returnValue: StringLiteral { value: 'foof' } } ] ],
     alternate:
-     [ ReturnStatement { returnValue: StringLiteral { value: '"idk"' } } ] } ]
+     [ ReturnStatement { returnValue: StringLiteral { value: 'idk' } } ] } ]

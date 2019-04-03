@@ -6,7 +6,7 @@
  * so that its contents can be confirmed to be what is expected.
  */
 
-const parse = require('../../syntax/parser');
+const parse = require('../parser');
 const fs = require('fs');
 const util = require('util');
 
