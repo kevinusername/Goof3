@@ -69,7 +69,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new NumericLiteral(+this.sourceString);
     },
     stringLit (_1, chars, _6) {
-        return new StringLiteral(this.sourceString);
+        return new StringLiteral(this.sourceString.slice(1, -1));
     },
     Loop_while (_1, _2, test, _3, _4, suite, _5) {
         return new WhileStatement(test.ast(), suite.ast());
