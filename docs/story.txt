@@ -1,0 +1,5 @@
+Have languages like Python made programming "too easy?" Well we, the lovely, very stable geniuses on the developer team at Goof3 are here to make it less easy! Goof3 may look somewhat like a contemporary programming language, but rest assured, it makes just about as much sense as MIPS.
+
+Goof3 is an improvement over the underappreciated and underdeveloped Goof2 language, which itself sought to improve upon its predecessor, Goof. Goof3 is the goofiest of programming languages. Parts of it make little to no sense, other parts of it make all of the sense possible. It is virtually impossible to sum up Goof3 in a mere sentence, but if one had to do so, Goof3 is the future of programming languages. It is all of the fun of JavaScript, but with all-around more goofiness.
+
+Examples of Goof3’s goofiness include, but are not limited to the reversal of traditional curly braces, referring to while loops as “woloops,” and switching semicolons and colons.
