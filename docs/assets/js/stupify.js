@@ -1,4 +1,4 @@
-const stupify = (element) => {
+const stupify = element => {
     let stupidString = element.innerHTML.toLowerCase().split('');
     for (let i = 0; i < stupidString.length; i++) {
         const rando = Math.random();
@@ -7,5 +7,7 @@ const stupify = (element) => {
     element.innerHTML = stupidString.join('');
 };
 
-const textBlocks = document.querySelectorAll('p');
-textBlocks.forEach(element => stupify(element));
+document.querySelector('#stupid-button').addEventListener('click', () => {
+    const textBlocks = document.querySelectorAll('p');
+    textBlocks.forEach(element => stupify(element));
+});
