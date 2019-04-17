@@ -28,6 +28,12 @@ function arrayToNullable(a) {
     return a.length === 0 ? null : a[0];
 }
 
+function handleAccess(a) {
+    const value = arrayToNullable(a);
+    if (value == null) { return 'global'; }
+    return value.substring(0, value.indexOf('_')).toLowerCase();
+}
+
 const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program(body) {
         return body.ast();
@@ -36,15 +42,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return s.ast();
     },
     Statement_assignment(access, type, _1, id, _2, e) {
-        return new VariableDeclaration(
-            arrayToNullable(access.ast()),
-            type.ast(),
-            id.ast(),
-            e.ast(),
-        );
+        return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), e.ast());
     },
     Statement_declaration(access, type, _1, id) {
-        return new VariableDeclaration(arrayToNullable(access.ast()), type.ast(), id.ast(), null);
+        return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), null);
     },
     Statement_reassignment(v, _, e) {
         return new AssignmentStatement(v.ast(), e.ast());
@@ -128,9 +129,6 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     Type(type, _1, _2) {
         return type.sourceString;
-    },
-    access(a) {
-        return a.sourceString;
     },
     Parameter(type, _, id) {
         return new Parameter(type.ast(), id.ast());

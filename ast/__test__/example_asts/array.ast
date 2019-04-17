@@ -1,5 +1,5 @@
 [ VariableDeclaration {
-    access: null,
+    access: 'global',
     type: 'whole_number',
     id: Identifier { name: 'my_array' },
     initializers:
