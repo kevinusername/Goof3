@@ -1,18 +1,18 @@
-phoof fib ( n) }
-    gif (n <= 1) }
-        return n:
-    {
+phoof fib (whole_number @ n) ;}
+    gif (n <= 1) ;}
+        yeet n:
+    ;{
     xD hey there
-    return fib (n - 2) + fib(n -1):
-{
+    yeet fib (n - 2) + fib(n -1):
+;{
 
-four (goof i ==== 11: i <  size - 11: i++) }
-	goof dog == 10:
+four (whole_number @ i ==== 11: i <  size - 11: i++) ;}
+	CONSTANT_VARIABLE whole_number @ dog == 10:
     ;) heres a
     multiline
     for you (;
-    return "wHYyyYYyYy":
-{
+    yeet "wHYyyYYyYy":
+;{
 
 poof ("you should check out our 'npm run-script format' script, its cool!"):
 poof ("and thats all she wrote"):
