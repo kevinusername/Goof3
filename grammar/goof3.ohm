@@ -3,8 +3,8 @@ Goof3 {
     Block       = (Line | Advanced)*
     Line        = Statement ":"
     Advanced    = Function | If | Loop
-    Statement   = access? type "@" id "=="+ Exp                                -- assignment
-                | access? type "@" id                                          -- declaration
+    Statement   = access? Type "@" id "=="+ Exp                                -- assignment
+                | access? Type "@" id                                          -- declaration
                 | "yack" stringlit                                   -- throw
                 | id "=="+ Exp                                   -- reassignment
                 | "poof" "(" stringlit ")"                           -- print
@@ -59,7 +59,8 @@ Goof3 {
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
 
-    type        = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
+    Type        = typeid ("[" "]")?
+    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"|
@@ -73,5 +74,5 @@ Goof3 {
     boolean     = "true" | "false"
     space       += comment
     access      = "CONSTANT_VARIABLE"
-    Parameter   = type "@" id
+    Parameter   = Type "@" id
 }

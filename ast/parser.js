@@ -126,8 +126,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     PropAccess_dot(id, _1, property) {
         return new MemberExpression(id.ast(), property.ast());
     },
-    type(t) {
-        return this.sourceString;
+    Type(type, _1, _2) {
+        return type.sourceString;
     },
     access(a) {
         return a.sourceString;
