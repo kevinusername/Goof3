@@ -11,7 +11,7 @@ Goof3 {
                 | "yeet" Exp                                       -- return
                 | Exp                                                -- Expression
 
-    Function    = "phoof" id "(" ListOf<Statement_declaration, ","> ")" ";}" Block ";{"  -- declaration
+    Function    = "phoof" id "(" ListOf<Parameter, ","> ")" ";}" Block ";{"  -- declaration
     If          = "gif" "(" Exp ")" ";}" Block ";{"
                   ("elsegif" "(" Exp ")" ";}" Block ";{")*
                   ("else" ";}" Block ";{")*
@@ -73,4 +73,5 @@ Goof3 {
     boolean     = "true" | "false"
     space       += comment
     access      = "CONSTANT_VARIABLE"
+    Parameter   = type "@" id
 }

@@ -1,3 +1,0 @@
-[ CallExpression {
-    callee: 'poof',
-    args: StringLiteral { value: 'hELlO woRlD!' } } ]

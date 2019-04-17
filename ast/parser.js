@@ -19,6 +19,7 @@ const {
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
+    Parameter,
 } = require('.');
 
 const grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm')));
@@ -34,8 +35,16 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     Line(s, _) {
         return s.ast();
     },
-    Statement_assignment(_1, v, _2, e) {
-        return new VariableDeclaration(v.ast(), e.ast());
+    Statement_assignment(access, type, _1, id, _2, e) {
+        return new VariableDeclaration(
+            arrayToNullable(access.ast()),
+            type.ast(),
+            id.ast(),
+            e.ast(),
+        );
+    },
+    Statement_declaration(access, type, _1, id) {
+        return new VariableDeclaration(arrayToNullable(access.ast()), type.ast(), id.ast(), null);
     },
     Statement_reassignment(v, _, e) {
         return new AssignmentStatement(v.ast(), e.ast());
@@ -67,7 +76,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     numlit(_1) {
         return new NumericLiteral(+this.sourceString);
     },
-    stringLit(_1, chars, _6) {
+    stringlit(_1, chars, _6) {
         return new StringLiteral(this.sourceString.slice(1, -1));
     },
     Loop_while(_1, _2, test, _3, _4, suite, _5) {
@@ -116,6 +125,15 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     PropAccess_dot(id, _1, property) {
         return new MemberExpression(id.ast(), property.ast());
+    },
+    type(t) {
+        return this.sourceString;
+    },
+    access(a) {
+        return a.sourceString;
+    },
+    Parameter(type, _, id) {
+        return new Parameter(type.ast(), id.ast());
     },
 });
 
