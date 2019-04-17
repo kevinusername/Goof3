@@ -29,8 +29,8 @@ class ForStatement {
 }
 
 class FunctionDeclaration {
-    constructor(id, params, body) {
-        Object.assign(this, { id, params, body });
+    constructor(id, parameters, body) {
+        Object.assign(this, { id, parameters, body });
     }
 }
 
@@ -100,6 +100,26 @@ class Parameter {
     }
 }
 
+class Field {
+    constructor(type, key, value) {
+        Object.assign(this, { type, key, value });
+    }
+}
+
+class Method {
+    constructor(f) {
+        Object.assign(this, { ...f });
+        this.key = f.id;
+        delete this.id;
+    }
+}
+
+class ObjectExp {
+    constructor(p) {
+        Object.assign(this, { Properties: Object.values(p) });
+    }
+}
+
 module.exports = {
     ArrayExpression,
     AssignmentStatement,
@@ -118,4 +138,7 @@ module.exports = {
     Variable,
     WhileStatement,
     Parameter,
+    Field,
+    Method,
+    ObjectExp,
 };

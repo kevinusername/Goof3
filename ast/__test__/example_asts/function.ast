@@ -1,6 +1,6 @@
 [ FunctionDeclaration {
     id: Identifier { name: 'myFunction' },
-    params:
+    parameters:
      [ Parameter { type: 'whole_number', id: Identifier { name: 'p1' } },
        Parameter { type: 'whole_number', id: Identifier { name: 'p2' } } ],
     body:

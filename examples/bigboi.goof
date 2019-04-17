@@ -1,7 +1,5 @@
 phoof fib (whole_number @ n) ;}
-    gif (n <= 1) ;}
-        yeet n:
-    ;{
+    gif (n <= 1) ;} yeet n: ;{
     xD hey there
     yeet fib (n - 2) + fib(n -1):
 ;{

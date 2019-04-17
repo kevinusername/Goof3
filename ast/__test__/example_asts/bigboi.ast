@@ -1,6 +1,6 @@
 [ FunctionDeclaration {
     id: Identifier { name: 'fib' },
-    params:
+    parameters:
      [ Parameter { type: 'whole_number', id: Identifier { name: 'n' } } ],
     body:
      [ GifStatement {

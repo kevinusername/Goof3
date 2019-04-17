@@ -15,7 +15,7 @@ Goof3 {
                   ";}" Block ";{"                                    -- declaration
     If          = "gif" "(" Exp ")" ";}" Block ";{"
                   ("elsegif" "(" Exp ")" ";}" Block ";{")*
-                  ("else" ";}" Block ";{")*
+                  ("else" ";}" Block ";{")?
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
                   ":" Exp ":" Exp ")" ";}" Block ";{"                -- for
                 | "wooloop" "(" Exp ")" ";}" Block ";{"              -- while
@@ -39,6 +39,7 @@ Goof3 {
                 | stringlit
                 | boolean
                 | PropAccess
+                | Object
 
     PropAccess  = VarExp "[" Exp "]"                                 -- brackets
                 | VarExp "." id                                      -- dot
@@ -76,4 +77,10 @@ Goof3 {
     space       += comment
     access      = "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
     Parameter   = Type "@" id
+
+
+    Object      = "#" ListOf<Property, ","> "#"
+    Property    = Field | Method
+    Field       = Type "@" id "~" Exp
+    Method      = Function
 }
