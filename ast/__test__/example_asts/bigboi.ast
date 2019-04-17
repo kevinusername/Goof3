@@ -35,7 +35,7 @@
   ForStatement {
     assignments:
      [ VariableDeclaration {
-         access: null,
+         access: 'global',
          type: 'whole_number',
          id: Identifier { name: 'i' },
          initializers: NumericLiteral { value: 11 } } ],
@@ -52,7 +52,7 @@
      BinaryExpression { op: '++', left: Identifier { name: 'i' }, right: undefined },
     body:
      [ VariableDeclaration {
-         access: 'CONSTANT_VARIABLE',
+         access: 'constant',
          type: 'whole_number',
          id: Identifier { name: 'dog' },
          initializers: NumericLiteral { value: 10 } },

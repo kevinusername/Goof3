@@ -74,6 +74,6 @@ Goof3 {
     numlit      = declit | intlit
     boolean     = "toof" | "foof"
     space       += comment
-    access      = "CONSTANT_VARIABLE"
+    access      = "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
     Parameter   = Type "@" id
 }
