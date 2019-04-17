@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest && eslint **/*.js",
     "lint": "./node_modules/.bin/eslint *.js",
-    "format": "prettier-eslint --write **/*.js"
+    "format": "prettier-eslint --write {,**/}*.js"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ const util = require('util');
 const fs = require('fs');
 const path = require('path');
 
-const parse = require(path.posix.normalize('../parser'));
+const parse = require('../parser');
 
 const astDir = path.posix.join(__dirname, '/example_asts/');
 const exampleDir = './examples/';
