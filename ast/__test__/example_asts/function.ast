@@ -1,0 +1,15 @@
+[ FunctionDeclaration {
+    id: Identifier { name: 'myFunction' },
+    params:
+     [ Parameter { type: 'whole_number', id: Identifier { name: 'p1' } },
+       Parameter { type: 'whole_number', id: Identifier { name: 'p2' } } ],
+    body:
+     [ ReturnStatement {
+         returnValue:
+          BinaryExpression {
+            op: '*',
+            left: Identifier { name: 'p1' },
+            right: Identifier { name: 'p2' } } } ] },
+  CallExpression {
+    callee: Identifier { name: 'myFunction' },
+    args: [ NumericLiteral { value: 1 }, NumericLiteral { value: 2 } ] } ]
