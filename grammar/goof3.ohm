@@ -3,21 +3,21 @@ Goof3 {
     Block       = (Line | Advanced)*
     Line        = Statement ":"
     Advanced    = Function | If | Loop
-    Statement   = "goof" id "=="+ Exp                                -- assignment
-                | "goof" id                                          -- declaration
-                | "yeet" stringLit                                   -- throw
-                | VarExp "=="+ Exp                                   -- reassignment
-                | "poof" "(" stringLit ")"                           -- print
-                | "return" Exp                                       -- return
+    Statement   = access? type "@" id "=="+ Exp                                -- assignment
+                | access? type "@" id                                          -- declaration
+                | "yack" stringlit                                   -- throw
+                | id "=="+ Exp                                   -- reassignment
+                | "poof" "(" stringlit ")"                           -- print
+                | "yeet" Exp                                       -- return
                 | Exp                                                -- Expression
 
-    Function    = "phoof" id "(" ListOf<Exp, ","> ")" "}" Block "{"  -- declaration
-    If          = "gif" "(" Exp ")" "}" Block "{"
-                  ("elsegif" "(" Exp ")" "}" Block "{")*
-                  ("else" "}" Block "{")*
+    Function    = "phoof" id "(" ListOf<Statement_declaration, ","> ")" ";}" Block ";{"  -- declaration
+    If          = "gif" "(" Exp ")" ";}" Block ";{"
+                  ("elsegif" "(" Exp ")" ";}" Block ";{")*
+                  ("else" ";}" Block ";{")*
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Exp ")" "}" Block "{"                  -- for
-                | "wooloop" "(" Exp ")" "}" Block "{"                -- while
+                  ":" Exp ":" Exp ")" ";}" Block ";{"                  -- for
+                | "wooloop" "(" Exp ")" ";}" Block ";{"                -- while
 
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
@@ -35,7 +35,8 @@ Goof3 {
                 | Exp6
     Exp6        = VarExp
                 | numlit
-                | stringLit
+                | stringlit
+                | boolean
                 | PropAccess
 
     PropAccess  = VarExp "[" Exp "]"                                 -- brackets
@@ -58,14 +59,18 @@ Goof3 {
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
 
+    type        = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
+
     keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"|
                   "elsegif" | "else") ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
-    stringLit   = "\"" (~("\""|"\n") any)* "\""
+    stringlit   = "\"" (~("\""|"\n") any)* "\""
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit
+    boolean     = "true" | "false"
     space       += comment
+    access      = "CONSTANT_VARIABLE"
 }
