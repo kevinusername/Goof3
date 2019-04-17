@@ -28,16 +28,9 @@ class ForStatement {
     }
 }
 
-class FunctionObject {
-    constructor(id, params, body) {
-        Object.assign(this, { id, params, body });
-    }
-}
-
 class FunctionDeclaration {
     constructor(id, params, body) {
-        this.id = id;
-        this.function = new FunctionObject(id, params, body);
+        Object.assign(this, { id, params, body });
     }
 }
 
@@ -84,8 +77,8 @@ class ThrowStatement {
 }
 
 class VariableDeclaration {
-    constructor(ids, initializers) {
-        Object.assign(this, { ids, initializers });
+    constructor(access, type, id, initializers) {
+        Object.assign(this, { access, type, id, initializers });
     }
 }
 
@@ -101,13 +94,18 @@ class WhileStatement {
     }
 }
 
+class Parameter {
+    constructor(type, id) {
+        Object.assign(this, { type, id });
+    }
+}
+
 module.exports = {
     ArrayExpression,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
     ForStatement,
-    FunctionObject,
     FunctionDeclaration,
     GifStatement,
     Identifier,
@@ -119,4 +117,5 @@ module.exports = {
     VariableDeclaration,
     Variable,
     WhileStatement,
+    Parameter,
 };
