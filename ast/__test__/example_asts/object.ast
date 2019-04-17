@@ -1,0 +1,23 @@
+[ VariableDeclaration {
+    access: 'global',
+    type: 'whole_number',
+    id: Identifier { name: 'myObj' },
+    initializers:
+     ObjectExp {
+       Properties:
+        [ Field {
+            type: 'whole_number',
+            key: Identifier { name: 'x' },
+            value: NumericLiteral { value: 15 } },
+          Field {
+            type: 'array_of_chars',
+            key: Identifier { name: 'name' },
+            value: StringLiteral { value: 'Doofus' } },
+          Method {
+            parameters: null,
+            body:
+             [ CallExpression { callee: 'poof', args: StringLiteral { value: 'hi there' } } ],
+            key: Identifier { name: 'sayHello' } } ] } },
+  MemberExpression {
+    object: Identifier { name: 'myObj' },
+    property: Identifier { name: 'x' } } ]

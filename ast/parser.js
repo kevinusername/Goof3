@@ -20,6 +20,9 @@ const {
     VariableDeclaration,
     WhileStatement,
     Parameter,
+    Field,
+    Method,
+    ObjectExp,
 } = require('.');
 
 const grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm')));
@@ -28,9 +31,13 @@ function arrayToNullable(a) {
     return a.length === 0 ? null : a[0];
 }
 
+function nonEmpty(a) {
+    return a.length === 0 ? null : a;
+}
+
 function handleAccess(a) {
     const value = arrayToNullable(a);
-    if (value == null) { return 'global'; }
+    if (value == null) return 'global';
     return value.substring(0, value.indexOf('_')).toLowerCase();
 }
 
@@ -87,7 +94,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new ThrowStatement(e.ast());
     },
     Function_declaration(_1, id, _2, args, _3, _4, body, _5) {
-        return new FunctionDeclaration(id.ast(), args.ast(), body.ast());
+        return new FunctionDeclaration(id.ast(), nonEmpty(args.ast()), body.ast());
     },
     id(_1, _2) {
         return new Identifier(this.sourceString);
@@ -132,6 +139,15 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     Parameter(type, _, id) {
         return new Parameter(type.ast(), id.ast());
+    },
+    Field(type, _1, key, _2, value) {
+        return new Field(type.ast(), key.ast(), value.ast());
+    },
+    Method(f) {
+        return new Method(f.ast());
+    },
+    Object(_1, body, _3) {
+        return new ObjectExp(body.ast());
     },
 });
 
