@@ -3,7 +3,7 @@ const ohm = require('ohm-js');
 
 const grammar = ohm.grammar(fs.readFileSync('grammar/goof3.ohm'));
 
-module.exports = text => {
+module.exports = (text) => {
     const match = grammar.match(text);
     if (!match.succeeded()) throw new Error(`Syntax Error: ${match.message}`);
     return match;

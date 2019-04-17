@@ -1,5 +1,5 @@
-const stupify = element => {
-    let stupidString = element.innerHTML.toLowerCase().split('');
+const stupify = (element) => {
+    const stupidString = element.innerHTML.toLowerCase().split('');
     for (let i = 0; i < stupidString.length; i++) {
         const rando = Math.random();
         if (rando < 0.5) stupidString[i] = stupidString[i].toUpperCase();
