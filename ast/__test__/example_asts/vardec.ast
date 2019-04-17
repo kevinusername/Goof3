@@ -1,0 +1,5 @@
+[ VariableDeclaration {
+    access: null,
+    type: 'not_whole_number',
+    id: Identifier { name: 'letsGainThisGrain' },
+    initializers: NumericLiteral { value: 20.25 } } ]

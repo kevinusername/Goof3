@@ -1,0 +1,5 @@
+phoof myFunction(whole_number @ p1, whole_number @ p2) ;}
+  yeet p1 * p2:
+;{
+
+myFunction(1,2):

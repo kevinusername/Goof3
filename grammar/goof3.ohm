@@ -3,21 +3,22 @@ Goof3 {
     Block       = (Line | Advanced)*
     Line        = Statement ":"
     Advanced    = Function | If | Loop
-    Statement   = access? Type "@" id "=="+ Exp                                -- assignment
-                | access? Type "@" id                                          -- declaration
+    Statement   = access? Type "@" id "=="+ Exp                      -- assignment
+                | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
-                | id "=="+ Exp                                   -- reassignment
+                | id "=="+ Exp                                       -- reassignment
                 | "poof" "(" stringlit ")"                           -- print
-                | "yeet" Exp                                       -- return
+                | "yeet" Exp                                         -- return
                 | Exp                                                -- Expression
 
-    Function    = "phoof" id "(" ListOf<Parameter, ","> ")" ";}" Block ";{"  -- declaration
+    Function    = "phoof" id "(" ListOf<Parameter, ","> ")"
+                  ";}" Block ";{"                                    -- declaration
     If          = "gif" "(" Exp ")" ";}" Block ";{"
                   ("elsegif" "(" Exp ")" ";}" Block ";{")*
                   ("else" ";}" Block ";{")*
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Exp ")" ";}" Block ";{"                  -- for
-                | "wooloop" "(" Exp ")" ";}" Block ";{"                -- while
+                  ":" Exp ":" Exp ")" ";}" Block ";{"                -- for
+                | "wooloop" "(" Exp ")" ";}" Block ";{"              -- while
 
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
@@ -71,7 +72,7 @@ Goof3 {
     intlit      = digit+
     declit      = digit+ "." digit*
     numlit      = declit | intlit
-    boolean     = "true" | "false"
+    boolean     = "toof" | "foof"
     space       += comment
     access      = "CONSTANT_VARIABLE"
     Parameter   = Type "@" id
