@@ -65,9 +65,9 @@ Goof3 {
     Type        = typeid ("[" "]")?
     typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
-    keyword     = ("goof" | "yeet" | "poof" | "return" | "phoof" |
-                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"|
-                  "elsegif" | "else") ~idrest
+    keyword     = ("goof" | "yeet" | "poof" | "yack" | "phoof" | "toof" | "foof" |
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else"
+                  | typeid) ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     stringlit   = "\"" (~("\""|"\n") any)* "\""
