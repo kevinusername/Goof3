@@ -149,6 +149,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     Object(_1, body, _3) {
         return new ObjectExp(body.ast());
     },
+    Statement_objDec(access, id, _, obj) {
+        return new VariableDeclaration(handleAccess(access.ast()), 'object', id.ast(), obj.ast());
+    },
 });
 
 module.exports = (text) => {

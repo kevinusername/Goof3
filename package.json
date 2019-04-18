@@ -4,8 +4,8 @@
   "description": "The goof3 language",
   "main": "index.js",
   "scripts": {
-    "test": "jest && eslint **/*.js",
-    "lint": "./node_modules/.bin/eslint *.js",
+    "test": "jest && eslint {,**/}*.js",
+    "lint": "./node_modules/.bin/eslint {,**/}*.js",
     "format": "prettier-eslint --write {,**/}*.js"
   },
   "repository": {

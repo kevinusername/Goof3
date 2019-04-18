@@ -1,6 +1,6 @@
 [ VariableDeclaration {
     access: 'global',
-    type: 'whole_number',
+    type: 'object',
     id: Identifier { name: 'myObj' },
     initializers:
      ObjectExp {
