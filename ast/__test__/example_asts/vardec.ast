@@ -2,19 +2,21 @@
     access: 'global',
     type: 'not_whole_number',
     id: Identifier { name: 'letsGainThisGrain' },
-    initializers: NumericLiteral { value: 20.25 } },
+    initializers: Literal { type: 'number', value: 20.25 } },
   VariableDeclaration {
     access: 'constant',
     type: 'array_of_chars',
     id: Identifier { name: 'myStr' },
-    initializers: StringLiteral { value: "YOU CAN'T CHANGE THIS" } },
+    initializers: Literal { type: 'string', value: "YOU CAN'T CHANGE THIS" } },
   VariableDeclaration {
     access: 'local',
     type: 'array_of_chars',
     id: Identifier { name: 'mutable' },
-    initializers: StringLiteral { value: 'You can definitely change this' } },
+    initializers:
+     Literal { type: 'string', value: 'You can definitely change this' } },
   VariableDeclaration {
     access: 'global',
     type: 'array_of_chars',
     id: Identifier { name: 'going_global' },
-    initializers: StringLiteral { value: 'Better be careful with this' } } ]
+    initializers:
+     Literal { type: 'string', value: 'Better be careful with this' } } ]
