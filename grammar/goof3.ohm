@@ -6,6 +6,7 @@ Goof3 {
     Statement   = access? Type "@" id "=="+ Exp                      -- assignment
                 | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
+                | access? id "=="+ Object                            -- objDec
                 | id "=="+ Exp                                       -- reassignment
                 | "poof" "(" stringlit ")"                           -- print
                 | "yeet" Exp                                         -- return
