@@ -13,9 +13,7 @@ const {
     GifStatement,
     Identifier,
     MemberExpression,
-    NumericLiteral,
     ReturnStatement,
-    StringLiteral,
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
@@ -23,6 +21,7 @@ const {
     Field,
     Method,
     ObjectExp,
+    Literal,
 } = require('.');
 
 const grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm')));
@@ -82,10 +81,13 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new CallExpression(id.ast(), args.ast());
     },
     numlit(_1) {
-        return new NumericLiteral(+this.sourceString);
+        return new Literal('number', +this.sourceString);
     },
     stringlit(_1, chars, _6) {
-        return new StringLiteral(this.sourceString.slice(1, -1));
+        return new Literal('string', this.sourceString.slice(1, -1));
+    },
+    boolean(v) {
+        return new Literal('boolean', v.ast());
     },
     Loop_while(_1, _2, test, _3, _4, suite, _5) {
         return new WhileStatement(test.ast(), suite.ast());

@@ -8,15 +8,17 @@
         [ Field {
             type: 'whole_number',
             key: Identifier { name: 'x' },
-            value: NumericLiteral { value: 15 } },
+            value: Literal { type: 'number', value: 15 } },
           Field {
             type: 'array_of_chars',
             key: Identifier { name: 'name' },
-            value: StringLiteral { value: 'Doofus' } },
+            value: Literal { type: 'string', value: 'Doofus' } },
           Method {
             parameters: null,
             body:
-             [ CallExpression { callee: 'poof', args: StringLiteral { value: 'hi there' } } ],
+             [ CallExpression {
+                 callee: 'poof',
+                 args: Literal { type: 'string', value: 'hi there' } } ],
             key: Identifier { name: 'sayHello' } } ] } },
   MemberExpression {
     object: Identifier { name: 'myObj' },

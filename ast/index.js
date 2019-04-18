@@ -52,21 +52,15 @@ class MemberExpression {
     }
 }
 
-class NumericLiteral {
-    constructor(value) {
-        this.value = value;
-    }
-}
-
 class ReturnStatement {
     constructor(returnValue) {
         this.returnValue = returnValue;
     }
 }
 
-class StringLiteral {
-    constructor(value) {
-        this.value = value;
+class Literal {
+    constructor(type, value) {
+        Object.assign(this, { type, value });
     }
 }
 
@@ -79,12 +73,6 @@ class ThrowStatement {
 class VariableDeclaration {
     constructor(access, type, id, initializers) {
         Object.assign(this, { access, type, id, initializers });
-    }
-}
-
-class Variable {
-    constructor(id) {
-        this.id = id;
     }
 }
 
@@ -130,15 +118,13 @@ module.exports = {
     GifStatement,
     Identifier,
     MemberExpression,
-    NumericLiteral,
     ReturnStatement,
-    StringLiteral,
     ThrowStatement,
     VariableDeclaration,
-    Variable,
     WhileStatement,
     Parameter,
     Field,
     Method,
     ObjectExp,
+    Literal,
 };
