@@ -26,7 +26,6 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Use "not" instead of "!"
 - High-order functions
 - Declare while loops with "wooloop".
-<br>
 <br>... AND NOW WITH NEW FEATURES SUCH AS
 - Objects declared with #
 - Properties declared with ~
@@ -35,7 +34,7 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Access modifiers : "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
 - All braces are now winky faces :} :{
 - return statements must now use yeet
-<br><br>... AND MORE! NEVER UNDERESTIMATE tHe GOoF!
+<br>... AND MORE! NEVER UNDERESTIMATE tHe GOoF!
 
 ## Example Programs
 
