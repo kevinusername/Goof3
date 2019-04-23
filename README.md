@@ -86,9 +86,9 @@ console.log('hELlO woRlD!')
   <td>
 
 ```
-phoof myFunction(p1, p2) }
+phoof myFunction(p1, p2) ;}
   return p1 * p2:
-{
+{;
 ```
 
   </td>
@@ -141,13 +141,13 @@ var money = 20.25
   <td>
 
 ```
-goof foot = }
+goof foot = ;}
   length; "1 Foot", 
   girth; "yes", 
   shoeSize; "12", 
   color; "white", 
   numberOfToes; "12 - 3"
-{:
+{;
 ```
 
   </td>
@@ -181,9 +181,9 @@ var foot = {
   <td>
 
 ```
-gif ( 1 < 4 ===== toof) }
+gif ( 1 < 4 ===== toof) ;}
   return "troof":
-{
+{;
 ```
 
   </td>
@@ -288,12 +288,12 @@ are working VEWY HAWD to fix this!`;
   <td style="word-wrap: break-word;">
 
 ```
-fourUnitClass Rectangle }
-  constructor(hoof, woof) }
+fourUnitClass Rectangle ;}
+  constructor(hoof, woof) ;}
     that.hoof == hoof:
     that.woof == woof:
-  {
-{       
+  {;
+{;       
 ```
 
   </td>
@@ -327,16 +327,16 @@ class Rectangle {
   <td style="word-wrap: break-word;">
 
 ```
-four (goof i == 7: i <  size: i++) }
+four (goof i == 7: i <  size: i++) ;}
     goof cat == -10:
-{
+{;
 ```
 ```
 goof counter == 10
-wooloop (counter > 0) } 
+wooloop (counter > 0) ;} 
     counter--:
     poof(nOt dOnE yEt):
-{
+{;
 ```
   </td>
 
@@ -373,19 +373,19 @@ myObj.x:
 ### Put it all together
 
 ```
-phoof fib ( n) }
-    gif (n <= 1) }
+phoof fib ( n) ;}
+    gif (n <= 1) ;}
         return n:
-    {
+    {;
     xD hey there
     return fib (n - 2) + fib(n -1):
-{
+{;
 
-four (goof i ==== 11: i <  size - 11: i++) }
+four (goof i ==== 11: i <  size - 11: i++) ;}
 	goof dog == 10:
     ;) heres a
     multiline
     for you (;
     return "wHYyyYYyYy":
-{
+{;
 ```
