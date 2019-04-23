@@ -4,20 +4,20 @@
   "description": "The goof3 language",
   "main": "index.js",
   "scripts": {
-    "test": "jest && eslint {,**/}*.js",
-    "lint": "./node_modules/.bin/eslint {,**/}*.js",
+    "test": "jest --collect-coverage && eslint {,**/}*.js",
+    "lint": "eslint {,**/}*.js",
     "format": "prettier-eslint --write {,**/}*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlakeCrowther/Goof3.git"
+    "url": "git+https://github.com/kevinusername/Goof3.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BlakeCrowther/Goof3/issues"
+    "url": "https://github.com/kevinusername/Goof3/issues"
   },
-  "homepage": "https://github.com/BlakeCrowther/Goof3#readme",
+  "homepage": "https://github.com/kevinusername/Goof3#readme",
   "dependencies": {
     "ohm-js": "^0.14.0"
   },
