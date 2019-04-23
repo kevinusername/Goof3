@@ -359,7 +359,7 @@ while (counter > 0) {
   </tr>
 </table>
 
-### Objects, son
+### Objectify this, son
 ```
 myObj == #
     whole_number @ x ~ 15,
