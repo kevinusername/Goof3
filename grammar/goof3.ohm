@@ -56,14 +56,13 @@ Goof3 {
                 | "=" "=="*
                 | "!=" "=="*
                 | ">=" "=="*
-    relOp_sim   = "<"
-                | ">"
+    relOp_sim   = "<" | ">"
     mulOp       = "*" | "/" | "%"
     sufixOp     = "++" | "--"
     addop       = "+" | "-"
 
     Type        = typeid ("[" "]")?
-    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
+    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number" | "temp"
 
     keyword     = ("goof" | "yeet" | "poof" | "yack" | "phoof" | "toof" | "foof" |
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else"
