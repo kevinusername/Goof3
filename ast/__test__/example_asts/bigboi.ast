@@ -1,4 +1,4 @@
-[ FunctionDeclaration {
+[ Func {
     id: Identifier { name: 'fib' },
     parameters:
      [ Parameter { type: 'whole_number', id: Identifier { name: 'n' } } ],

@@ -9,7 +9,7 @@ const {
     BinaryExpression,
     CallExpression,
     ForStatement,
-    FunctionDeclaration,
+    Func,
     GifStatement,
     Identifier,
     MemberExpression,
@@ -82,7 +82,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new WhileStatement(test.ast(), suite.ast());
     },
     Function_declaration(_1, id, _2, args, _3, _4, body, _5) {
-        return new FunctionDeclaration(id.ast(), nonEmpty(args.ast()), body.ast());
+        return new Func(id.ast(), nonEmpty(args.ast()), body.ast());
     },
     Loop_for(_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
         return new ForStatement(args.ast(), test.ast(), action.ast(), body.ast());

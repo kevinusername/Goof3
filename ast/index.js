@@ -28,7 +28,7 @@ class ForStatement {
     }
 }
 
-class FunctionDeclaration {
+class Func {
     constructor(id, parameters, body) {
         Object.assign(this, { id, parameters, body });
     }
@@ -114,7 +114,7 @@ module.exports = {
     BinaryExpression,
     CallExpression,
     ForStatement,
-    FunctionDeclaration,
+    Func,
     GifStatement,
     Identifier,
     MemberExpression,
