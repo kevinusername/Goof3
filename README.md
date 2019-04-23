@@ -359,6 +359,17 @@ while (counter > 0) {
   </tr>
 </table>
 
+### Objects, son
+```
+myObj == #
+    whole_number @ x ~ 15,
+    array_of_chars @ name ~ "Doofus",
+    phoof sayHello() ;} poof("hi there"): ;{
+#:
+
+myObj.x:
+```
+
 ### Put it all together
 
 ```
