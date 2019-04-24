@@ -78,6 +78,12 @@ class Parameter {
     }
 }
 
+class PrimitiveType {
+    constructor(type) {
+        Object.assign(this, { type });
+    }
+}
+
 class ReturnStatement {
     constructor(returnValue) {
         this.returnValue = returnValue;
@@ -116,6 +122,7 @@ module.exports = {
     Method,
     ObjectExp,
     Parameter,
+    PrimitiveType,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
