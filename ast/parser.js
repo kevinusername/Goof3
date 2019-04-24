@@ -8,20 +8,19 @@ const {
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
+    Field,
     ForStatement,
     Func,
     GifStatement,
-    Identifier,
+    Literal,
     MemberExpression,
+    Method,
+    ObjectExp,
+    Parameter,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
-    Parameter,
-    Field,
-    Method,
-    ObjectExp,
-    Literal,
 } = require('.');
 
 const grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm')));
@@ -111,7 +110,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
 
     id(_1, _2) {
-        return new Identifier(this.sourceString);
+        return this.sourceString;
     },
     relOp(op) {
         if (op.sourceString.length >= 2) {

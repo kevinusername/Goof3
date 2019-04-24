@@ -22,6 +22,12 @@ class CallExpression {
     }
 }
 
+class Field {
+    constructor(type, key, value) {
+        Object.assign(this, { type, key, value });
+    }
+}
+
 class ForStatement {
     constructor(assignments, test, action, body) {
         Object.assign(this, { assignments, test, action, body });
@@ -40,9 +46,9 @@ class GifStatement {
     }
 }
 
-class Identifier {
-    constructor(name) {
-        Object.assign(this, { name });
+class Literal {
+    constructor(type, value) {
+        Object.assign(this, { type, value });
     }
 }
 
@@ -52,15 +58,29 @@ class MemberExpression {
     }
 }
 
-class ReturnStatement {
-    constructor(returnValue) {
-        this.returnValue = returnValue;
+class Method {
+    constructor(f) {
+        Object.assign(this, { ...f });
+        this.key = f.id;
+        delete this.id;
     }
 }
 
-class Literal {
-    constructor(type, value) {
-        Object.assign(this, { type, value });
+class ObjectExp {
+    constructor(p) {
+        Object.assign(this, { Properties: Object.values(p) });
+    }
+}
+
+class Parameter {
+    constructor(type, id) {
+        Object.assign(this, { type, id });
+    }
+}
+
+class ReturnStatement {
+    constructor(returnValue) {
+        this.returnValue = returnValue;
     }
 }
 
@@ -82,49 +102,22 @@ class WhileStatement {
     }
 }
 
-class Parameter {
-    constructor(type, id) {
-        Object.assign(this, { type, id });
-    }
-}
-
-class Field {
-    constructor(type, key, value) {
-        Object.assign(this, { type, key, value });
-    }
-}
-
-class Method {
-    constructor(f) {
-        Object.assign(this, { ...f });
-        this.key = f.id;
-        delete this.id;
-    }
-}
-
-class ObjectExp {
-    constructor(p) {
-        Object.assign(this, { Properties: Object.values(p) });
-    }
-}
-
 module.exports = {
     ArrayExpression,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
+    Field,
     ForStatement,
     Func,
     GifStatement,
-    Identifier,
+    Literal,
     MemberExpression,
+    Method,
+    ObjectExp,
+    Parameter,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
-    Parameter,
-    Field,
-    Method,
-    ObjectExp,
-    Literal,
 };

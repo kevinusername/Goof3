@@ -1,17 +1,13 @@
 [ Func {
-    id: Identifier { name: 'myFunction' },
+    id: 'myFunction',
     parameters:
-     [ Parameter { type: 'whole_number', id: Identifier { name: 'p1' } },
-       Parameter { type: 'whole_number', id: Identifier { name: 'p2' } } ],
+     [ Parameter { type: 'whole_number', id: 'p1' },
+       Parameter { type: 'whole_number', id: 'p2' } ],
     body:
      [ ReturnStatement {
-         returnValue:
-          BinaryExpression {
-            op: '*',
-            left: Identifier { name: 'p1' },
-            right: Identifier { name: 'p2' } } } ] },
+         returnValue: BinaryExpression { op: '*', left: 'p1', right: 'p2' } } ] },
   CallExpression {
-    callee: Identifier { name: 'myFunction' },
+    callee: 'myFunction',
     args:
      [ Literal { type: 'number', value: 1 },
        Literal { type: 'number', value: 2 } ] } ]

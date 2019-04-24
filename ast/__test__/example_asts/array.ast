@@ -1,7 +1,7 @@
 [ VariableDeclaration {
     access: 'global',
     type: 'whole_number',
-    id: Identifier { name: 'my_array' },
+    id: 'my_array',
     initializers:
      ArrayExpression {
        elements:
@@ -10,8 +10,6 @@
           Literal { type: 'number', value: 2 },
           Literal { type: 'number', value: 3 } ] } },
   MemberExpression {
-    object: Identifier { name: 'my_array' },
+    object: 'my_array',
     property: Literal { type: 'number', value: 1 } },
-  MemberExpression {
-    object: Identifier { name: 'my_array' },
-    property: Identifier { name: 'a' } } ]
+  MemberExpression { object: 'my_array', property: 'a' } ]
