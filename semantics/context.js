@@ -65,7 +65,11 @@ class Context {
     // Adds a variable or function to this context.
     add(entity) {
         if (entity.id in this.valueMap) {
-            throw new Error(`${entity.id} already declared in this scope`);
+            if (Array.isArray(this.valueMap[entity.id])) {
+                this.valueMap[entity.id].push(entity);
+            } else {
+                this.valueMap[entity.id] = [this.valueMap[entity.id], entity];
+            }
         }
         this.valueMap[entity.id] = entity;
     }
