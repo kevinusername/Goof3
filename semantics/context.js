@@ -6,7 +6,16 @@
  *   const Context = require('./semantics/context');
  */
 
-const { standardFunctions, IntType, StringType, NilType } = require('./builtins');
+const {
+    IntType,
+    StringType,
+    NullType,
+    FloatType,
+    BoolType,
+    standardFunctions,
+} = require('./builtins');
+
+
 
 require('./analyzer');
 
@@ -72,13 +81,6 @@ class Context {
         } else this.valueMap[entity.id] = entity;
     }
 
-    addType(typeDec) {
-        if (typeDec.id in this.typeMap) {
-            throw new Error(`Type ${typeDec.id} already declared in this scope`);
-        }
-        this.typeMap[typeDec.id] = typeDec.type;
-    }
-
     // Returns the variable or function entity bound to the given identifier,
     // starting from this context and searching "outward" through enclosing
     // contexts if necessary.
@@ -96,8 +98,8 @@ Context.INITIAL = new Context();
 standardFunctions.forEach((f) => {
     Context.INITIAL.valueMap[f.id] = f;
 });
-Context.INITIAL.typeMap.int = IntType;
-Context.INITIAL.typeMap.string = StringType;
-Context.INITIAL.typeMap.nil = NilType;
+// Context.INITIAL.typeMap.int = IntType;
+// Context.INITIAL.typeMap.string = StringType;
+// Context.INITIAL.typeMap.nil = NilType;
 
 module.exports = Context;

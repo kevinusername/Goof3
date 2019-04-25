@@ -1,3 +1,4 @@
 {
-    "code-runner.customCommand": " cd \"c:\\Users\\kevin\\code\\Goof3\\ast\\__test__\" && node \"c:\\Users\\kevin\\code\\Goof3\\ast\\__test__\\genereate_asts.js\""
+  "code-runner.customCommand": " cd \"c:\\Users\\kevin\\code\\Goof3\\ast\\__test__\" && node \"c:\\Users\\kevin\\code\\Goof3\\ast\\__test__\\genereate_asts.js\"",
+  "editor.fontLigatures": false
 }
