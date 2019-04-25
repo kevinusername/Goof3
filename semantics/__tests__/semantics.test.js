@@ -13,6 +13,8 @@ const program = String.raw`
 phoof myFunc (whole_number @ n) ;}
     whole_number @ x == 5:
 ;{
+
+myFunc(10):
 `;
 
 describe('The semantic analyzer', () => {

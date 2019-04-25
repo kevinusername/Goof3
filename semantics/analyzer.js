@@ -90,7 +90,7 @@ CallExpression.prototype.analyze = function (context) {
     this.callee = context.lookupValue(this.callee);
     check.isFunction(this.callee, 'Attempt to call a non-function');
     this.args.forEach(arg => arg.analyze(context));
-    check.legalArguments(this.args, this.callee.params);
+    check.legalArguments(this.args, this.callee.parameters);
     // this.type = this.callee.returnType;
 };
 
@@ -112,6 +112,7 @@ ForStatement.prototype.analyze = function (context) {
 Func.prototype.analyzeSignature = function (context) {
     this.bodyContext = context.createChildContextForFunctionBody(this);
     this.parameters.forEach(p => p.analyze(this.bodyContext));
+    context.add(this);
 };
 
 Func.prototype.analyze = function (context) {
