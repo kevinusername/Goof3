@@ -42,8 +42,9 @@ function getType(typeString) {
 const check = require('./check');
 
 ArrayExpression.prototype.analyze = function () {
-    check.isArray(this);
     this.type.analyze();
+    check.isArray(this);
+    this.size.analyze();
     check.isInteger(this.size);
     this.elements.forEach((e) => {
         e.analyze();
@@ -136,10 +137,15 @@ Literal.prototype.analyze = function () {
 };
 
 MemberExpression.prototype.analyze = function (context) {
-    this.record.analyze(context);
-    check.isRecord(this.record);
-    const field = this.record.type.getFieldForId(this.id);
-    this.type = field.type;
+    this.object.analyze(context);
+    this.property.analyze(context);
+    if (this.object.reference.type instanceof ArrayType) {
+        check.isInteger(this.property);
+    } else if (this.object.reference.type instanceof ObjectExp) {
+        check.isString(this.property);
+    } else {
+        throw Error('Non subscriptable expression');
+    }
 };
 
 Method.prototype.analyze = function (context) {};

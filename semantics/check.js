@@ -52,12 +52,24 @@ module.exports = {
 
     // Can we assign expression to a variable/param/field of type type?
     isAssignableTo(expression, type) {
-        doCheck(
-            expression.type === NullType || expression.type === type,
-            `Expression of type ${util.format(
-                expression.type,
-            )} not compatible with type ${util.format(type)}`,
-        );
+        if (expression.type instanceof ArrayType) {
+            if (type instanceof ArrayType) {
+                this.expressionsHaveTheSameType(expression.type.type, type.type);
+            } else {
+                throw Error(
+                    `Expression of type ${util.format(
+                        expression.type,
+                    )} not compatible with type ${util.format(type)}`,
+                );
+            }
+        } else {
+            doCheck(
+                expression.type === NullType || expression.type === type,
+                `Expression of type ${util.format(
+                    expression.type,
+                )} not compatible with type ${util.format(type)}`,
+            );
+        }
     },
 
     isNotReadOnly(variable) {
