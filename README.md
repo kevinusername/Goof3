@@ -1,5 +1,5 @@
 # Goof3
-test
+
 ![Logo](Goof3_Logo.png)
 
 #### Blake Crowther, Nikky Rajavasireddy, Andrew Arteaga, Kevin Peters, Michael Simmons, Michael West
@@ -32,7 +32,7 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Required explicit typing with @
 - The essential primitives "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 - Access modifiers : "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
-- All braces are now winky faces :} :{
+- All braces are now winky faces ;} ;{
 - return statements must now use yeet
 <br>... AND MORE! NEVER UNDERESTIMATE tHe GOoF!
 
@@ -87,8 +87,8 @@ console.log('hELlO woRlD!')
 
 ```
 phoof myFunction(p1, p2) ;}
-  return p1 * p2:
-{;
+  yeet p1 * p2:
+;{
 ```
 
   </td>
@@ -131,36 +131,7 @@ goof letsGainThisGrain ==== 20.25:
   <td>
 
 ```javascript
-var money = 20.25
-```
-
-  </td>
-
-  </tr>
-  <tr>
-  <td>
-
-```
-goof foot = ;}
-  length; "1 Foot", 
-  girth; "yes", 
-  shoeSize; "12", 
-  color; "white", 
-  numberOfToes; "12 - 3"
-{;
-```
-
-  </td>
-  <td>
-
-```js
-var foot = {
-  length: "1 Foot",
-  girth: "yes", 
-  shoeSize: "12", 
-  color: "white", 
-  numberOfToes: "12 - 3"
-};
+var money = 20.25;
 ```
   </td>
   </tr>
@@ -182,8 +153,8 @@ var foot = {
 
 ```
 gif ( 1 < 4 ===== toof) ;}
-  return "troof":
-{;
+  yeet "troof":
+;{
 ```
 
   </td>
@@ -192,7 +163,7 @@ gif ( 1 < 4 ===== toof) ;}
 
 ```javascript
 if (1 < 4 == true) {
-  return "That's the truth"
+  return "That's the truth";
 }
 ```
 
@@ -252,7 +223,7 @@ comment in javascript */
   <td style="word-wrap: break-word;">
 
 ```
-yeet "OOPSIE WOOPSIE!! Uwu We made a 
+yack "OOPSIE WOOPSIE!! Uwu We made a 
 fucky wucky!! A wittle fucko boingo!
 The code monkeys at our headquarters
 are working VEWY HAWD to fix this!":
@@ -327,16 +298,16 @@ class Rectangle {
   <td style="word-wrap: break-word;">
 
 ```
-four (goof i == 7: i <  size: i++) ;}
-    goof cat == -10:
-{;
+four (goof i == 7: i <  size: i = i + 1) ;}
+  goof cat == -10:
+;{
 ```
 ```
-goof counter == 10
+goof counter == 10:
 wooloop (counter > 0) ;} 
-    counter--:
-    poof(nOt dOnE yEt):
-{;
+  counter = counter - 1:
+  poof("nOt dOnE yEt"):
+;{
 ```
   </td>
 
@@ -351,7 +322,7 @@ for (var i = 7; i < size; i++) {
 var counter = 0;
 while (counter > 0) {
   counter--;
-  print(nOt dOnE yEt);    
+  print('nOt dOnE yEt');    
 }
 ```
   </td>
@@ -362,9 +333,9 @@ while (counter > 0) {
 ### Objectify this, son
 ```
 myObj == #
-    whole_number @ x ~ 15,
-    array_of_chars @ name ~ "Doofus",
-    phoof sayHello() ;} poof("hi there"): ;{
+  whole_number @ x ~ 15,
+  array_of_chars @ name ~ "Doofus",
+  phoof sayHello() ;} poof("hi there"): ;{
 #:
 
 myObj.x:
@@ -373,19 +344,19 @@ myObj.x:
 ### Put it all together
 
 ```
-phoof fib ( n) ;}
-    gif (n <= 1) ;}
-        return n:
-    {;
-    xD hey there
-    return fib (n - 2) + fib(n -1):
-{;
+phoof fib (n) ;}
+  gif (n <= 1) ;}
+    yeet n:
+  ;{
+  xD hey there
+  yeet fib (n - 2) + fib(n -1):
+;{
 
-four (goof i ==== 11: i <  size - 11: i++) ;}
-	goof dog == 10:
-    ;) heres a
-    multiline
-    for you (;
-    return "wHYyyYYyYy":
-{;
+four (goof i ==== 11: i <  size - 11: i = i + 1) ;}
+  goof dog == 10:
+  ;) heres a
+  multiline
+  for you (;
+  poof "wHYyyYYyYy":
+;{
 ```
