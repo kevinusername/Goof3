@@ -64,6 +64,10 @@ module.exports = {
         doCheck(variable.access === 'CONSTANT_VARIABLE', 'Assignment to read-only variable');
     },
 
+    isAssignment(expression) {
+        doCheck(expression.constructor.name === 'AssignmentStatement', 'Not an assignment');
+    },
+
     fieldHasNotBeenUsed(field, usedFields) {
         doCheck(!usedFields.has(field), `Field ${field} already declared`);
     },

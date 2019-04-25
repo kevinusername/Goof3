@@ -13,8 +13,6 @@ const {
     Method,
     ObjectExp,
     Parameter,
-    ReturnStatement,
-    ThrowStatement,
     VariableDeclaration,
     WhileStatement,
 } = require('../ast');
@@ -67,12 +65,16 @@ AssignmentStatement.prototype.analyze = function (context) {
 BinaryExpression.prototype.analyze = function (context) {
     this.left.analyze(context);
     this.right.analyze(context);
-    if (/[-+*/<>]/.test(this.op)) {
+    if (/[-+*/]/.test(this.op)) {
         check.isNumber(this.left);
         check.isNumber(this.right);
         if (this.left.type === FloatType || this.right.type === FloatType) {
             this.type = FloatType;
         } else this.type = IntType;
+    } else if (/[<>]/.test(this.op)) {
+        check.isNumber(this.left);
+        check.isNumber(this.right);
+        this.type = BoolType;
     } else if (/\|\||&&/.test(this.op)) {
         check.isBoolean(this.left);
         check.isBoolean(this.right);
@@ -99,6 +101,11 @@ Field.prototype.analyze = function (context) {
 ForStatement.prototype.analyze = function (context) {
     const loopContext = context.createChildContextForLoop();
     this.assignments.analyze(loopContext);
+    this.test.analyze(loopContext);
+    check.isBoolean(test);
+    this.action.analyze(loopContext);
+    check.isAssignment(this.action);
+    this.body.analyze(loopContext);
 };
 
 Func.prototype.analyzeSignature = function (context) {

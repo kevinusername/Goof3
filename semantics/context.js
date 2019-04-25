@@ -15,8 +15,6 @@ const {
     standardFunctions,
 } = require('./builtins');
 
-
-
 require('./analyzer');
 
 // When doing semantic analysis we pass around context objects.
