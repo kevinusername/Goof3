@@ -6,7 +6,7 @@ const StringType = new PrimitiveType('array_of_chars');
 const BoolType = new PrimitiveType('true_or_false');
 const NullType = new PrimitiveType('temp');
 
-const standardFunctions = [new Func('poof', [new Parameter('s', StringType)])];
+const standardFunctions = [new Func('poof', [new Parameter(StringType, 's')])];
 
 module.exports = {
     IntType,

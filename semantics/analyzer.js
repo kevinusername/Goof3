@@ -110,22 +110,23 @@ ForStatement.prototype.analyze = function (context) {
 };
 
 Func.prototype.analyzeSignature = function (context) {
-    this.bodyContext = context.createChildContextForFunctionBody();
-    this.params.forEach(p => p.analyze(this.bodyContext));
-    // this.returnType = context.lookupType(this.returnType);
+    this.bodyContext = context.createChildContextForFunctionBody(this);
+    this.parameters.forEach(p => p.analyze(this.bodyContext));
 };
 
-Func.prototype.analyze = function () {
-    this.body.analyze(this.bodyContext);
-    // check.isAssignableTo(this.body, this.returnType, 'Type mismatch in function return');
+Func.prototype.analyze = function (context) {
+    this.analyzeSignature(context);
+    this.body.forEach(e => e.analyze(this.bodyContext));
 };
 
 GifStatement.prototype.analyze = function (context) {
-    this.tests.analyze(context);
-    check.isInteger(this.tests, 'Test in if');
-    this.consequents.analyze(context);
+    this.tests.forEach((e) => {
+        e.analyze(context);
+        check.isBoolean(e);
+    });
+    this.consequents.forEach(cons => cons.forEach(e => e.analyze(context)));
     if (this.alternate) {
-        this.alternate.analyze(context);
+        this.alternate[0].analyze(context);
     }
 };
 

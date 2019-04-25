@@ -10,9 +10,8 @@ const parse = require('../../ast/parser');
 const Context = require('../context');
 
 const program = String.raw`
-whole_number @ counter == 10:
-wooloop (counter > 0) ;} 
-    counter == counter - 1:
+phoof myFunc (whole_number @ n) ;}
+    whole_number @ x == 5:
 ;{
 `;
 
@@ -20,7 +19,7 @@ describe('The semantic analyzer', () => {
     test('accepts the mega program with all syntactic forms', (done) => {
         const astRoot = parse(program);
         expect(astRoot).toBeTruthy();
-        console.log(util.inspect(astRoot, { depth: null }));
+        // console.log(util.inspect(astRoot, { depth: null }));
         astRoot.forEach(e => e.analyze(Context.INITIAL));
         // astRoot.analyze(Context.INITIAL);
         console.log(util.inspect(astRoot, { depth: null }));
