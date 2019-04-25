@@ -27,13 +27,18 @@ const check = require('./check');
 
 ArrayExpression.prototype.analyze = function () {
     check.isArray(this);
-    // this.size.analyze(context);
+    this.type.analyze();
+    this.size.analyze();
     // check.isInteger(this.size);
-    check.isAssignableTo(this.fill, this.type);
+    this.elements.forEach((e) => {
+        e.analyze();
+        check.isAssignableTo(e, this.type.type);
+    });
 };
 
 ArrayType.prototype.analyze = function () {
     check.isArrayType(this.type);
+    this.type.analyze();
 };
 
 AssignmentStatement.prototype.analyze = function (context) {
@@ -48,7 +53,7 @@ BinaryExpression.prototype.analyze = function (context) {
     this.right.analyze(context);
     check.isNumber(this.left);
     check.isNumber(this.right);
-    if (left.type === FloatType || right.type === FloatType) {
+    if (this.left.type === FloatType || this.right.type === FloatType) {
         this.type = FloatType;
     } else this.type = IntType;
 };
@@ -80,7 +85,14 @@ ForStatement.prototype.analyze = function (context) {
 
 Func.prototype.analyze = function (context) {};
 
-GifStatement.prototype.analyze = function (context) {};
+GifStatement.prototype.analyze = function (context) {
+    this.tests.analyze(context);
+    check.isInteger(this.tests, 'Test in if');
+    this.consequents.analyze(context);
+    if (this.alternate) {
+        this.alternate.analyze(context);
+    }
+};
 
 Literal.prototype.analyze = function () {
     switch (this.type) {
@@ -123,7 +135,11 @@ ReturnStatement.prototype.analyze = function (context) {};
 
 ThrowStatement.prototype.analyze = function (context) {};
 
-VariableDeclaration.prototype.analyze = function (context) {};
+VariableDeclaration.prototype.analyze = function (context) {
+    this.init.analyze(context);
+    check.isAssignableTo(this.init, this.type);
+    context.add(this);
+};
 
 WhileStatement.prototype.analyze = function (context) {
     this.test.analyze(context);

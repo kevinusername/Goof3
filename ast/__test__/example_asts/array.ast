@@ -9,6 +9,7 @@
           Literal { type: 'int', value: '1' },
           Literal { type: 'int', value: '2' },
           Literal { type: 'int', value: '3' } ],
+       size: 4,
        type: 'whole_number' } },
   MemberExpression {
     object: 'my_array',

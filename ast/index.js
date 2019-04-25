@@ -1,6 +1,6 @@
 class ArrayExpression {
     constructor(elements) {
-        Object.assign(this, { elements });
+        Object.assign(this, { elements, size: elements.length });
     }
 }
 
