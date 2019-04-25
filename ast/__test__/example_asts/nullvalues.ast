@@ -2,4 +2,4 @@
     access: 'global',
     type: 'whole_number',
     id: 'x',
-    initializers: Literal { type: 'null', value: null } } ]
+    initializer: Literal { type: 'temp', value: null } } ]

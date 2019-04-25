@@ -14,6 +14,7 @@ const {
     ObjectExp,
     Parameter,
     VariableDeclaration,
+    IdExp,
     WhileStatement,
 } = require('../ast');
 
@@ -23,15 +24,15 @@ const {
 
 function getType(typeString) {
     switch (typeString) {
-    case 'string':
+    case 'array_of_chars':
         return StringType;
-    case 'int':
+    case 'whole_number':
         return IntType;
-    case 'float':
+    case 'not_whole_number':
         return FloatType;
-    case 'boolean':
+    case 'true_or_false':
         return BoolType;
-    case 'null':
+    case 'temp':
         return NullType;
     default:
         throw Error('Invalid type');
@@ -100,12 +101,12 @@ Field.prototype.analyze = function (context) {
 
 ForStatement.prototype.analyze = function (context) {
     const loopContext = context.createChildContextForLoop();
-    this.assignments.analyze(loopContext);
+    this.assignments.forEach(e => e.analyze(loopContext));
     this.test.analyze(loopContext);
-    check.isBoolean(test);
+    check.isBoolean(this.test);
     this.action.analyze(loopContext);
     check.isAssignment(this.action);
-    this.body.analyze(loopContext);
+    this.body.forEach(e => e.analyze(loopContext));
 };
 
 Func.prototype.analyzeSignature = function (context) {
@@ -156,8 +157,13 @@ VariableDeclaration.prototype.analyze = function (context) {
     this.initializer.analyze(context);
     if (this.type instanceof ArrayType) this.type.analyze();
     else this.type = getType(this.type);
-    check.isAssignableTo(this.init, this.type);
+    check.isAssignableTo(this.initializer, this.type);
     context.add(this);
+};
+
+IdExp.prototype.analyze = function (context) {
+    this.reference = context.lookupValue(this.reference);
+    this.type = this.reference.type;
 };
 
 WhileStatement.prototype.analyze = function (context) {

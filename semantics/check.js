@@ -61,7 +61,7 @@ module.exports = {
     },
 
     isNotReadOnly(variable) {
-        doCheck(variable.access === 'CONSTANT_VARIABLE', 'Assignment to read-only variable');
+        doCheck(variable.access !== 'CONSTANT_VARIABLE', 'Assignment to read-only variable');
     },
 
     isAssignment(expression) {

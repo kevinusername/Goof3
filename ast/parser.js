@@ -21,6 +21,7 @@ const {
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
+    IdExp,
     WhileStatement,
 } = require('.');
 
@@ -154,22 +155,25 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new ArrayType(type.ast());
     },
     intlit(_) {
-        return new Literal('int', this.sourceString);
+        return new Literal('whole_number', this.sourceString);
     },
     declit(_1, _2, _3) {
-        return new Literal('float', this.sourceString);
+        return new Literal('not_whole_number', this.sourceString);
     },
     stringlit(_1, chars, _6) {
-        return new Literal('string', this.sourceString.slice(1, -1));
+        return new Literal('array_of_chars', this.sourceString.slice(1, -1));
     },
     null(_) {
-        return new Literal('null', null);
+        return new Literal('temp', null);
     },
     boolean(v) {
-        return new Literal('boolean', v.ast());
+        return new Literal('true_or_false', v.ast());
     },
     _terminal() {
         return this.sourceString;
+    },
+    VarExp(id) {
+        return new IdExp(id.ast());
     },
 
     NonemptyListOf(first, _, rest) {

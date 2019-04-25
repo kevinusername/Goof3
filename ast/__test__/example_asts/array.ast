@@ -2,16 +2,16 @@
     access: 'global',
     type: ArrayType { type: 'whole_number' },
     id: 'my_array',
-    initializers:
+    initializer:
      ArrayExpression {
        elements:
-        [ Literal { type: 'int', value: '0' },
-          Literal { type: 'int', value: '1' },
-          Literal { type: 'int', value: '2' },
-          Literal { type: 'int', value: '3' } ],
+        [ Literal { type: 'whole_number', value: '0' },
+          Literal { type: 'whole_number', value: '1' },
+          Literal { type: 'whole_number', value: '2' },
+          Literal { type: 'whole_number', value: '3' } ],
        size: 4,
-       type: ArrayType { type: 'int' } } },
+       type: ArrayType { type: 'whole_number' } } },
   MemberExpression {
-    object: 'my_array',
-    property: Literal { type: 'int', value: '1' } },
-  MemberExpression { object: 'my_array', property: 'a' } ]
+    object: IdExp { reference: 'my_array' },
+    property: Literal { type: 'whole_number', value: '1' } },
+  MemberExpression { object: IdExp { reference: 'my_array' }, property: 'a' } ]

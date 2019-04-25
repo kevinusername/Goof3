@@ -6,9 +6,10 @@
          tests:
           [ BinaryExpression {
               op: '<=',
-              left: 'n',
-              right: Literal { type: 'int', value: '1' } } ],
-         consequents: [ [ ReturnStatement { returnValue: 'n' } ] ],
+              left: IdExp { reference: 'n' },
+              right: Literal { type: 'whole_number', value: '1' } } ],
+         consequents:
+          [ [ ReturnStatement { returnValue: IdExp { reference: 'n' } } ] ],
          alternate: null },
        ReturnStatement {
          returnValue:
@@ -20,48 +21,52 @@
                args:
                 [ BinaryExpression {
                     op: '-',
-                    left: 'n',
-                    right: Literal { type: 'int', value: '2' } } ] },
+                    left: IdExp { reference: 'n' },
+                    right: Literal { type: 'whole_number', value: '2' } } ] },
             right:
              CallExpression {
                callee: 'fib',
                args:
                 [ BinaryExpression {
                     op: '-',
-                    left: 'n',
-                    right: Literal { type: 'int', value: '1' } } ] } } } ] },
+                    left: IdExp { reference: 'n' },
+                    right: Literal { type: 'whole_number', value: '1' } } ] } } } ] },
   ForStatement {
     assignments:
      [ VariableDeclaration {
          access: 'global',
          type: 'whole_number',
          id: 'i',
-         initializers: Literal { type: 'int', value: '11' } } ],
+         initializer: Literal { type: 'whole_number', value: '11' } } ],
     test:
      BinaryExpression {
        op: '<',
-       left: 'i',
+       left: IdExp { reference: 'i' },
        right:
         BinaryExpression {
           op: '-',
-          left: 'size',
-          right: Literal { type: 'int', value: '11' } } },
-    action: BinaryExpression { op: '++', left: 'i', right: undefined },
+          left: IdExp { reference: 'size' },
+          right: Literal { type: 'whole_number', value: '11' } } },
+    action:
+     AssignmentStatement {
+       target: IdExp { reference: 'i' },
+       source: Literal { type: 'whole_number', value: '1' } },
     body:
      [ VariableDeclaration {
          access: 'constant',
          type: 'whole_number',
          id: 'dog',
-         initializers: Literal { type: 'int', value: '10' } },
+         initializer: Literal { type: 'whole_number', value: '10' } },
        ReturnStatement {
-         returnValue: Literal { type: 'string', value: 'wHYyyYYyYy' } } ] },
+         returnValue: Literal { type: 'array_of_chars', value: 'wHYyyYYyYy' } } ] },
   CallExpression {
     callee: 'poof',
     args:
      Literal {
-       type: 'string',
+       type: 'array_of_chars',
        value:
         "you should check out our 'npm run-script format' script, its cool!" } },
   CallExpression {
     callee: 'poof',
-    args: Literal { type: 'string', value: 'and thats all she wrote' } } ]
+    args:
+     Literal { type: 'array_of_chars', value: 'and thats all she wrote' } } ]

@@ -103,8 +103,14 @@ class ThrowStatement {
 }
 
 class VariableDeclaration {
-    constructor(access, type, id, initializers) {
-        Object.assign(this, { access, type, id, initializers });
+    constructor(access, type, id, initializer) {
+        Object.assign(this, { access, type, id, initializer });
+    }
+}
+
+class IdExp {
+    constructor(reference) {
+        Object.assign(this, { reference });
     }
 }
 
@@ -133,5 +139,6 @@ module.exports = {
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
+    IdExp,
     WhileStatement,
 };

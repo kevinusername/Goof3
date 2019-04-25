@@ -4,7 +4,7 @@ phoof fib (whole_number @ n) ;}
     yeet fib (n - 2) + fib(n -1):
 ;{
 
-four (whole_number @ i ==== 11: i <  size - 11: i++) ;}
+four (whole_number @ i ==== 11: i <  size - 11: i == 1) ;}
 	CONSTANT_VARIABLE whole_number @ dog == 10:
     ;) heres a
     multiline

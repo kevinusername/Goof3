@@ -5,3 +5,7 @@ CONSTANT_VARIABLE array_of_chars @ myStr == "YOU CAN'T CHANGE THIS":
 LOCAL_VARIABLE array_of_chars @ mutable == "You can definitely change this":
 
 GLOBAL_VARIABLE array_of_chars @ going_global == "Better be careful with this":
+
+going_global:
+
+going_global == "hello":

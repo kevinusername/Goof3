@@ -2,22 +2,22 @@
     access: 'global',
     type: 'object',
     id: 'myObj',
-    initializers:
+    initializer:
      ObjectExp {
        Properties:
         [ Field {
             type: 'whole_number',
             key: 'x',
-            value: Literal { type: 'int', value: '15' } },
+            value: Literal { type: 'whole_number', value: '15' } },
           Field {
             type: 'array_of_chars',
             key: 'name',
-            value: Literal { type: 'string', value: 'Doofus' } },
+            value: Literal { type: 'array_of_chars', value: 'Doofus' } },
           Method {
             parameters: null,
             body:
              [ CallExpression {
                  callee: 'poof',
-                 args: Literal { type: 'string', value: 'hi there' } } ],
+                 args: Literal { type: 'array_of_chars', value: 'hi there' } } ],
             key: 'sayHello' } ] } },
-  MemberExpression { object: 'myObj', property: 'x' } ]
+  MemberExpression { object: IdExp { reference: 'myObj' }, property: 'x' } ]

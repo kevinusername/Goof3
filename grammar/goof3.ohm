@@ -7,7 +7,7 @@ Goof3 {
                 | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
                 | access? id "=="+ Object                            -- objDec
-                | id "=="+ Exp                                       -- reassignment
+                | VarExp "=="+ Exp                                   -- reassignment
                 | "poof" "(" stringlit ")"                           -- print
                 | "yeet" Exp                                         -- return
                 | Exp                                                -- Expression
@@ -18,7 +18,7 @@ Goof3 {
                   ("elsegif" "(" Exp ")" ";}" Block ";{")*
                   ("else" ";}" Block ";{")?
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Exp ")" ";}" Block ";{"                -- for
+                  ":" Exp ":" Statement_reassignment ")" ";}" Block ";{"                -- for
                 | "wooloop" "(" Exp ")" ";}" Block ";{"              -- while
 
     Exp         = Exp logOp Exp1                                     -- logical
