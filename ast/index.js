@@ -4,6 +4,12 @@ class ArrayExpression {
     }
 }
 
+class ArrayType {
+    constructor(t) {
+        Object.assign(this, { type: t });
+    }
+}
+
 class AssignmentStatement {
     constructor(targets, sources) {
         Object.assign(this, { targets, sources });
@@ -110,6 +116,7 @@ class WhileStatement {
 
 module.exports = {
     ArrayExpression,
+    ArrayType,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,

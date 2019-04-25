@@ -58,12 +58,11 @@ BinaryExp.prototype.analyze = function (context) {
     this.left.analyze(context);
     this.right.analyze(context);
     if (/[-+*/&|]/.test(this.op)) {
-        check.isInteger(this.left);
-        check.isInteger(this.right);
+        check.isNumber(this.left);
+        check.isNumber(this.right);
     } else if (/<=?|>=?/.test(this.op)) {
-        check.expressionsHaveTheSameType(this.left, this.right);
-        check.isIntegerOrString(this.left);
-        check.isIntegerOrString(this.right);
+        check.isNumber(this.left);
+        check.isNumber(this.right);
     } else {
         check.expressionsHaveTheSameType(this.left, this.right);
     }

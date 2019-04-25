@@ -5,6 +5,7 @@ const path = require('path');
 
 const {
     ArrayExpression,
+    ArrayType,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
@@ -140,6 +141,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
 
     Type(type, _1, _2) {
+        if (_1 && _2) return new ArrayType(type.ast());
         return type.sourceString;
     },
     numlit(_1) {

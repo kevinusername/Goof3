@@ -70,8 +70,7 @@ class Context {
             } else {
                 this.valueMap[entity.id] = [this.valueMap[entity.id], entity];
             }
-        }
-        this.valueMap[entity.id] = entity;
+        } else this.valueMap[entity.id] = entity;
     }
 
     addType(typeDec) {

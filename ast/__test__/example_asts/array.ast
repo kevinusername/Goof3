@@ -1,6 +1,6 @@
 [ VariableDeclaration {
     access: 'global',
-    type: 'whole_number',
+    type: ArrayType { type: 'whole_number' },
     id: 'my_array',
     initializers:
      ArrayExpression {

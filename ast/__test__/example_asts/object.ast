@@ -6,11 +6,11 @@
      ObjectExp {
        Properties:
         [ Field {
-            type: 'whole_number',
+            type: ArrayType { type: 'whole_number' },
             key: 'x',
             value: Literal { type: 'number', value: 15 } },
           Field {
-            type: 'array_of_chars',
+            type: ArrayType { type: 'array_of_chars' },
             key: 'name',
             value: Literal { type: 'string', value: 'Doofus' } },
           Method {

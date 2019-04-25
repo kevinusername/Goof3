@@ -1,6 +1,6 @@
 const util = require('util');
 const { ArrayType, Func, RecordType, IdExp } = require('../ast');
-const { IntType, StringType, NilType } = require('./builtins');
+const { IntType, FloatType, StringType, NullType } = require('./builtins');
 
 function doCheck(condition, message) {
     if (!condition) {
@@ -8,26 +8,20 @@ function doCheck(condition, message) {
     }
 }
 module.exports = {
-    // Is this type an array type?
-    isArrayType(type) {
-        doCheck(type.constructor === ArrayType, 'Not an array type');
-    },
-
-    isRecordType(type) {
-        doCheck(type.constructor === RecordType, 'Not a record type');
-    },
-
-    // Is the type of this expression an array type?
     isArray(expression) {
-        doCheck(expression.type.constructor === ArrayType, 'Not an array');
+        doCheck(expression.type === ArrayType);
     },
 
-    isRecord(expression) {
-        doCheck(expression.type.constructor === RecordType, 'Not a record');
+    isArrayType(type) {
+        doCheck(type.type === ArrayType, 'Not an array type');
     },
 
     isInteger(expression) {
         doCheck(expression.type === IntType, 'Not an integer');
+    },
+
+    isNumber(expression) {
+        doCheck(expression.type === IntType || expression.type === FloatType, 'Not a number');
     },
 
     isString(expression) {
@@ -45,10 +39,6 @@ module.exports = {
         doCheck(value.constructor === Func, 'Not a function');
     },
 
-    isFieldOfRecord(id, record) {
-        doCheck(record.type.fields.find(field => id === field.id), `No such field: ${id}`);
-    },
-
     // Are two types exactly the same?
     expressionsHaveTheSameType(e1, e2) {
         doCheck(e1.type === e2.type, 'Types must match exactly');
@@ -57,7 +47,7 @@ module.exports = {
     // Can we assign expression to a variable/param/field of type type?
     isAssignableTo(expression, type) {
         doCheck(
-            (expression.type === NilType && type.constructor === RecordType)
+            (expression.type === NullType && type.constructor === RecordType)
                 || expression.type === type,
             `Expression of type ${util.format(
                 expression.type,
