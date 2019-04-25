@@ -38,7 +38,6 @@ class Context {
             parent,
             currentFunction,
             inLoop,
-            typeMap: Object.create(null),
             valueMap: Object.create(null),
         });
     }
@@ -78,17 +77,6 @@ class Context {
             throw new Error(`Type ${typeDec.id} already declared in this scope`);
         }
         this.typeMap[typeDec.id] = typeDec.type;
-    }
-
-    // Returns the type entity bound to the given identifier, starting from this
-    // context and searching "outward" through enclosing contexts if necessary.
-    lookupType(id) {
-        for (let context = this; context !== null; context = context.parent) {
-            if (id in context.typeMap) {
-                return context.typeMap[id];
-            }
-        }
-        throw new Error(`Type ${id} has not been declared`);
     }
 
     // Returns the variable or function entity bound to the given identifier,

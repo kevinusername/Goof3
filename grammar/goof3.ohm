@@ -41,6 +41,7 @@ Goof3 {
                 | boolean
                 | PropAccess
                 | Object
+                | null
 
     PropAccess  = VarExp "[" Exp "]"                                 -- brackets
                 | VarExp "." id                                      -- dot
@@ -62,10 +63,10 @@ Goof3 {
     addop       = "+" | "-"
 
     Type        = typeid ("[" "]")?
-    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number" | "temp"
+    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
     keyword     = ("goof" | "yeet" | "poof" | "yack" | "phoof" | "toof" | "foof" |
-                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else"
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else" | "temp"
                   | typeid) ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
@@ -74,6 +75,7 @@ Goof3 {
     declit      = digit+ "." digit*
     numlit      = declit | intlit
     boolean     = "toof" | "foof"
+    null        = "temp"
     space       += comment
     access      = "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
     Parameter   = Type "@" id

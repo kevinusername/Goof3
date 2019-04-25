@@ -8,7 +8,7 @@
         [ Field {
             type: ArrayType { type: 'whole_number' },
             key: 'x',
-            value: Literal { type: 'number', value: 15 } },
+            value: Literal { type: 'int', value: '15' } },
           Field {
             type: ArrayType { type: 'array_of_chars' },
             key: 'name',

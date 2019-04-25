@@ -48,8 +48,11 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return s.ast();
     },
 
-    Statement_assignment(access, type, _1, id, _2, e) {
-        return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), e.ast());
+    Statement_assignment(access, t, _1, id, _2, e) {
+        const exp = e.ast();
+        const type = t.ast();
+        if (type instanceof ArrayType) exp.type = type.type;
+        return new VariableDeclaration(handleAccess(access.ast()), type, id.ast(), exp);
     },
     Statement_declaration(access, type, _1, id) {
         return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), null);
@@ -141,14 +144,20 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
 
     Type(type, _1, _2) {
-        if (_1 && _2) return new ArrayType(type.ast());
+        if (_1.ast() && _2.ast()) return new ArrayType(type.ast());
         return type.sourceString;
     },
-    numlit(_1) {
-        return new Literal('number', +this.sourceString);
+    intlit(_) {
+        return new Literal('int', this.sourceString);
+    },
+    declit(_1, _2, _3) {
+        return new Literal('float', this.sourceString);
     },
     stringlit(_1, chars, _6) {
         return new Literal('string', this.sourceString.slice(1, -1));
+    },
+    null(_) {
+        return new Literal('null', null);
     },
     boolean(v) {
         return new Literal('boolean', v.ast());

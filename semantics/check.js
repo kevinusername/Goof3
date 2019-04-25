@@ -1,5 +1,5 @@
 const util = require('util');
-const { ArrayType, Func, RecordType, IdExp } = require('../ast');
+const { ArrayType, Func, IdExp } = require('../ast');
 const { IntType, FloatType, StringType, NullType } = require('./builtins');
 
 function doCheck(condition, message) {
@@ -9,11 +9,11 @@ function doCheck(condition, message) {
 }
 module.exports = {
     isArray(expression) {
-        doCheck(expression.type === ArrayType);
+        doCheck(expression.type instanceof ArrayType, 'Not an array');
     },
 
     isArrayType(type) {
-        doCheck(type.type === ArrayType, 'Not an array type');
+        doCheck(type instanceof ArrayType, 'Not an array type');
     },
 
     isInteger(expression) {
@@ -36,7 +36,7 @@ module.exports = {
     },
 
     isFunction(value) {
-        doCheck(value.constructor === Func, 'Not a function');
+        doCheck(value instanceof Func, 'Not a function');
     },
 
     // Are two types exactly the same?
@@ -47,19 +47,15 @@ module.exports = {
     // Can we assign expression to a variable/param/field of type type?
     isAssignableTo(expression, type) {
         doCheck(
-            (expression.type === NullType && type.constructor === RecordType)
-                || expression.type === type,
+            expression.type === NullType || expression.type === type,
             `Expression of type ${util.format(
                 expression.type,
             )} not compatible with type ${util.format(type)}`,
         );
     },
 
-    isNotReadOnly(lvalue) {
-        doCheck(
-            !(lvalue.constructor === IdExp && lvalue.ref.readOnly),
-            'Assignment to read-only variable',
-        );
+    isNotReadOnly(variable) {
+        doCheck(variable.access === 'CONSTANT_VARIABLE', 'Assignment to read-only variable');
     },
 
     fieldHasNotBeenUsed(field, usedFields) {

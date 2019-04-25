@@ -2,21 +2,24 @@
     access: 'global',
     type: ArrayType { type: 'not_whole_number' },
     id: 'letsGainThisGrain',
-    initializers: Literal { type: 'number', value: 20.25 } },
+    initializers: Literal { type: 'not_whole_number', value: '20.25' } },
   VariableDeclaration {
     access: 'constant',
     type: ArrayType { type: 'array_of_chars' },
     id: 'myStr',
-    initializers: Literal { type: 'string', value: "YOU CAN'T CHANGE THIS" } },
+    initializers:
+     Literal { type: 'array_of_chars', value: "YOU CAN'T CHANGE THIS" } },
   VariableDeclaration {
     access: 'local',
     type: ArrayType { type: 'array_of_chars' },
     id: 'mutable',
     initializers:
-     Literal { type: 'string', value: 'You can definitely change this' } },
+     Literal {
+       type: 'array_of_chars',
+       value: 'You can definitely change this' } },
   VariableDeclaration {
     access: 'global',
     type: ArrayType { type: 'array_of_chars' },
     id: 'going_global',
     initializers:
-     Literal { type: 'string', value: 'Better be careful with this' } } ]
+     Literal { type: 'array_of_chars', value: 'Better be careful with this' } } ]

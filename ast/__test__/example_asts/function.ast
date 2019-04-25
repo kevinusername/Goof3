@@ -9,5 +9,5 @@
   CallExpression {
     callee: 'myFunction',
     args:
-     [ Literal { type: 'number', value: 1 },
-       Literal { type: 'number', value: 2 } ] } ]
+     [ Literal { type: 'int', value: '1' },
+       Literal { type: 'int', value: '2' } ] } ]

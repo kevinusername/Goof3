@@ -5,11 +5,12 @@
     initializers:
      ArrayExpression {
        elements:
-        [ Literal { type: 'number', value: 0 },
-          Literal { type: 'number', value: 1 },
-          Literal { type: 'number', value: 2 },
-          Literal { type: 'number', value: 3 } ] } },
+        [ Literal { type: 'int', value: '0' },
+          Literal { type: 'int', value: '1' },
+          Literal { type: 'int', value: '2' },
+          Literal { type: 'int', value: '3' } ],
+       type: 'whole_number' } },
   MemberExpression {
     object: 'my_array',
-    property: Literal { type: 'number', value: 1 } },
+    property: Literal { type: 'int', value: '1' } },
   MemberExpression { object: 'my_array', property: 'a' } ]

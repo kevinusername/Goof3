@@ -11,8 +11,8 @@ class ArrayType {
 }
 
 class AssignmentStatement {
-    constructor(targets, sources) {
-        Object.assign(this, { targets, sources });
+    constructor(target, source) {
+        Object.assign(this, { target, source });
     }
 }
 
