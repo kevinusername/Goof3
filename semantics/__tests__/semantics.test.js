@@ -10,8 +10,9 @@ const parse = require('../../ast/parser');
 const Context = require('../context');
 
 const program = String.raw`
-four (whole_number @ i ==== 11: 5 < 11 : i == i + 1) ;}
-    whole_number @ x == 5:
+whole_number @ counter == 10:
+wooloop (counter > 0) ;} 
+    counter == counter - 1:
 ;{
 `;
 

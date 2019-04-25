@@ -149,10 +149,6 @@ Parameter.prototype.analyze = function (context) {
     context.add(this);
 };
 
-// ReturnStatement.prototype.analyze = function (context) {};
-
-// ThrowStatement.prototype.analyze = function (context) {};
-
 VariableDeclaration.prototype.analyze = function (context) {
     this.initializer.analyze(context);
     if (this.type instanceof ArrayType) this.type.analyze();
@@ -167,5 +163,8 @@ IdExp.prototype.analyze = function (context) {
 };
 
 WhileStatement.prototype.analyze = function (context) {
-    this.test.analyze(context);
+    const loopContext = context.createChildContextForLoop();
+    this.test.analyze(loopContext);
+    check.isBoolean(this.test);
+    this.body.forEach(e => e.analyze(loopContext));
 };
