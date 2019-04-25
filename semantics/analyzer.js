@@ -28,8 +28,7 @@ const check = require('./check');
 ArrayExpression.prototype.analyze = function () {
     check.isArray(this);
     this.type.analyze();
-    this.size.analyze();
-    // check.isInteger(this.size);
+    check.isInteger(this.size);
     this.elements.forEach((e) => {
         e.analyze();
         check.isAssignableTo(e, this.type.type);
@@ -37,7 +36,7 @@ ArrayExpression.prototype.analyze = function () {
 };
 
 ArrayType.prototype.analyze = function () {
-    check.isArrayType(this.type);
+    check.isArrayType(this);
     this.type.analyze();
 };
 
@@ -136,7 +135,8 @@ ReturnStatement.prototype.analyze = function (context) {};
 ThrowStatement.prototype.analyze = function (context) {};
 
 VariableDeclaration.prototype.analyze = function (context) {
-    this.init.analyze(context);
+    this.initializer.analyze(context);
+    this.type.analyze();
     check.isAssignableTo(this.init, this.type);
     context.add(this);
 };

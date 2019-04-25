@@ -1,8 +1,8 @@
 [ Func {
     id: 'myFunction',
     parameters:
-     [ Parameter { type: ArrayType { type: 'whole_number' }, id: 'p1' },
-       Parameter { type: ArrayType { type: 'whole_number' }, id: 'p2' } ],
+     [ Parameter { type: 'whole_number', id: 'p1' },
+       Parameter { type: 'whole_number', id: 'p2' } ],
     body:
      [ ReturnStatement {
          returnValue: BinaryExpression { op: '*', left: 'p1', right: 'p2' } } ] },

@@ -1,7 +1,6 @@
 [ Func {
     id: 'fib',
-    parameters:
-     [ Parameter { type: ArrayType { type: 'whole_number' }, id: 'n' } ],
+    parameters: [ Parameter { type: 'whole_number', id: 'n' } ],
     body:
      [ GifStatement {
          tests:
@@ -35,9 +34,9 @@
     assignments:
      [ VariableDeclaration {
          access: 'global',
-         type: ArrayType { type: 'whole_number' },
+         type: 'whole_number',
          id: 'i',
-         initializers: Literal { type: 'whole_number', value: '11' } } ],
+         initializers: Literal { type: 'int', value: '11' } } ],
     test:
      BinaryExpression {
        op: '<',
@@ -51,9 +50,9 @@
     body:
      [ VariableDeclaration {
          access: 'constant',
-         type: ArrayType { type: 'whole_number' },
+         type: 'whole_number',
          id: 'dog',
-         initializers: Literal { type: 'whole_number', value: '10' } },
+         initializers: Literal { type: 'int', value: '10' } },
        ReturnStatement {
          returnValue: Literal { type: 'string', value: 'wHYyyYYyYy' } } ] },
   CallExpression {

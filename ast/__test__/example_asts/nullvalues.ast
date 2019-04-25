@@ -1,5 +1,5 @@
 [ VariableDeclaration {
     access: 'global',
-    type: ArrayType { type: 'whole_number' },
+    type: 'whole_number',
     id: 'x',
-    initializers: Literal { type: 'whole_number', value: null } } ]
+    initializers: Literal { type: 'null', value: null } } ]

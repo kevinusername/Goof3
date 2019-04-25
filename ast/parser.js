@@ -48,11 +48,13 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return s.ast();
     },
 
-    Statement_assignment(access, t, _1, id, _2, e) {
-        const exp = e.ast();
-        const type = t.ast();
-        if (type instanceof ArrayType) exp.type = type.type;
-        return new VariableDeclaration(handleAccess(access.ast()), type, id.ast(), exp);
+    Statement_assignment(access, type, _1, id, _2, elements) {
+        return new VariableDeclaration(
+            handleAccess(access.ast()),
+            type.ast(),
+            id.ast(),
+            elements.ast(),
+        );
     },
     Statement_declaration(access, type, _1, id) {
         return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), null);
@@ -110,7 +112,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new CallExpression(id.ast(), args.ast());
     },
     Exp5_ArrayExpression(_1, elements, _2) {
-        return new ArrayExpression(elements.ast());
+        const e = elements.ast();
+        const type = new ArrayType(e.length === 0 ? 'null' : e[0].type);
+        return new ArrayExpression(e, e.length, type);
     },
 
     id(_1, _2) {
@@ -144,8 +148,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
 
     Type(type, _1, _2) {
-        if (_1.ast() && _2.ast()) return new ArrayType(type.ast());
-        return type.sourceString;
+        if (_1.ast().length === 0 || _2.ast().length === 0) {
+            return type.sourceString;
+        }
+        return new ArrayType(type.ast());
     },
     intlit(_) {
         return new Literal('int', this.sourceString);

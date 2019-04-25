@@ -10,7 +10,7 @@
           Literal { type: 'int', value: '2' },
           Literal { type: 'int', value: '3' } ],
        size: 4,
-       type: 'whole_number' } },
+       type: ArrayType { type: 'int' } } },
   MemberExpression {
     object: 'my_array',
     property: Literal { type: 'int', value: '1' } },
