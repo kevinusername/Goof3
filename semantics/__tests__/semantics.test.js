@@ -14,19 +14,17 @@ myObj == #
     whole_number @ x ~ 15,
     phoof myFunc (whole_number @ n) ;}
         whole_number @ m == n:
+        yeet m:
     ;{
 #:
-
-myObj.x:
 `;
 
 describe('The semantic analyzer', () => {
     test('accepts the mega program with all syntactic forms', (done) => {
         const astRoot = parse(program);
         expect(astRoot).toBeTruthy();
-        // console.log(util.inspect(astRoot, { depth: null }));
+        console.log(astRoot);
         astRoot.forEach(e => e.analyze(Context.INITIAL));
-        // astRoot.analyze(Context.INITIAL);
         console.log(util.inspect(astRoot, { depth: null }));
         expect(astRoot).toBeTruthy();
         done();

@@ -13,6 +13,7 @@ const {
     Method,
     ObjectExp,
     Parameter,
+    ReturnStatement,
     VariableDeclaration,
     IdExp,
     WhileStatement,
@@ -179,6 +180,10 @@ ObjectExp.prototype.analyze = function (context) {
 Parameter.prototype.analyze = function (context) {
     this.type = getType(this.type);
     context.add(this);
+};
+
+ReturnStatement.prototype.analyze = function (context) {
+    this.returnValue.analyze(context);
 };
 
 VariableDeclaration.prototype.analyze = function (context) {

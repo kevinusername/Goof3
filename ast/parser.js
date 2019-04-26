@@ -67,7 +67,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new ReturnStatement(e.ast());
     },
     Statement_print(callee, _1, args, _2) {
-        return new CallExpression(callee.ast(), args.ast());
+        return new CallExpression(callee.ast(), [args.ast()]);
     },
     Statement_throw(_1, e) {
         return new ThrowStatement(e.ast());
