@@ -1,3 +1,6 @@
-[ CallExpression {
+[
+  CallExpression {
     callee: 'poof',
-    args: Literal { type: 'array_of_chars', value: 'hELlO woRlD!' } } ]
+    args: [ Literal { type: 'array_of_chars', value: 'hELlO woRlD!' } ]
+  }
+]

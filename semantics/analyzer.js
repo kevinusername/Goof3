@@ -14,6 +14,7 @@ const {
     ObjectExp,
     Parameter,
     ReturnStatement,
+    ThrowStatement,
     VariableDeclaration,
     IdExp,
     WhileStatement,
@@ -119,13 +120,17 @@ ForStatement.prototype.analyze = function (context) {
 
 Func.prototype.analyzeSignature = function (context) {
     this.bodyContext = context.createChildContextForFunctionBody(this);
-    this.parameters.forEach(p => p.analyze(this.bodyContext));
+    if (this.parameters) {
+        this.parameters.forEach(p => p.analyze(this.bodyContext));
+    }
     context.add(this);
 };
 
 Func.prototype.analyze = function (context) {
     this.analyzeSignature(context);
-    this.body.forEach(e => e.analyze(this.bodyContext));
+    if (this.body) {
+        this.body.forEach(e => e.analyze(this.bodyContext));
+    }
 };
 
 GifStatement.prototype.analyze = function (context) {
@@ -169,7 +174,9 @@ Method.prototype.analyzeSignature = function (context) {
 
 Method.prototype.analyze = function (context) {
     this.analyzeSignature(context);
-    this.body.forEach(e => e.analyze(this.bodyContext));
+    if (this.body) {
+        this.body.forEach(e => e.analyze(this.bodyContext));
+    }
 };
 
 ObjectExp.prototype.analyze = function (context) {
@@ -184,6 +191,11 @@ Parameter.prototype.analyze = function (context) {
 
 ReturnStatement.prototype.analyze = function (context) {
     this.returnValue.analyze(context);
+};
+
+ThrowStatement.prototype.analyze = function () {
+    this.error.analyze();
+    check.isString(this.error);
 };
 
 VariableDeclaration.prototype.analyze = function (context) {

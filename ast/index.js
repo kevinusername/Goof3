@@ -52,6 +52,12 @@ class GifStatement {
     }
 }
 
+class IdExp {
+    constructor(reference) {
+        Object.assign(this, { reference });
+    }
+}
+
 class Literal {
     constructor(type, value) {
         Object.assign(this, { type, value });
@@ -95,20 +101,14 @@ class ReturnStatement {
 }
 
 class ThrowStatement {
-    constructor(e) {
-        Object.assign(this, { e });
+    constructor(error) {
+        Object.assign(this, { error });
     }
 }
 
 class VariableDeclaration {
     constructor(access, type, id, initializer) {
         Object.assign(this, { access, type, id, initializer });
-    }
-}
-
-class IdExp {
-    constructor(reference) {
-        Object.assign(this, { reference });
     }
 }
 
@@ -128,6 +128,7 @@ module.exports = {
     ForStatement,
     Func,
     GifStatement,
+    IdExp,
     Literal,
     MemberExpression,
     Method,
@@ -137,6 +138,5 @@ module.exports = {
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
-    IdExp,
     WhileStatement,
 };

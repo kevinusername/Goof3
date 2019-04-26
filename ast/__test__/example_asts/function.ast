@@ -1,17 +1,25 @@
-[ Func {
+[
+  Func {
     id: 'myFunction',
-    parameters:
-     [ Parameter { type: 'whole_number', id: 'p1' },
-       Parameter { type: 'whole_number', id: 'p2' } ],
-    body:
-     [ ReturnStatement {
-         returnValue:
-          BinaryExpression {
-            op: '*',
-            left: IdExp { reference: 'p1' },
-            right: IdExp { reference: 'p2' } } } ] },
+    parameters: [
+      Parameter { type: 'whole_number', id: 'p1' },
+      Parameter { type: 'whole_number', id: 'p2' }
+    ],
+    body: [
+      ReturnStatement {
+        returnValue: BinaryExpression {
+          op: '*',
+          left: IdExp { reference: 'p1' },
+          right: IdExp { reference: 'p2' }
+        }
+      }
+    ]
+  },
   CallExpression {
     callee: 'myFunction',
-    args:
-     [ Literal { type: 'whole_number', value: '1' },
-       Literal { type: 'whole_number', value: '2' } ] } ]
+    args: [
+      Literal { type: 'whole_number', value: '1' },
+      Literal { type: 'whole_number', value: '2' }
+    ]
+  }
+]

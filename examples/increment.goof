@@ -1,0 +1,4 @@
+whole_number @ x == 5:
+x++:
+
+x == x + 1:

@@ -6,14 +6,7 @@
  *   const Context = require('./semantics/context');
  */
 
-const {
-    IntType,
-    StringType,
-    NullType,
-    FloatType,
-    BoolType,
-    standardFunctions,
-} = require('./builtins');
+const { standardFunctions } = require('./builtins');
 
 require('./analyzer');
 
@@ -75,12 +68,10 @@ class Context {
     // Adds a variable or function to this context.
     add(entity) {
         if (entity.id in this.valueMap) {
-            if (Array.isArray(this.valueMap[entity.id])) {
-                this.valueMap[entity.id].push(entity);
-            } else {
-                this.valueMap[entity.id] = [this.valueMap[entity.id], entity];
-            }
-        } else this.valueMap[entity.id] = entity;
+            this.valueMap[entity.id].push(entity);
+        } else {
+            this.valueMap[entity.id] = [entity];
+        }
     }
 
     // Returns the variable or function entity bound to the given identifier,
@@ -89,7 +80,9 @@ class Context {
     lookupValue(id) {
         for (let context = this; context !== null; context = context.parent) {
             if (id in context.valueMap) {
-                return context.valueMap[id];
+                return context.valueMap[id][
+                    Math.floor(Math.random() * context.valueMap[id].length)
+                ];
             }
         }
         throw new Error(`${id} has not been declared`);
@@ -100,8 +93,5 @@ Context.INITIAL = new Context();
 standardFunctions.forEach((f) => {
     Context.INITIAL.valueMap[f.id] = f;
 });
-// Context.INITIAL.typeMap.int = IntType;
-// Context.INITIAL.typeMap.string = StringType;
-// Context.INITIAL.typeMap.nil = NilType;
 
 module.exports = Context;

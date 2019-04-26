@@ -1,29 +1,37 @@
-[ VariableDeclaration {
+[
+  VariableDeclaration {
     access: 'global',
     type: 'not_whole_number',
     id: 'letsGainThisGrain',
-    initializer: Literal { type: 'not_whole_number', value: '20.25' } },
+    initializer: Literal { type: 'not_whole_number', value: '20.25' }
+  },
   VariableDeclaration {
     access: 'constant',
     type: 'array_of_chars',
     id: 'myStr',
-    initializer:
-     Literal { type: 'array_of_chars', value: "YOU CAN'T CHANGE THIS" } },
+    initializer: Literal { type: 'array_of_chars', value: "YOU CAN'T CHANGE THIS" }
+  },
   VariableDeclaration {
     access: 'local',
     type: 'array_of_chars',
     id: 'mutable',
-    initializer:
-     Literal {
-       type: 'array_of_chars',
-       value: 'You can definitely change this' } },
+    initializer: Literal {
+      type: 'array_of_chars',
+      value: 'You can definitely change this'
+    }
+  },
   VariableDeclaration {
     access: 'global',
     type: 'array_of_chars',
     id: 'going_global',
-    initializer:
-     Literal { type: 'array_of_chars', value: 'Better be careful with this' } },
+    initializer: Literal {
+      type: 'array_of_chars',
+      value: 'Better be careful with this'
+    }
+  },
   IdExp { reference: 'going_global' },
   AssignmentStatement {
     target: IdExp { reference: 'going_global' },
-    source: Literal { type: 'array_of_chars', value: 'hello' } } ]
+    source: Literal { type: 'array_of_chars', value: 'hello' }
+  }
+]

@@ -107,7 +107,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new BinaryExpression(op.ast(), left.ast(), right.ast());
     },
     Exp4_increment(left, op) {
-        return new BinaryExpression(op.ast(), left.ast());
+        return new AssignmentStatement(
+            left.ast(),
+            new BinaryExpression('+', left.ast(), new Literal('whole_number', '1')),
+        );
     },
     Exp5_fCall(id, _1, args, _2) {
         return new CallExpression(id.ast(), args.ast());
