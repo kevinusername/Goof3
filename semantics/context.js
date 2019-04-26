@@ -68,6 +68,10 @@ class Context {
         });
     }
 
+    createChildContextForObject() {
+        return new Context({ parent: this, currentFunction: this.currentFunction, inLoop: false });
+    }
+
     // Adds a variable or function to this context.
     add(entity) {
         if (entity.id in this.valueMap) {

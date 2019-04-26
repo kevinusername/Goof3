@@ -145,7 +145,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new Method(f.ast());
     },
     Object(_1, body, _3) {
-        return new ObjectExp(body.ast());
+        return new ObjectExp(body.ast(), 'object');
     },
 
     Type(type, _1, _2) {

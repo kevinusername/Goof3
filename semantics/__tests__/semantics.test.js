@@ -10,9 +10,14 @@ const parse = require('../../ast/parser');
 const Context = require('../context');
 
 const program = String.raw`
-whole_number[] @ my_array == [0,1,2,3,4,5,6,7,8,9]:
+myObj == #
+    whole_number @ x ~ 15,
+    phoof myFunc (whole_number @ n) ;}
+        whole_number @ m == n:
+    ;{
+#:
 
-my_array[2]:
+myObj.x:
 `;
 
 describe('The semantic analyzer', () => {

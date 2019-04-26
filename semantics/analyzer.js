@@ -23,6 +23,9 @@ const {
 } = require('./builtins');
 
 function getType(typeString) {
+    if (typeString instanceof ArrayType) {
+        return new ArrayType(getType(typeString.type));
+    }
     switch (typeString) {
     case 'array_of_chars':
         return StringType;
@@ -34,6 +37,8 @@ function getType(typeString) {
         return BoolType;
     case 'temp':
         return NullType;
+    case 'object':
+        return typeString;
     default:
         throw Error('Invalid type');
     }
@@ -92,12 +97,13 @@ CallExpression.prototype.analyze = function (context) {
     check.isFunction(this.callee, 'Attempt to call a non-function');
     this.args.forEach(arg => arg.analyze(context));
     check.legalArguments(this.args, this.callee.parameters);
-    // this.type = this.callee.returnType;
 };
 
 Field.prototype.analyze = function (context) {
     this.type = getType(this.type);
-    this.value.analyze();
+    this.value.analyze(context);
+    check.isAssignableTo(this.value, this.type);
+    context.add(this);
 };
 
 ForStatement.prototype.analyze = function (context) {
@@ -132,25 +138,43 @@ GifStatement.prototype.analyze = function (context) {
     }
 };
 
+IdExp.prototype.analyze = function (context) {
+    this.reference = context.lookupValue(this.reference);
+    this.type = this.reference.type;
+};
+
 Literal.prototype.analyze = function () {
     this.type = getType(this.type);
 };
 
 MemberExpression.prototype.analyze = function (context) {
     this.object.analyze(context);
-    this.property.analyze(context);
     if (this.object.reference.type instanceof ArrayType) {
+        this.property.analyze(context);
         check.isInteger(this.property);
-    } else if (this.object.reference.type instanceof ObjectExp) {
-        check.isString(this.property);
+    } else if (this.object.reference.type === 'object') {
+        this.property = new IdExp(this.property);
+        this.property.analyze(this.object.reference.initializer.ObjContext);
     } else {
         throw Error('Non subscriptable expression');
     }
 };
 
-Method.prototype.analyze = function (context) {};
+Method.prototype.analyzeSignature = function (context) {
+    this.bodyContext = context.createChildContextForFunctionBody(this);
+    this.parameters.forEach(p => p.analyze(this.bodyContext));
+    context.add(this);
+};
 
-ObjectExp.prototype.analyze = function (context) {};
+Method.prototype.analyze = function (context) {
+    this.analyzeSignature(context);
+    this.body.forEach(e => e.analyze(this.bodyContext));
+};
+
+ObjectExp.prototype.analyze = function (context) {
+    this.ObjContext = context.createChildContextForObject();
+    this.properties.forEach(p => p.analyze(this.ObjContext));
+};
 
 Parameter.prototype.analyze = function (context) {
     this.type = getType(this.type);
@@ -163,11 +187,6 @@ VariableDeclaration.prototype.analyze = function (context) {
     else this.type = getType(this.type);
     check.isAssignableTo(this.initializer, this.type);
     context.add(this);
-};
-
-IdExp.prototype.analyze = function (context) {
-    this.reference = context.lookupValue(this.reference);
-    this.type = this.reference.type;
 };
 
 WhileStatement.prototype.analyze = function (context) {

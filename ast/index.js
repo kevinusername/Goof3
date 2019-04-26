@@ -29,8 +29,8 @@ class CallExpression {
 }
 
 class Field {
-    constructor(type, key, value) {
-        Object.assign(this, { type, key, value });
+    constructor(type, id, value) {
+        Object.assign(this, { type, id, value });
     }
 }
 
@@ -67,14 +67,12 @@ class MemberExpression {
 class Method {
     constructor(f) {
         Object.assign(this, { ...f });
-        this.key = f.id;
-        delete this.id;
     }
 }
 
 class ObjectExp {
-    constructor(p) {
-        Object.assign(this, { Properties: Object.values(p) });
+    constructor(p, type) {
+        Object.assign(this, { properties: Object.values(p), type });
     }
 }
 
