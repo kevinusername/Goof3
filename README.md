@@ -14,7 +14,6 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Declare functions with "phoof".
 - True is now "toof" and false is now "foof".
 - Declare print statements with "poof".
-- Arrays begin at index 11.
 - Static Typing, Static Scoping.
 - Semicolons are colons, and colons are semicolons.
 - Closure begins with "}" and ends with "{".
