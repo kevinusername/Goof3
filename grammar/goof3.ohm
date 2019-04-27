@@ -7,8 +7,8 @@ Goof3 {
                 | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
                 | access? id "=="+ Object                            -- objDec
-                | VarExp "=="+ Exp                                   -- reassignment
-                | "poof" "(" stringlit ")"                           -- print
+                | (PropAccess | VarExp) "=="+ Exp                                   -- reassignment
+                | "poof" "(" Exp ")"                                 -- print
                 | "yeet" Exp                                         -- return
                 | Exp                                                -- Expression
 
@@ -31,8 +31,8 @@ Goof3 {
                 | Exp4
     Exp4        = Exp6 sufixOp                                       -- increment
                 | Exp5
-    Exp5        = PropAccess
-                | id "(" ListOf<Exp, ","> ")"                        -- fCall
+    Exp5        = (PropAccess | id) "(" ListOf<Exp, ","> ")"                       -- fCall
+                | PropAccess
                 | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
                 | Exp6
     Exp6        = VarExp

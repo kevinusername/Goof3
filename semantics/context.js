@@ -90,7 +90,7 @@ class Context {
 
     createInitial() {
         standardFunctions.forEach((f) => {
-            this.valueMap[f.id] = f;
+            this.valueMap[f.id] = [f];
         });
     }
 }
