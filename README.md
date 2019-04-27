@@ -50,10 +50,8 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - wrong type of function argument
 - non-existent field access
 - non-Integer array index
-- non subscriptable array access
-- non subscriptable prop access
 - subscript of non-array: braces
-- subscript of non-array: dot
+- subscript of non-object: dot
 - non integer subscript
 - print/throw non-string
 - unitialized variable when using sufix operator

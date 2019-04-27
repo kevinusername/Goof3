@@ -88,8 +88,8 @@ const programs = [
 ];
 
 describe('The semantic analyzer', () => {
-    test('accepts the mega program with all syntactic forms', (done) => {
-        programs.forEach((program) => {
+    programs.forEach((program) => {
+        test('accepts the mega program with all syntactic forms', (done) => {
             const initContext = new Context();
             initContext.createInitial();
             const astRoot = parse(program);
