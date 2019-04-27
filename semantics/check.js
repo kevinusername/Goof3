@@ -1,5 +1,5 @@
 const util = require('util');
-const { ArrayType, Func, IdExp } = require('../ast');
+const { ArrayType, Func } = require('../ast');
 const {
     IntType, FloatType, StringType, NullType, BoolType,
 } = require('./builtins');

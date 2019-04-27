@@ -36,7 +36,7 @@ const programs = [
     true_or_false @ isHeTho ====== toof:
     phoof bSD(array_of_chars @  name, true_or_false @ check) ;}
         gif (check =========== toof) ;}
-            yeet "Mongo is a Big Swinging Dick":
+            yeet "Mongo has a Big Swinging Dick":
         ;{
     ;{
     bSD(mongo, isHeTho):`,
@@ -59,9 +59,11 @@ const programs = [
 describe('The semantic analyzer', () => {
     test('accepts the mega program with all syntactic forms', (done) => {
         programs.forEach((program) => {
+            const initContext = new Context();
+            initContext.createInitial();
             const astRoot = parse(program);
             expect(astRoot).toBeTruthy();
-            astRoot.forEach(e => e.analyze(Context.INITIAL));
+            astRoot.forEach(e => e.analyze(initContext));
             expect(astRoot).toBeTruthy();
             done();
         });

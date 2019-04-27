@@ -87,11 +87,12 @@ class Context {
         }
         throw new Error(`${id} has not been declared`);
     }
-}
 
-Context.INITIAL = new Context();
-standardFunctions.forEach((f) => {
-    Context.INITIAL.valueMap[f.id] = f;
-});
+    createInitial() {
+        standardFunctions.forEach((f) => {
+            this.valueMap[f.id] = f;
+        });
+    }
+}
 
 module.exports = Context;
