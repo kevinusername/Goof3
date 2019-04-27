@@ -53,10 +53,20 @@ ArrayExpression.prototype.analyze = function () {
     check.isArray(this);
     this.size.analyze();
     check.isInteger(this.size);
-    this.elements.forEach((e) => {
+    for (let i = 0; i < this.elements.length; i += 1) {
+        const e = this.elements[i];
         e.analyze();
+        /* If a float exists in a list that is otherwise ints,
+         convert the array type to float and all ints to floats */
+        if (this.type.type === IntType && e.type === FloatType) {
+            this.type.type = FloatType;
+            i = -1;
+            continue;
+        } else if (this.type.type === FloatType && e.type === IntType) {
+            e.type = FloatType;
+        }
         check.isAssignableTo(e, this.type.type);
-    });
+    }
 };
 
 ArrayType.prototype.analyze = function () {

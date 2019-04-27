@@ -1,25 +1,17 @@
-[
-  VariableDeclaration {
+[ VariableDeclaration {
     access: 'global',
     type: ArrayType { type: 'whole_number' },
     id: 'my_array',
-    initializer: ArrayExpression {
-      elements: [
-        Literal { type: 'whole_number', value: '0' },
-        Literal { type: 'whole_number', value: '1' },
-        Literal { type: 'whole_number', value: '2' },
-        Literal { type: 'whole_number', value: '3' }
-      ],
-      size: Literal { type: 'whole_number', value: 4 },
-      type: ArrayType { type: 'whole_number' }
-    }
-  },
+    initializer:
+     ArrayExpression {
+       elements:
+        [ Literal { type: 'whole_number', value: '0' },
+          Literal { type: 'whole_number', value: '1' },
+          Literal { type: 'whole_number', value: '2' },
+          Literal { type: 'whole_number', value: '3' } ],
+       size: Literal { type: 'whole_number', value: 4 },
+       type: ArrayType { type: 'whole_number' } } },
   MemberExpression {
     object: IdExp { reference: 'my_array' },
-    property: Literal { type: 'whole_number', value: '1' }
-  },
-  MemberExpression {
-    object: IdExp { reference: 'my_array' },
-    property: 'a'
-  }
-]
+    property: Literal { type: 'whole_number', value: '1' } },
+  MemberExpression { object: IdExp { reference: 'my_array' }, property: 'a' } ]

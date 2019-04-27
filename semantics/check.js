@@ -47,7 +47,7 @@ module.exports = {
     isAssignableTo(expression, type) {
         if (expression.type instanceof ArrayType) {
             if (type instanceof ArrayType) {
-                this.expressionsHaveTheSameType(expression.type.type, type.type);
+                this.isAssignableTo(expression.type, type.type);
             } else {
                 throw Error(
                     `Expression of type ${util.format(

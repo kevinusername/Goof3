@@ -1,8 +1,5 @@
-[
-  VariableDeclaration {
+[ VariableDeclaration {
     access: 'global',
     type: 'whole_number',
     id: 'x',
-    initializer: Literal { type: 'temp', value: null }
-  }
-]
+    initializer: Literal { type: 'temp', value: null } } ]

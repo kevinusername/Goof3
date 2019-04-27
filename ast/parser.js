@@ -117,7 +117,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     Exp5_ArrayExpression(_1, elements, _2) {
         const e = elements.ast();
-        const type = new ArrayType(e.length === 0 ? 'null' : e[0].type);
+        const type = new ArrayType(e.length === 0 ? 'temp' : e[0].type);
         return new ArrayExpression(e, new Literal('whole_number', e.length), type);
     },
 

@@ -65,7 +65,7 @@ const programs = [
     `,
 
     String.raw`
-    whole_number[] @ myArr == [1,2,3,4]:
+    not_whole_number[] @ myArr == [1,2,3,4, 5.5]:
     myArr[1] == 5:
 
     gif (myArr[1] = 5) ;}
@@ -73,6 +73,9 @@ const programs = [
     ;{ else ;}
         poof("didn't get here"):
     ;{
+
+    array_of_chars[] @ strArray:
+    array_of_chars[] @ strArray == []:
     `,
 
     String.raw`
