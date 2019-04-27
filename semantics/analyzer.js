@@ -168,6 +168,7 @@ MemberExpression.prototype.analyze = function (context) {
     if (this.object.reference.type instanceof ArrayType) {
         this.property.analyze(context);
         check.isInteger(this.property);
+        check.isInBounds(this.property.value, this.object.reference.initializer.size.value);
     } else if (this.object.reference.type === 'object') {
         this.property = new IdExp(this.property);
         this.property.analyze(this.object.reference.initializer.ObjContext);

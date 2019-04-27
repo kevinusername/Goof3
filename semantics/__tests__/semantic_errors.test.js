@@ -16,11 +16,11 @@ const errors = [
     ['non integer in subtract', '"dog" - 5:'],
     ['non integer in multiply', '10 * "dog":'],
     ['non integer in divide', '"dog" / 2:'],
-    ['non integer in modulo', '"dog" % 4:'],
     ['types do not match in equality test', '2 === "dog":'],
     ['types do not match in inequality test', '2 > "dog":'],
     ['types do not match in logical test', '2 || toof:'],
     ['types do not match in declaration', 'whole_number @ x ==== "dog":'],
+    ['types do not match in reassignment', 'whole_number @ isInt ==== 5: isInt == "isString":'],
     [
         'too many function arguments',
         'phoof f ( whole_number @ x, whole_number @ y) ;} x + y: ;{ f(1, 2, 3):',
@@ -32,7 +32,7 @@ const errors = [
         'no such field',
         'myObj == # whole_number @ x ~ 15, phoof myFunc (whole_number @ n) ;} ;{ #: myObj.y:',
     ],
-    ['wrong access type', 'myObj["x"]:'],
+    ['non-Integer array index', 'myObj["x"]:'],
     ['call of nonmethod', 'myObj.z():'],
     ['non subscriptable array access', 'whole_number @ x == 5: x[2]:'],
     ['non subscriptable prop access', 'whole_number @ x == 5: x.id:'],
@@ -40,14 +40,13 @@ const errors = [
     ['subscript of nonarray, dot', 'whole_number @ x == 10: x.y:'],
     ['call of nonfunction', 'whole_number @ x == 10: x(10):'],
     ['non integer subscript', 'whole_number[] @ my_arr == [1, 2, 3]: my_arr["dog"]:'],
-    ['', ''],
-    ['array of floats', 'not_whole_number[] @ array == [1, 1.5]:'],
     ['print non string', 'poof(5):'],
     ['unitialized variable when using sufix operator', 'whole_number @ x: x++: x--:'],
     ['incrementing float', 'not_whole_number @ t == 1.5: t++:'],
     ['incrementing a string', '"dog"++:'],
     ['incrementing a boolean', 'true_or_false @ tralse == toof: tralse++:'],
     ['comparing strings', '"dog" > "cat":'],
+    ['ArrayIndexOutOfBoundsException', 'whole_number[] @ outofBounds == [1,2,3]: outofBounds[4]:'],
 ];
 
 describe('The semantic analyzer', () => {

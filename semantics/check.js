@@ -18,6 +18,10 @@ module.exports = {
         doCheck(type instanceof ArrayType, 'Not an array type');
     },
 
+    isInBounds(index, size) {
+        doCheck(index >= 0 && index < size, 'ArrayIndexOutOfBoundsException');
+    },
+
     isInteger(expression) {
         doCheck(expression.type === IntType, 'Not an integer');
     },
