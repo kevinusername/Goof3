@@ -1,25 +1,24 @@
 [ VariableDeclaration {
     access: 'global',
     type: 'object',
-    id: Identifier { name: 'myObj' },
-    initializers:
+    id: 'myObj',
+    initializer:
      ObjectExp {
-       Properties:
+       properties:
         [ Field {
             type: 'whole_number',
-            key: Identifier { name: 'x' },
-            value: Literal { type: 'number', value: 15 } },
+            id: 'x',
+            value: Literal { type: 'whole_number', value: '15' } },
           Field {
             type: 'array_of_chars',
-            key: Identifier { name: 'name' },
-            value: Literal { type: 'string', value: 'Doofus' } },
+            id: 'name',
+            value: Literal { type: 'array_of_chars', value: 'Doofus' } },
           Method {
+            id: 'sayHello',
             parameters: null,
             body:
              [ CallExpression {
                  callee: 'poof',
-                 args: Literal { type: 'string', value: 'hi there' } } ],
-            key: Identifier { name: 'sayHello' } } ] } },
-  MemberExpression {
-    object: Identifier { name: 'myObj' },
-    property: Identifier { name: 'x' } } ]
+                 args: [ Literal { type: 'array_of_chars', value: 'hi there' } ] } ] } ],
+       type: 'object' } },
+  MemberExpression { object: IdExp { reference: 'myObj' }, property: 'x' } ]

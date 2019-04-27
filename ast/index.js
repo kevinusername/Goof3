@@ -1,12 +1,18 @@
 class ArrayExpression {
-    constructor(elements) {
-        Object.assign(this, { elements });
+    constructor(elements, size, type) {
+        Object.assign(this, { elements, size, type });
+    }
+}
+
+class ArrayType {
+    constructor(t) {
+        Object.assign(this, { type: t });
     }
 }
 
 class AssignmentStatement {
-    constructor(targets, sources) {
-        Object.assign(this, { targets, sources });
+    constructor(target, source) {
+        Object.assign(this, { target, source });
     }
 }
 
@@ -22,13 +28,19 @@ class CallExpression {
     }
 }
 
+class Field {
+    constructor(type, id, value) {
+        Object.assign(this, { type, id, value });
+    }
+}
+
 class ForStatement {
     constructor(assignments, test, action, body) {
         Object.assign(this, { assignments, test, action, body });
     }
 }
 
-class FunctionDeclaration {
+class Func {
     constructor(id, parameters, body) {
         Object.assign(this, { id, parameters, body });
     }
@@ -40,21 +52,9 @@ class GifStatement {
     }
 }
 
-class Identifier {
-    constructor(name) {
-        Object.assign(this, { name });
-    }
-}
-
-class MemberExpression {
-    constructor(object, property) {
-        Object.assign(this, { object, property });
-    }
-}
-
-class ReturnStatement {
-    constructor(returnValue) {
-        this.returnValue = returnValue;
+class IdExp {
+    constructor(reference) {
+        Object.assign(this, { reference });
     }
 }
 
@@ -64,21 +64,21 @@ class Literal {
     }
 }
 
-class ThrowStatement {
-    constructor(e) {
-        Object.assign(this, { e });
+class MemberExpression {
+    constructor(object, property) {
+        Object.assign(this, { object, property });
     }
 }
 
-class VariableDeclaration {
-    constructor(access, type, id, initializers) {
-        Object.assign(this, { access, type, id, initializers });
+class Method {
+    constructor(f) {
+        Object.assign(this, { ...f });
     }
 }
 
-class WhileStatement {
-    constructor(test, body) {
-        Object.assign(this, { test, body });
+class ObjectExp {
+    constructor(p, type) {
+        Object.assign(this, { properties: Object.values(p), type });
     }
 }
 
@@ -88,43 +88,55 @@ class Parameter {
     }
 }
 
-class Field {
-    constructor(type, key, value) {
-        Object.assign(this, { type, key, value });
+class PrimitiveType {
+    constructor(type) {
+        Object.assign(this, { type });
     }
 }
 
-class Method {
-    constructor(f) {
-        Object.assign(this, { ...f });
-        this.key = f.id;
-        delete this.id;
+class ReturnStatement {
+    constructor(returnValue) {
+        this.returnValue = returnValue;
     }
 }
 
-class ObjectExp {
-    constructor(p) {
-        Object.assign(this, { Properties: Object.values(p) });
+class ThrowStatement {
+    constructor(error) {
+        Object.assign(this, { error });
+    }
+}
+
+class VariableDeclaration {
+    constructor(access, type, id, initializer) {
+        Object.assign(this, { access, type, id, initializer });
+    }
+}
+
+class WhileStatement {
+    constructor(test, body) {
+        Object.assign(this, { test, body });
     }
 }
 
 module.exports = {
     ArrayExpression,
+    ArrayType,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
+    Field,
     ForStatement,
-    FunctionDeclaration,
+    Func,
     GifStatement,
-    Identifier,
+    IdExp,
+    Literal,
     MemberExpression,
+    Method,
+    ObjectExp,
+    Parameter,
+    PrimitiveType,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
-    Parameter,
-    Field,
-    Method,
-    ObjectExp,
-    Literal,
 };

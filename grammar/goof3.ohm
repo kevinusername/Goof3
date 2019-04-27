@@ -7,8 +7,8 @@ Goof3 {
                 | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
                 | access? id "=="+ Object                            -- objDec
-                | id "=="+ Exp                                       -- reassignment
-                | "poof" "(" stringlit ")"                           -- print
+                | (PropAccess | VarExp) "=="+ Exp                                   -- reassignment
+                | "poof" "(" Exp ")"                                 -- print
                 | "yeet" Exp                                         -- return
                 | Exp                                                -- Expression
 
@@ -18,7 +18,7 @@ Goof3 {
                   ("elsegif" "(" Exp ")" ";}" Block ";{")*
                   ("else" ";}" Block ";{")?
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Exp ")" ";}" Block ";{"                -- for
+                  ":" Exp ":" Statement_reassignment ")" ";}" Block ";{"                -- for
                 | "wooloop" "(" Exp ")" ";}" Block ";{"              -- while
 
     Exp         = Exp logOp Exp1                                     -- logical
@@ -31,8 +31,8 @@ Goof3 {
                 | Exp4
     Exp4        = Exp6 sufixOp                                       -- increment
                 | Exp5
-    Exp5        = PropAccess
-                | id "(" ListOf<Exp, ","> ")"                        -- fCall
+    Exp5        = (PropAccess | id) "(" ListOf<Exp, ","> ")"                       -- fCall
+                | PropAccess
                 | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
                 | Exp6
     Exp6        = VarExp
@@ -41,6 +41,7 @@ Goof3 {
                 | boolean
                 | PropAccess
                 | Object
+                | null
 
     PropAccess  = VarExp "[" Exp "]"                                 -- brackets
                 | VarExp "." id                                      -- dot
@@ -62,10 +63,10 @@ Goof3 {
     addop       = "+" | "-"
 
     Type        = typeid ("[" "]")?
-    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number" | "temp"
+    typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
     keyword     = ("goof" | "yeet" | "poof" | "yack" | "phoof" | "toof" | "foof" |
-                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else"
+                  "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else" | "temp"
                   | typeid) ~idrest
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
@@ -74,6 +75,7 @@ Goof3 {
     declit      = digit+ "." digit*
     numlit      = declit | intlit
     boolean     = "toof" | "foof"
+    null        = "temp"
     space       += comment
     access      = "CONSTANT_VARIABLE" | "LOCAL_VARIABLE" | "GLOBAL_VARIABLE"
     Parameter   = Type "@" id

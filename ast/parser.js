@@ -5,23 +5,24 @@ const path = require('path');
 
 const {
     ArrayExpression,
+    ArrayType,
     AssignmentStatement,
     BinaryExpression,
     CallExpression,
+    Field,
     ForStatement,
-    FunctionDeclaration,
+    Func,
     GifStatement,
-    Identifier,
+    Literal,
     MemberExpression,
+    Method,
+    ObjectExp,
+    Parameter,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
+    IdExp,
     WhileStatement,
-    Parameter,
-    Field,
-    Method,
-    ObjectExp,
-    Literal,
 } = require('.');
 
 const grammar = ohm.grammar(fs.readFileSync(path.join(__dirname, '../grammar/goof3.ohm')));
@@ -48,8 +49,13 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return s.ast();
     },
 
-    Statement_assignment(access, type, _1, id, _2, e) {
-        return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), e.ast());
+    Statement_assignment(access, type, _1, id, _2, elements) {
+        return new VariableDeclaration(
+            handleAccess(access.ast()),
+            type.ast(),
+            id.ast(),
+            elements.ast(),
+        );
     },
     Statement_declaration(access, type, _1, id) {
         return new VariableDeclaration(handleAccess(access.ast()), type.ast(), id.ast(), null);
@@ -61,7 +67,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new ReturnStatement(e.ast());
     },
     Statement_print(callee, _1, args, _2) {
-        return new CallExpression(callee.ast(), args.ast());
+        return new CallExpression(callee.ast(), [args.ast()]);
     },
     Statement_throw(_1, e) {
         return new ThrowStatement(e.ast());
@@ -82,7 +88,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new WhileStatement(test.ast(), suite.ast());
     },
     Function_declaration(_1, id, _2, args, _3, _4, body, _5) {
-        return new FunctionDeclaration(id.ast(), nonEmpty(args.ast()), body.ast());
+        return new Func(id.ast(), nonEmpty(args.ast()), body.ast());
     },
     Loop_for(_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
         return new ForStatement(args.ast(), test.ast(), action.ast(), body.ast());
@@ -101,17 +107,22 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new BinaryExpression(op.ast(), left.ast(), right.ast());
     },
     Exp4_increment(left, op) {
-        return new BinaryExpression(op.ast(), left.ast());
+        return new AssignmentStatement(
+            left.ast(),
+            new BinaryExpression(op.ast().charAt(0), left.ast(), new Literal('whole_number', '1')),
+        );
     },
     Exp5_fCall(id, _1, args, _2) {
         return new CallExpression(id.ast(), args.ast());
     },
     Exp5_ArrayExpression(_1, elements, _2) {
-        return new ArrayExpression(elements.ast());
+        const e = elements.ast();
+        const type = new ArrayType(e.length === 0 ? 'temp' : e[0].type);
+        return new ArrayExpression(e, new Literal('whole_number', e.length), type);
     },
 
     id(_1, _2) {
-        return new Identifier(this.sourceString);
+        return this.sourceString;
     },
     relOp(op) {
         if (op.sourceString.length >= 2) {
@@ -137,23 +148,35 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         return new Method(f.ast());
     },
     Object(_1, body, _3) {
-        return new ObjectExp(body.ast());
+        return new ObjectExp(body.ast(), 'object');
     },
 
     Type(type, _1, _2) {
-        return type.sourceString;
+        if (_1.ast().length === 0 || _2.ast().length === 0) {
+            return type.sourceString;
+        }
+        return new ArrayType(type.ast());
     },
-    numlit(_1) {
-        return new Literal('number', +this.sourceString);
+    intlit(_) {
+        return new Literal('whole_number', this.sourceString);
+    },
+    declit(_1, _2, _3) {
+        return new Literal('not_whole_number', this.sourceString);
     },
     stringlit(_1, chars, _6) {
-        return new Literal('string', this.sourceString.slice(1, -1));
+        return new Literal('array_of_chars', this.sourceString.slice(1, -1));
+    },
+    null(_) {
+        return new Literal('temp', null);
     },
     boolean(v) {
-        return new Literal('boolean', v.ast());
+        return new Literal('true_or_false', v.ast());
     },
     _terminal() {
         return this.sourceString;
+    },
+    VarExp(id) {
+        return new IdExp(id.ast());
     },
 
     NonemptyListOf(first, _, rest) {
