@@ -1,25 +1,24 @@
 Goof3 {
-    Program     = Block
-    Block       = (Line | Advanced)*
+    Program     = (Line | Advanced)*
+    Block       = ";}" Program ";{"
     Line        = Statement ":"
     Advanced    = Function | If | Loop
     Statement   = access? Type "@" id "=="+ Exp                      -- assignment
                 | access? Type "@" id                                -- declaration
                 | "yack" stringlit                                   -- throw
                 | access? id "=="+ Object                            -- objDec
-                | (PropAccess | VarExp) "=="+ Exp                                   -- reassignment
+                | (PropAccess | VarExp) "=="+ Exp                    -- reassignment
                 | "poof" "(" Exp ")"                                 -- print
                 | "yeet" Exp                                         -- return
                 | Exp                                                -- Expression
 
-    Function    = "phoof" id "(" ListOf<Parameter, ","> ")"
-                  ";}" Block ";{"                                    -- declaration
-    If          = "gif" "(" Exp ")" ";}" Block ";{"
-                  ("elsegif" "(" Exp ")" ";}" Block ";{")*
-                  ("else" ";}" Block ";{")?
+    Function    = "phoof" id "(" ListOf<Parameter, ","> ")" Block    -- declaration
+    If          = "gif" "(" Exp ")" Block
+                  ("elsegif" "(" Exp ")" Block)*
+                  ("else" Block)?
     Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Statement_reassignment ")" ";}" Block ";{"                -- for
-                | "wooloop" "(" Exp ")" ";}" Block ";{"              -- while
+                  ":" Exp ":" Statement_reassignment ")" Block       -- for
+                | "wooloop" "(" Exp ")" Block                        -- while
 
     Exp         = Exp logOp Exp1                                     -- logical
                 | Exp1
@@ -31,7 +30,7 @@ Goof3 {
                 | Exp4
     Exp4        = Exp6 sufixOp                                       -- increment
                 | Exp5
-    Exp5        = (PropAccess | id) "(" ListOf<Exp, ","> ")"                       -- fCall
+    Exp5        = (PropAccess | id) "(" ListOf<Exp, ","> ")"         -- fCall
                 | PropAccess
                 | "[" ListOf<Exp, ","> "]"                           -- ArrayExpression
                 | Exp6

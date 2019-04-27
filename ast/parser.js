@@ -45,6 +45,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program(body) {
         return body.ast();
     },
+    Block(_, program, _2) {
+        return program.ast();
+    },
     Line(s, _) {
         return s.ast();
     },
@@ -77,20 +80,20 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
 
     // prettier-ignore
-    If(_1, _2, firstTest, _3, _4, firstBody, _5, _6, _7, moreTests, _8,
-        _9, moreBodies, _10, _11, _12, lastBody, _13) {
+    If(_1, _2, firstTest, _3, firstBody, _6, _7, moreTests, _8,
+        moreBodies, _11, lastBody) {
         const tests = [firstTest.ast(), ...moreTests.ast()];
         const consequents = [firstBody.ast(), ...moreBodies.ast()];
         const alternate = arrayToNullable(lastBody.ast());
         return new GifStatement(tests, consequents, alternate);
     },
-    Loop_while(_1, _2, test, _3, _4, suite, _5) {
+    Loop_while(_1, _2, test, _3, suite) {
         return new WhileStatement(test.ast(), suite.ast());
     },
-    Function_declaration(_1, id, _2, args, _3, _4, body, _5) {
+    Function_declaration(_1, id, _2, args, _3, body) {
         return new Func(id.ast(), nonEmpty(args.ast()), body.ast());
     },
-    Loop_for(_1, _2, args, _3, test, _4, action, _5, _6, body, _7) {
+    Loop_for(_1, _2, args, _3, test, _4, action, _5, body) {
         return new ForStatement(args.ast(), test.ast(), action.ast(), body.ast());
     },
 
