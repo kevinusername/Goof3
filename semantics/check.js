@@ -34,13 +34,6 @@ module.exports = {
         doCheck(expression.type === StringType, 'Not a string');
     },
 
-    isIntegerOrString(expression) {
-        doCheck(
-            expression.type === IntType || expression.type === StringType,
-            'Not an integer or string',
-        );
-    },
-
     isFunction(value) {
         doCheck(value instanceof Func, 'Not a function');
     },
@@ -80,10 +73,6 @@ module.exports = {
         doCheck(expression.constructor.name === 'AssignmentStatement', 'Not an assignment');
     },
 
-    fieldHasNotBeenUsed(field, usedFields) {
-        doCheck(!usedFields.has(field), `Field ${field} already declared`);
-    },
-
     // Same number of args and params; all types compatible
     legalArguments(args, params) {
         doCheck(
@@ -91,10 +80,5 @@ module.exports = {
             `Expected ${params.length} args in call, got ${args.length}`,
         );
         args.forEach((arg, i) => this.isAssignableTo(arg, params[i].type));
-    },
-
-    // If there is a cycle in types, they must go through a record
-    noRecursiveTypeCyclesWithoutRecordTypes() {
-        /* TODO */
     },
 };

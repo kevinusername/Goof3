@@ -37,11 +37,7 @@ const programs = [
     true_or_false @ isHeTho ====== toof:
     phoof bSD(array_of_chars @  name, true_or_false @ check) ;}
         gif (check =========== toof) ;}
-            yeet "(amelia)there is no lifeguard at your beach, (lumberjack simmons) this is not a beach, wait wtf are you doing in (bangs head on bed, not amelia) FUCK!!":
-            yeet "And they don't stop forking and they don't stop forking":
-            yeet "AHHHH I just died in your arms tonight, it must have been something you forked":        
-            yeet "How much repo would a fuzzy fork fork if a fuzzy could fork would fork fork fork fork?":
-            yeet "Mongo (aka JL aka John Lopez aka Mongo aka TurboTard) has a big swinging bat":
+            yeet "Success":
         ;{
     ;{
     bSD(mongo, isHeTho):`,
@@ -57,22 +53,33 @@ const programs = [
 
     String.raw`
     whole_number @ x == 5:
-    x++:`,
+    x++:
+    whole_number @ x == 10:
+    `,
 
     String.raw`
     array_of_chars @ myStr == "hello":
     poof(myStr):
+
+    array_of_chars @ nullString == temp:
     `,
 
     String.raw`
     whole_number[] @ myArr == [1,2,3,4]:
     myArr[1] == 5:
+
+    gif (myArr[1] = 5) ;}
+        poof("got here"):
+    ;{ else ;}
+        poof("didn't get here"):
+    ;{
     `,
 
     String.raw`
     wooloop (toof || 2 > 1) ;}
         poof("infinite woo"):
     ;{
+    whole_number @ x:
     `,
 ];
 

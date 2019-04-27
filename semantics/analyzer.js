@@ -25,9 +25,9 @@ const {
 } = require('./builtins');
 
 function getType(typeString) {
-    if (typeString instanceof ArrayType) {
-        return new ArrayType(getType(typeString.type));
-    }
+    // if (typeString instanceof ArrayType) {
+    //     return new ArrayType(getType(typeString.type));
+    // }
     switch (typeString) {
     case 'array_of_chars':
         return StringType;
@@ -39,10 +39,10 @@ function getType(typeString) {
         return BoolType;
     case 'temp':
         return NullType;
-    case 'object':
-        return typeString;
     default:
-        throw Error('Invalid type');
+        // Case: object. Will never need a default case since it is a syntax error
+        // However, JS needs a default statement, so it is just the last case
+        return typeString;
     }
 }
 
@@ -200,10 +200,15 @@ ThrowStatement.prototype.analyze = function () {
 };
 
 VariableDeclaration.prototype.analyze = function (context) {
-    this.initializer.analyze(context);
-    if (this.type instanceof ArrayType) this.type.analyze();
-    else this.type = getType(this.type);
-    check.isAssignableTo(this.initializer, this.type);
+    if (this.type instanceof ArrayType) {
+        this.type.analyze();
+    } else {
+        this.type = getType(this.type);
+    }
+    if (this.initializer) {
+        this.initializer.analyze(context);
+        check.isAssignableTo(this.initializer, this.type);
+    }
     context.add(this);
 };
 

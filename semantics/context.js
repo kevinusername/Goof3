@@ -52,14 +52,14 @@ class Context {
         return new Context({ parent: this, currentFunction: this.currentFunction, inLoop: true });
     }
 
-    createChildContextForBlock() {
-        // For a block, we have to retain both the function and loop settings.
-        return new Context({
-            parent: this,
-            currentFunction: this.currentFunction,
-            inLoop: this.inLoop,
-        });
-    }
+    // createChildContextForBlock() {
+    //     // For a block, we have to retain both the function and loop settings.
+    //     return new Context({
+    //         parent: this,
+    //         currentFunction: this.currentFunction,
+    //         inLoop: this.inLoop,
+    //     });
+    // }
 
     createChildContextForObject() {
         return new Context({ parent: this, currentFunction: this.currentFunction, inLoop: false });
