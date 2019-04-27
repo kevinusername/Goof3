@@ -10,7 +10,6 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 
 ## List of Features
 
-- Declare variables with "goof".
 - Declare functions with "phoof".
 - True is now "toof" and false is now "foof".
 - Declare print statements with "poof".
@@ -133,8 +132,8 @@ function myFunction(p1, p2) {
 
 ### Declaration Example
 
-- Declare variables with "goof"
-- No more doubles, longs, or floats
+- No more ints, strings, doubles, longs, or floats
+- Now declare using the one of keywords "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number" followed by @
 - Camel-case
 - Set values with even number of "=" signs
 
@@ -148,7 +147,10 @@ function myFunction(p1, p2) {
   <td>
 
 ```
-goof letsGainThisGrain ==== 20.25:
+not_whole_number @ letsGainThisGrain ==== 20.25:
+whole_number @ myAge ====== 21:
+true_or_false @ kevinsAStud == toof:
+array_of_chars @ simmons ======== "Lumberjack":
 ```
 
   </td>
@@ -157,6 +159,9 @@ goof letsGainThisGrain ==== 20.25:
 
 ```javascript
 var money = 20.25;
+var age = 21;
+var kevin = true;
+var simmons = "Lumberjack";
 ```
   </td>
   </tr>
