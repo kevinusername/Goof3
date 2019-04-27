@@ -21,8 +21,7 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - Single-line comments must start with "XD".
 - Multi-line comments must start with ";)" and end with "(;".
 - Compare with an odd number of "=" signs, set values with an even number of "=" signs.
-- Camel-case
-- Use "not" instead of "!"
+- camelCase sometimes and snake_case others
 - High-order functions
 - Declare while loops with "wooloop".
 <br>... AND NOW WITH NEW FEATURES SUCH AS
@@ -34,6 +33,35 @@ Have languages like Python made programming "too easy?" Well Goof3 is here to ma
 - All braces are now winky faces ;} ;{
 - return statements must now use yeet
 <br>... AND MORE! NEVER UNDERESTIMATE tHe GOoF!
+
+## List of Semantic Checks
+
+- use of undeclared variable
+- non boolean test condition
+- non integer in add/subtract/multiply/divide
+- types do not match in equality test
+- types do not match in inequality test
+- types do not match in logical test
+- types do not match in declaration
+- types do not match in reassignment
+- non-Integers in comparison
+- call of non-method/function
+- too many/few function arguments
+- wrong type of function argument
+- non-existent field access
+- non-Integer array index
+- non subscriptable array access
+- non subscriptable prop access
+- subscript of non-array: braces
+- subscript of non-array: dot
+- non integer subscript
+- print/throw non-string
+- unitialized variable when using sufix operator
+- incrementing non-Integers
+- comparing strings
+- ArrayIndexOutOfBoundsException
+- all list elements not of same type
+- non-assignments in four loop "action"
 
 ## Example Programs
 
