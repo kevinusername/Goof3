@@ -55,6 +55,9 @@ module.exports = {
                     )} not compatible with type ${util.format(type)}`,
                 );
             }
+        } else if (expression.type === IntType && type === FloatType) {
+            // eslint-disable-next-line no-param-reassign
+            expression.type = FloatType; // Ints can be floats
         } else {
             doCheck(
                 expression.type === NullType || expression.type === type,

@@ -83,6 +83,7 @@ const programs = [
         poof("infinite woo"):
     ;{
     whole_number @ x:
+    not_whole_number @ y == 15:
     `,
 ];
 
