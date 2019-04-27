@@ -164,6 +164,7 @@ MemberExpression.prototype.analyze = function (context) {
     } else {
         throw Error('Non subscriptable expression');
     }
+    this.type = this.property.type;
 };
 
 Method.prototype.analyzeSignature = function (context) {
