@@ -16,7 +16,7 @@ class Context {
             parent,
             currentFunction,
             inLoop,
-            valueMap: Object.create(null),
+            valueMap: new Map(),
         });
     }
 
@@ -36,10 +36,10 @@ class Context {
 
     // Adds a variable or function to this context.
     add(entity) {
-        if (entity.id in this.valueMap) {
-            this.valueMap[entity.id].push(entity);
+        if (this.valueMap.has(entity.id)) {
+            this.valueMap.get(entity.id).push(entity);
         } else {
-            this.valueMap[entity.id] = [entity];
+            this.valueMap.set(entity.id, [entity]);
         }
     }
 
@@ -48,9 +48,9 @@ class Context {
     // contexts if necessary.
     lookupValue(id) {
         for (let context = this; context !== null; context = context.parent) {
-            if (id in context.valueMap) {
-                return context.valueMap[id][
-                    Math.floor(Math.random() * context.valueMap[id].length)
+            if (context.valueMap.has(id)) {
+                return context.valueMap.get(id)[
+                    Math.floor(Math.random() * context.valueMap.get(id).length)
                 ];
             }
         }
@@ -59,7 +59,7 @@ class Context {
 
     createInitial() {
         standardFunctions.forEach((f) => {
-            this.valueMap[f.id] = [f];
+            this.valueMap.set(f.id, [f]);
         });
     }
 }
