@@ -9,7 +9,7 @@ Goof3 {
                 | access? id "=="+ Object                            -- objDec
                 | (PropAccess | VarExp) "=="+ Exp                    -- reassignment
                 | "poof" "(" Exp ")"                                 -- print
-                | "yeet" Exp                                         -- return
+                | yeet Exp                                           -- return
                 | Exp                                                -- Expression
 
     Function    = "phoof" id "(" ListOf<Parameter, ","> ")" Block    -- declaration
@@ -64,7 +64,7 @@ Goof3 {
     Type        = typeid ("[" "]")?
     typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
-    keyword     = ("goof" | "yeet" | "poof" | "yack" | "phoof" | "toof" | "foof" |
+    keyword     = ("goof" | yeet | "poof" | "yack" | "phoof" | "toof" | "foof" |
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else" | "temp"
                   | typeid) ~idrest
     id          = ~keyword letter idrest*
@@ -84,4 +84,6 @@ Goof3 {
     Property    = Field | Method
     Field       = Type "@" id "~" Exp
     Method      = Function
+
+    yeet        = "ye" "e"+ "t"
 }
