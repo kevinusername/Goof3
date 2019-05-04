@@ -8,6 +8,8 @@
 
 Have languages like Python made programming "too easy?" Well Goof3 is here to make it less easy! Goof3 is an improvement over the underappreciated and underdeveloped Goof2 language, which itself sought to improve upon its predecessor, Goof. Goof3 is the goofiest of programming languages. Parts of it make little to no sense, other parts of it make all of the sense possible. It is virtually impossible to sum up Goof3 in a mere sentence, but if one had to do so, Goof3 is the future of programming languages. It is all of the fun of JavaScript, but with all-around more goofiness.
 
+The best part, you may wonder? Well, have you ever compiled and run your code, and it didn't work? And instead of changing anything, you decided to compile and run it again, hoping for a different outcome while at the same time knowing you won't get one? With Goof3, it actually is possible to expect a different outcome (by way of how we handle the redeclaration of variables)!
+
 ## List of Features
 
 - Declare functions with "phoof".
