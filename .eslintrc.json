@@ -19,6 +19,8 @@
       "func-names": "off",
       "no-console": "off",
       "object-curly-newline": ["error", {"multiline": true, "minProperties": 5}],
-      "no-continue": "off"
+      "no-continue": "off",
+      "camelcase" : "off",
+      "no-param-reassign": "off"
   }
 }

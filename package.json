@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/kevinusername/Goof3#readme",
   "dependencies": {
-    "ohm-js": "^0.14.0"
+    "ohm-js": "^0.14.0",
+    "pretty-js": "^0.2.0",
+    "yargs": "^13.2.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

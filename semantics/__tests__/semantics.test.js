@@ -87,16 +87,26 @@ const programs = [
     `,
 ];
 
-describe('The semantic analyzer', () => {
-    programs.forEach((program) => {
-        test('accepts the mega program with all syntactic forms', (done) => {
-            const initContext = new Context();
-            initContext.createInitial();
-            const astRoot = parse(program);
-            expect(astRoot).toBeTruthy();
-            astRoot.forEach(e => e.analyze(initContext));
-            expect(astRoot).toBeTruthy();
-            done();
-        });
+// describe('The semantic analyzer', () => {
+//     programs.forEach((program) => {
+//         test('accepts the mega program with all syntactic forms', (done) => {
+//             const initContext = new Context();
+//             initContext.createInitial();
+//             const astRoot = parse(program);
+//             expect(astRoot).toBeTruthy();
+//             astRoot.forEach(e => e.analyze(initContext));
+//             expect(astRoot).toBeTruthy();
+//             done();
+//         });
+//     });
+// });
+
+programs.forEach((program) => {
+    const initContext = new Context();
+    initContext.createInitial();
+    const astRoot = parse(program);
+    astRoot.forEach((e) => {
+        e.analyze(initContext);
+        console.log(e);
     });
 });

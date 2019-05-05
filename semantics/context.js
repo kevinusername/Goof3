@@ -64,4 +64,8 @@ class Context {
     }
 }
 
+Context.INITIAL = new Context();
+Context.INITIAL.createInitial();
+
+
 module.exports = Context;
