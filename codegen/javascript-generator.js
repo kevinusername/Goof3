@@ -76,9 +76,10 @@ module.exports = function (exp) {
     const options = {
         text: sourceCode,
         filePath: './.eslintrc.json',
+        parser: 'babylon',
     };
-    const program = format(options);
-    return program;
+    // const program = format(options);
+    return sourceCode;
 };
 
 ArrayExpression.prototype.gen = function () {
@@ -108,27 +109,22 @@ Field.prototype.gen = function () {
 
 ForStatement.prototype.gen = function () {
     const body = this.body.map(statement => statement.gen());
-    return `for (${this.assignments.gen()}, ${test.gen()}, ${this.action.gen()}) {${body.join(
-        ';',
-    )}}`;
+    const assignments = this.assignments.map(a => a.gen());
+    const test = this.test.gen();
+    return `for (${assignments}; ${test}; ${this.action.gen()}) {${body.join(';')};}`;
 };
 
 Func.prototype.gen = function () {
     const name = javaScriptId(this);
-    const params = this.parameters.map(p => javaScriptId(p));
-    const body = this.body.map(s => s.gen());
-    // if (this.body.type) {
-    //   // "Void" functions do not have a JS return, others do
-    //   body = `return ${body};`;
-    //   // TODO THIS DOES NOT WORK FOR LET EXPRESSIONS!!!!
-    // }
+    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : '';
+    const body = this.body ? this.body.map(s => s.gen()) : '';
     return `function ${name} (${params.join(',')}) {${body.join(';')};}`;
 };
 
 GifStatement.prototype.gen = function () {
-    const thenPart = this.consequent;
+    const thenPart = this.consequents ? this.consequents[0].map(s => s.gen()) : '';
     const elsePart = this.alternate ? this.alternate.gen() : '';
-    return `if (${test.gen()}) ${thenPart.gen()} ${elsePart.gen()}`;
+    return `if (${this.tests[0].gen()}) {${thenPart}} ${elsePart}`;
 };
 
 IdExp.prototype.gen = function () {

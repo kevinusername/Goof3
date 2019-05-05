@@ -1,15 +1,14 @@
 phoof fib (whole_number @ n) ;}
     gif (n <= 1) ;} yeet n: ;{
     xD hey there
-    yeet fib (n - 2) + fib(n -1):
+    yeet n - 2 + n -1:
 ;{
 
-four (whole_number @ i ==== 11: i <  size - 11: i == 1) ;}
+four (whole_number @ i ==== 11: i < 11: i == 1) ;}
 	CONSTANT_VARIABLE whole_number @ dog == 10:
     ;) heres a
     multiline
     for you (;
-    yeeeeeeeeeeeeeeeeeeeeet "wHYyyYYyYy":
 ;{
 
 poof ("you should check out our 'npm run-script format' script, its cool!"):
