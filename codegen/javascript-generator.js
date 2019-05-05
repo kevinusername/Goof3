@@ -176,7 +176,7 @@ ReturnStatement.prototype.gen = function () {
 };
 
 ThrowStatement.prototype.gen = function () {
-    return `throw Error("${this.error}")`;
+    return `throw Error(${this.error.gen()})`;
 };
 
 VariableDeclaration.prototype.gen = function () {
