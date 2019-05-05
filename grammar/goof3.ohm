@@ -41,6 +41,7 @@ Goof3 {
                 | PropAccess
                 | Object
                 | null
+                | Paren_Exp
 
     PropAccess  = VarExp "[" Exp "]"                                 -- brackets
                 | VarExp "." id                                      -- dot
@@ -86,4 +87,6 @@ Goof3 {
     Method      = Function
 
     yeet        = "ye" "e"+ "t"
+
+    Paren_Exp   = "(" Exp ")"
 }

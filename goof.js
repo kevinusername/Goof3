@@ -32,19 +32,18 @@ const generateProgram = require('./codegen/javascript-generator');
 
 // If compiling from a string, return the AST, IR, or compiled code as a string.
 function compile(sourceCode, { astOnly, frontEndOnly, shouldOptimize }) {
-    let program = parse(sourceCode);
+    const program = parse(sourceCode);
     // if (astOnly) {
     //     return util.inspect(program, { depth: null });
     // }
-    program.forEach(p => p.analyze(Context.INITIAL));
+    program.analyze(Context.INITIAL);
     // if (shouldOptimize) {
     //     program = program.optimize();
     // }
     // if (frontEndOnly) {
     //     return util.inspect(program, { depth: null });
     // }
-    program = program.map(s => `${generateProgram(s)};`);
-    return program.join('');
+    return program.gen();
 }
 
 // If compiling from a file, write to standard output.

@@ -3,11 +3,13 @@ const {
     ArrayType,
     AssignmentStatement,
     BinaryExpression,
+    Block,
     CallExpression,
     Field,
     ForStatement,
     Func,
     GifStatement,
+    IdExp,
     Literal,
     MemberExpression,
     Method,
@@ -16,13 +18,14 @@ const {
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
-    IdExp,
     WhileStatement,
 } = require('../ast');
 
 const {
     IntType, FloatType, StringType, NullType, BoolType,
 } = require('./builtins');
+
+const util = require('util');
 
 function getType(typeString) {
     // if (typeString instanceof ArrayType) {
@@ -104,6 +107,11 @@ BinaryExpression.prototype.analyze = function (context) {
     }
 };
 
+Block.prototype.analyze = function (context) {
+    if (Array.isArray(this.statements)) this.statements.forEach(s => s.analyze(context));
+    else this.statements.analyze(context);
+};
+
 CallExpression.prototype.analyze = function (context) {
     this.callee = context.lookupValue(this.callee);
     check.isFunction(this.callee, 'Attempt to call a non-function');
@@ -125,7 +133,7 @@ ForStatement.prototype.analyze = function (context) {
     check.isBoolean(this.test);
     this.action.analyze(loopContext);
     check.isAssignment(this.action);
-    this.body.forEach(e => e.analyze(loopContext));
+    this.body.analyze(loopContext);
 };
 
 Func.prototype.analyzeSignature = function (context) {
@@ -138,9 +146,7 @@ Func.prototype.analyzeSignature = function (context) {
 
 Func.prototype.analyze = function (context) {
     this.analyzeSignature(context);
-    if (this.body) {
-        this.body.forEach(e => e.analyze(this.bodyContext));
-    }
+    if (this.body) this.body.analyze(this.bodyContext);
 };
 
 GifStatement.prototype.analyze = function (context) {
@@ -148,10 +154,8 @@ GifStatement.prototype.analyze = function (context) {
         e.analyze(context);
         check.isBoolean(e);
     });
-    this.consequents.forEach(cons => cons.forEach(e => e.analyze(context)));
-    if (this.alternate) {
-        this.alternate[0].analyze(context);
-    }
+    this.consequents.forEach(cons => cons.analyze(context));
+    if (this.alternate) this.alternate.analyze(context);
 };
 
 IdExp.prototype.analyze = function (context) {
@@ -186,9 +190,7 @@ Method.prototype.analyzeSignature = function (context) {
 
 Method.prototype.analyze = function (context) {
     this.analyzeSignature(context);
-    if (this.body) {
-        this.body.forEach(e => e.analyze(this.bodyContext));
-    }
+    if (this.body) this.body.analyze(this.bodyContext);
 };
 
 ObjectExp.prototype.analyze = function (context) {
@@ -227,5 +229,5 @@ WhileStatement.prototype.analyze = function (context) {
     const loopContext = context.createChildContextForLoop();
     this.test.analyze(loopContext);
     check.isBoolean(this.test);
-    this.body.forEach(e => e.analyze(loopContext));
+    this.body.analyze(loopContext);
 };

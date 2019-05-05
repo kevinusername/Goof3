@@ -1,72 +1,74 @@
-[ Func {
-    id: 'fib',
-    parameters: [ Parameter { type: 'whole_number', id: 'n' } ],
-    body:
-     [ GifStatement {
-         tests:
-          [ BinaryExpression {
-              op: '<=',
-              left: IdExp { reference: 'n' },
-              right: Literal { type: 'whole_number', value: '1' } } ],
-         consequents:
-          [ [ ReturnStatement { returnValue: IdExp { reference: 'n' } } ] ],
-         alternate: null },
-       ReturnStatement {
-         returnValue:
-          BinaryExpression {
-            op: '+',
-            left:
-             CallExpression {
-               callee: 'fib',
-               args:
-                [ BinaryExpression {
-                    op: '-',
-                    left: IdExp { reference: 'n' },
-                    right: Literal { type: 'whole_number', value: '2' } } ] },
-            right:
-             CallExpression {
-               callee: 'fib',
-               args:
-                [ BinaryExpression {
-                    op: '-',
-                    left: IdExp { reference: 'n' },
-                    right: Literal { type: 'whole_number', value: '1' } } ] } } } ] },
-  ForStatement {
-    assignments:
-     [ VariableDeclaration {
-         access: 'global',
-         type: 'whole_number',
-         id: 'i',
-         initializer: Literal { type: 'whole_number', value: '11' } } ],
-    test:
-     BinaryExpression {
-       op: '<',
-       left: IdExp { reference: 'i' },
-       right:
+Block {
+  statements:
+   [ Func {
+       id: 'fib',
+       parameters: [ Parameter { type: 'whole_number', id: 'n' } ],
+       body:
+        Block {
+          statements:
+           Block {
+             statements:
+              [ GifStatement {
+                  tests:
+                   [ BinaryExpression {
+                       op: '<=',
+                       left: IdExp { reference: 'n' },
+                       right: Literal { type: 'whole_number', value: '1' } } ],
+                  consequents:
+                   [ Block {
+                       statements:
+                        Block {
+                          statements:
+                           [ ReturnStatement { returnValue: IdExp { reference: 'n' } } ] } } ],
+                  alternate: null },
+                ReturnStatement {
+                  returnValue:
+                   BinaryExpression {
+                     op: '-',
+                     left:
+                      BinaryExpression {
+                        op: '+',
+                        left:
+                         BinaryExpression {
+                           op: '-',
+                           left: IdExp { reference: 'n' },
+                           right: Literal { type: 'whole_number', value: '2' } },
+                        right: IdExp { reference: 'n' } },
+                     right: Literal { type: 'whole_number', value: '1' } } } ] } } },
+     ForStatement {
+       assignments:
+        [ VariableDeclaration {
+            access: 'global',
+            type: 'whole_number',
+            id: 'i',
+            initializer: Literal { type: 'whole_number', value: '11' } } ],
+       test:
         BinaryExpression {
-          op: '-',
-          left: IdExp { reference: 'size' },
-          right: Literal { type: 'whole_number', value: '11' } } },
-    action:
-     AssignmentStatement {
-       target: IdExp { reference: 'i' },
-       source: Literal { type: 'whole_number', value: '1' } },
-    body:
-     [ VariableDeclaration {
-         access: 'constant',
-         type: 'whole_number',
-         id: 'dog',
-         initializer: Literal { type: 'whole_number', value: '10' } },
-       ReturnStatement {
-         returnValue: Literal { type: 'array_of_chars', value: 'wHYyyYYyYy' } } ] },
-  CallExpression {
-    callee: 'poof',
-    args:
-     [ Literal {
-         type: 'array_of_chars',
-         value:
-          "you should check out our 'npm run-script format' script, its cool!" } ] },
-  CallExpression {
-    callee: 'poof',
-    args:
-     [ Literal { type: 'array_of_chars', value: 'and thats all she wrote' } ] } ]
+          op: '<',
+          left: IdExp { reference: 'i' },
+          right: Literal { type: 'whole_number', value: '11' } },
+       action:
+        AssignmentStatement {
+          target: IdExp { reference: 'i' },
+          source: Literal { type: 'whole_number', value: '1' } },
+       body:
+        Block {
+          statements:
+           Block {
+             statements:
+              [ VariableDeclaration {
+                  access: 'constant',
+                  type: 'whole_number',
+                  id: 'dog',
+                  initializer: Literal { type: 'whole_number', value: '10' } } ] } } },
+     CallExpression {
+       callee: 'poof',
+       args:
+        [ Literal {
+            type: 'array_of_chars',
+            value:
+             "you should check out our 'npm run-script format' script, its cool!" } ] },
+     CallExpression {
+       callee: 'poof',
+       args:
+        [ Literal { type: 'array_of_chars', value: 'and thats all she wrote' } ] } ] }

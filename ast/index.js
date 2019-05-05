@@ -22,6 +22,12 @@ class BinaryExpression {
     }
 }
 
+class Block {
+    constructor(statements) {
+        this.statements = statements;
+    }
+}
+
 class CallExpression {
     constructor(callee, args) {
         Object.assign(this, { callee, args });
@@ -123,6 +129,7 @@ module.exports = {
     ArrayType,
     AssignmentStatement,
     BinaryExpression,
+    Block,
     CallExpression,
     Field,
     ForStatement,

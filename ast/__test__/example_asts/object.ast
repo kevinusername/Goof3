@@ -1,24 +1,30 @@
-[ VariableDeclaration {
-    access: 'global',
-    type: 'object',
-    id: 'myObj',
-    initializer:
-     ObjectExp {
-       properties:
-        [ Field {
-            type: 'whole_number',
-            id: 'x',
-            value: Literal { type: 'whole_number', value: '15' } },
-          Field {
-            type: 'array_of_chars',
-            id: 'name',
-            value: Literal { type: 'array_of_chars', value: 'Doofus' } },
-          Method {
-            id: 'sayHello',
-            parameters: null,
-            body:
-             [ CallExpression {
-                 callee: 'poof',
-                 args: [ Literal { type: 'array_of_chars', value: 'hi there' } ] } ] } ],
-       type: 'object' } },
-  MemberExpression { object: IdExp { reference: 'myObj' }, property: 'x' } ]
+Block {
+  statements:
+   [ VariableDeclaration {
+       access: 'global',
+       type: 'object',
+       id: 'myObj',
+       initializer:
+        ObjectExp {
+          properties:
+           [ Field {
+               type: 'whole_number',
+               id: 'x',
+               value: Literal { type: 'whole_number', value: '15' } },
+             Field {
+               type: 'array_of_chars',
+               id: 'name',
+               value: Literal { type: 'array_of_chars', value: 'Doofus' } },
+             Method {
+               id: 'sayHello',
+               parameters: null,
+               body:
+                Block {
+                  statements:
+                   Block {
+                     statements:
+                      [ CallExpression {
+                          callee: 'poof',
+                          args: [ Literal { type: 'array_of_chars', value: 'hi there' } ] } ] } } } ],
+          type: 'object' } },
+     MemberExpression { object: IdExp { reference: 'myObj' }, property: 'x' } ] }

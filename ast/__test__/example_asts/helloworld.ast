@@ -1,4 +1,6 @@
-[ CallExpression {
-    callee: 'poof',
-    args:
-     [ Literal { type: 'array_of_chars', value: 'hELlO woRlD!' } ] } ]
+Block {
+  statements:
+   [ CallExpression {
+       callee: 'poof',
+       args:
+        [ Literal { type: 'array_of_chars', value: 'hELlO woRlD!' } ] } ] }

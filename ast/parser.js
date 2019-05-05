@@ -8,11 +8,13 @@ const {
     ArrayType,
     AssignmentStatement,
     BinaryExpression,
+    Block,
     CallExpression,
     Field,
     ForStatement,
     Func,
     GifStatement,
+    IdExp,
     Literal,
     MemberExpression,
     Method,
@@ -21,7 +23,6 @@ const {
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
-    IdExp,
     WhileStatement,
 } = require('.');
 
@@ -43,10 +44,10 @@ function handleAccess(a) {
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program(body) {
-        return body.ast();
+        return new Block(body.ast());
     },
     Block(_, program, _2) {
-        return program.ast();
+        return new Block(program.ast());
     },
     Line(s, _) {
         return s.ast();
@@ -180,6 +181,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     VarExp(id) {
         return new IdExp(id.ast());
+    },
+    Paren_Exp(_1, exp, _2) {
+        return exp.ast();
     },
 
     NonemptyListOf(first, _, rest) {

@@ -17,9 +17,9 @@ const format = require('prettier-eslint');
 
 const {
     ArrayExpression,
-    ArrayType,
     AssignmentStatement,
     BinaryExpression,
+    Block,
     CallExpression,
     Field,
     ForStatement,
@@ -31,14 +31,13 @@ const {
     Method,
     ObjectExp,
     Parameter,
-    PrimitiveType,
     ReturnStatement,
     ThrowStatement,
     VariableDeclaration,
     WhileStatement,
 } = require('../ast');
 
-const Context = require('../semantics/context');
+// const Context = require('../semantics/context');
 const { StringType } = require('../semantics/builtins');
 
 function makeOp(op) {
@@ -60,30 +59,31 @@ const javaScriptId = (() => {
     };
 })();
 
-function generateLibraryFunctions() {
-    function generateLibraryStub(name, params, body) {
-        // const entity = Context.INITIAL.valueMap.get(name);
-        return `function ${javaScriptId(name)}(${params}) {${body}}`;
-    }
-    return [generateLibraryStub('print', 's', 'console.log(s);')].join('');
-}
+// function generateLibraryFunctions() {
+//     function generateLibraryStub(name, params, body) {
+//         // const entity = Context.INITIAL.valueMap.get(name);
+//         return `function ${javaScriptId(name)}(${params}) {${body}}`;
+//     }
+//     return [generateLibraryStub('print', 's', 'console.log(s);')].join('');
+// }
 
 module.exports = function (exp) {
     // const libraryFunctions = generateLibraryFunctions();
     // Separate with a semicolon to avoid possible translation as a function call
     // exp.forEach(e => e.gen());
     const sourceCode = `${exp.gen()}`;
-    const options = {
-        text: sourceCode,
-        filePath: './.eslintrc.json',
-        parser: 'babylon',
-    };
+    // const options = {
+    //     text: sourceCode,
+    //     filePath: './.eslintrc.json',
+    //     parser: 'babylon',
+    // };
     // const program = format(options);
     return sourceCode;
 };
 
 ArrayExpression.prototype.gen = function () {
-    return `Array(${this.size.gen()}).fill(${this.elements.gen()})`;
+    const elements = this.elements.map(e => e.gen());
+    return `Array(${this.size.gen()}).fill(${elements})`;
 };
 
 // ArrayType.prototype.gen = function () {
@@ -98,6 +98,14 @@ BinaryExpression.prototype.gen = function () {
     return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`;
 };
 
+Block.prototype.gen = function () {
+    if (Array.isArray(this.statements)) {
+        const statements = this.statements.map(s => s.gen());
+        return `${statements.join(';')};`;
+    }
+    return `${this.statements.gen()};`;
+};
+
 CallExpression.prototype.gen = function () {
     const args = this.args.map(a => a.gen());
     return `${javaScriptId(this.callee)}(${args.join(',')})`;
@@ -108,23 +116,23 @@ Field.prototype.gen = function () {
 };
 
 ForStatement.prototype.gen = function () {
-    const body = this.body.map(statement => statement.gen());
+    const body = this.body.gen();
     const assignments = this.assignments.map(a => a.gen());
     const test = this.test.gen();
-    return `for (${assignments}; ${test}; ${this.action.gen()}) {${body.join(';')};}`;
+    return `for (${assignments}; ${test}; ${this.action.gen()}) {${body}}`;
 };
 
 Func.prototype.gen = function () {
     const name = javaScriptId(this);
     const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : '';
-    const body = this.body ? this.body.map(s => s.gen()) : '';
-    return `function ${name} (${params.join(',')}) {${body.join(';')};}`;
+    const body = this.body.gen();
+    return `function ${name} (${params.join(',')}) {${body}}`;
 };
 
 GifStatement.prototype.gen = function () {
-    const thenPart = this.consequents ? this.consequents[0].map(s => s.gen()) : '';
+    const thenPart = this.consequents ? this.consequents.map(s => s.gen()) : '';
     const elsePart = this.alternate ? this.alternate.gen() : '';
-    return `if (${this.tests[0].gen()}) {${thenPart}} ${elsePart}`;
+    return `if (${this.tests[0].gen()}) {${thenPart[0]}} ${elsePart}`;
 };
 
 IdExp.prototype.gen = function () {
@@ -136,16 +144,16 @@ Literal.prototype.gen = function () {
 };
 
 MemberExpression.prototype.gen = function () {
-    return `${this.object.gen()}.[${javaScriptId(this)}]`;
+    return `${this.object.gen()}[${this.property.gen()}]`;
 };
 
 Method.prototype.gen = function () {
     const name = javaScriptId(this);
     const params = this.params.map(p => javaScriptId(p));
-    let body = this.body.map(statement => statement.gen()).join(';');
+    let body = this.body.gen();
     if (this.body.type) {
         // "Void" functions do not have a JS return, others do
-        body = `return ${body};`;
+        body = `return ${body}`;
     }
     return `function ${name} (${params.join(',')}) {${body}}`;
 };
@@ -176,7 +184,5 @@ VariableDeclaration.prototype.gen = function () {
 };
 
 WhileStatement.prototype.gen = function () {
-    const body = this.body.map(s => s.gen());
-    return `while (${this.test.gen()}) { ${body.join(';')}))
-        .join(';')} }`;
+    return `while (${this.test.gen()}) { ${this.body.gen()}))`;
 };
