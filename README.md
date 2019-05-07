@@ -111,7 +111,7 @@ console.log('hELlO woRlD!')
   <td>
 
 ```
-phoof myFunction(p1, p2) ;}
+phoof myFunction(whole_number @ p1, whole_number @ p2) ;}
   yeet p1 * p2:
 ;{
 ```
@@ -276,46 +276,6 @@ are working VEWY HAWD to fix this!`;
   </tr>
 </table>
 
-<!-- ### Class Example
-
-- Classes are defined using the keyword *fourUnitClass*. The word *this* is replaced with *that* for instances references.
-
-<table style="table-layout: fixed; width: 100%">
-  <tr>
-  <th>Goof3</th>
-  <th>JavaScript</th>
-  </tr>
-
-  <tr>
-  <td style="word-wrap: break-word;">
-
-```
-fourUnitClass Rectangle ;}
-  constructor(hoof, woof) ;}
-    that.hoof == hoof:
-    that.woof == woof:
-  {;
-{;       
-```
-
-  </td>
-
-  <td style="word-wrap: break-word;">
-
-```js
-class Rectangle {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
-```
-
-  </td>
-
-  </tr>
-</table> -->
-
 ### Loop Example
 - Declare for loops with "four".
 - Declare while loops with "wooloop.
@@ -329,14 +289,14 @@ class Rectangle {
   <td style="word-wrap: break-word;">
 
 ```
-four (whole_number @ i ~ 7: i <  size: i = i + 1) ;}
-  whole_number @ cat ~ -10:
+four (whole_number @ i ==== 7: i <  size: i == i + 1) ;}
+  whole_number @ cat == -10:
 ;{
 ```
 ```
-whole_number @ counter ~ 10:
+whole_number @ counter == 10:
 wooloop (counter > 0) ;} 
-  counter = counter - 1:
+  counter == counter - 1:
   poof("nOt dOnE yEt"):
 ;{
 ```
@@ -375,7 +335,7 @@ myObj.x:
 ### Put it all together
 
 ```
-phoof fib (n) ;}
+phoof fib (whole_number @ n) ;}
   gif (n <= 1) ;}
     yeet n:
   ;{
@@ -383,8 +343,8 @@ phoof fib (n) ;}
   yeet fib (n - 2) + fib(n -1):
 ;{
 
-four (whole_number @ i ~ 11: i <  size - 11: i = i + 1) ;}
-  whole_number @ dog ~ 10:
+four (whole_number @ i == 11: i <  size - 11: i == i + 1) ;}
+  whole_number @ dog ==== 10:
   ;) heres a
   multiline
   for you (;
