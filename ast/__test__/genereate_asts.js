@@ -10,7 +10,7 @@ const fs = require('fs');
 const util = require('util');
 const parse = require('../parser');
 
-const exampleDirectory = '../../examples/';
+const exampleDirectory = 'examples/';
 
 fs.readdirSync(exampleDirectory).forEach((name) => {
     if (name.endsWith('.goof')) {

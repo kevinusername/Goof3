@@ -1,10 +1,7 @@
 Block {
-  statements: [
-    VariableDeclaration {
-      access: 'global',
-      type: 'whole_number',
-      id: 'x',
-      initializer: Literal { type: 'temp', value: null }
-    }
-  ]
-}
+  statements:
+   [ VariableDeclaration {
+       access: 'global',
+       type: 'whole_number',
+       id: 'x',
+       initializer: Literal { type: 'temp', value: null } } ] }
