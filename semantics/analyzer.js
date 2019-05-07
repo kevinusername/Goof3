@@ -179,14 +179,16 @@ Literal.prototype.analyze = function () {
 MemberExpression.prototype.analyze = function (context) {
     this.object.analyze(context);
     if (this.object.reference.type instanceof ArrayType) {
-        this.type = 'array';
+        this.accessType = 'array';
         this.property.analyze(context);
+        this.type = this.property.type;
         check.isInteger(this.property);
         check.isInBounds(this.property.value, this.object.reference.initializer.size.value);
     } else if (this.object.reference.type === 'object') {
-        this.type = 'object';
+        this.accessType = 'object';
         this.property = new IdExp(this.property);
         this.property.analyze(this.object.reference.initializer.ObjContext);
+        this.type = this.property.type;
     } else {
         throw Error('Non subscriptable expression');
     }

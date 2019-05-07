@@ -169,7 +169,7 @@ Literal.prototype.gen = function () {
 };
 
 MemberExpression.prototype.gen = function () {
-    if (this.type === 'array') {
+    if (this.accesType === 'array') {
         return `${this.object.gen()}[${this.property.gen()}]`;
     }
     return `${this.object.gen()}.${this.property.gen()}`;
