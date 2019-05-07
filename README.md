@@ -329,7 +329,7 @@ class Rectangle {
   <td style="word-wrap: break-word;">
 
 ```
-four (whole_number @ cat ~ 7: i <  size: i = i + 1) ;}
+four (whole_number @ i ~ 7: i <  size: i = i + 1) ;}
   whole_number @ cat ~ -10:
 ;{
 ```
@@ -383,7 +383,7 @@ phoof fib (n) ;}
   yeet fib (n - 2) + fib(n -1):
 ;{
 
-four (goof i ==== 11: i <  size - 11: i = i + 1) ;}
+four (whole_number @ i ~ 11: i <  size - 11: i = i + 1) ;}
   whole_number @ dog ~ 10:
   ;) heres a
   multiline
