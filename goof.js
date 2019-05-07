@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
 /*
- * A Tiger Compiler
+ * A goof3 Compiler
  *
- * This is a command line application that compiles a Tiger program from
+ * This is a command line application that compiles a goof3 program from
  * a file. Synopsis:
  *
- * ./tiger.js -a <filename>
+ * ./goof3.js -a <filename>
  *     writes out the AST and stops
  *
- * ./tiger.js -i <filename>
+ * ./goof3.js -i <filename>
  *     writes the decorated AST then stops
  *
- * ./tiger.js <filename>
- *     compiles the tiger program to JavaScript, writing the generated
+ * ./goof3.js <filename>
+ *     compiles the goof3 program to JavaScript, writing the generated
  *     JavaScript code to standard output.
  *
- * ./tiger.js -o <filename>
+ * ./goof3.js -o <filename>
  *     optimizes the intermediate code before generating target JavaScript.
  *
  * Output of the AST and decorated AST uses the object inspection functionality
@@ -27,23 +27,24 @@ const fs = require('fs');
 const util = require('util');
 const yargs = require('yargs');
 const parse = require('./ast/parser');
-const Context = require('./semantics/context');
-const generateProgram = require('./codegen/javascript-generator');
+const analyze = require('./semantics/analyzer');
+// require('./semantics/optimizer');
+const generate = require('./codegen/javascript-generator');
 
 // If compiling from a string, return the AST, IR, or compiled code as a string.
 function compile(sourceCode, { astOnly, frontEndOnly, shouldOptimize }) {
-    const program = parse(sourceCode);
-    // if (astOnly) {
-    //     return util.inspect(program, { depth: null });
-    // }
-    program.analyze(Context.INITIAL);
-    // if (shouldOptimize) {
-    //     program = program.optimize();
-    // }
-    // if (frontEndOnly) {
-    //     return util.inspect(program, { depth: null });
-    // }
-    return program.gen();
+    let program = parse(sourceCode);
+    if (astOnly) {
+        return util.inspect(program, { depth: null });
+    }
+    analyze(program);
+    if (shouldOptimize) {
+        program = program.optimize();
+    }
+    if (frontEndOnly) {
+        return util.inspect(program, { depth: null });
+    }
+    return generate(program);
 }
 
 // If compiling from a file, write to standard output.

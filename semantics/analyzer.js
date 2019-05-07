@@ -21,11 +21,15 @@ const {
     WhileStatement,
 } = require('../ast');
 
+const Context = require('./context');
+
 const {
     IntType, FloatType, StringType, NullType, BoolType,
 } = require('./builtins');
 
-const util = require('util');
+module.exports = function (exp) {
+    exp.analyze(Context.INITIAL);
+};
 
 function getType(typeString) {
     // if (typeString instanceof ArrayType) {
@@ -170,21 +174,22 @@ Literal.prototype.analyze = function () {
 MemberExpression.prototype.analyze = function (context) {
     this.object.analyze(context);
     if (this.object.reference.type instanceof ArrayType) {
+        this.type = 'array';
         this.property.analyze(context);
         check.isInteger(this.property);
         check.isInBounds(this.property.value, this.object.reference.initializer.size.value);
     } else if (this.object.reference.type === 'object') {
+        this.type = 'object';
         this.property = new IdExp(this.property);
         this.property.analyze(this.object.reference.initializer.ObjContext);
     } else {
         throw Error('Non subscriptable expression');
     }
-    this.type = this.property.type;
 };
 
 Method.prototype.analyzeSignature = function (context) {
     this.bodyContext = context.createChildContextForFunctionBody(this);
-    this.parameters.forEach(p => p.analyze(this.bodyContext));
+    if (this.parameters) this.parameters.forEach(p => p.analyze(this.bodyContext));
     context.add(this);
 };
 

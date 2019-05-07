@@ -4,16 +4,16 @@
  * Requiring this module adds a gen() method to each of the AST classes, except
  * for types, and fields, which don’t figure into code generation. It exports a
  * function that generates a complete, pretty-printed JavaScript program for a
- * Tiger expression, bundling the translation of the Tiger standard library with
+ * goof3 expression, bundling the translation of the goof3 standard library with
  * the expression's translation.
  *
  * Each gen() method returns a fragment of JavaScript.
  *
  *   const generate = require('./backend/javascript-generator');
- *   generate(tigerExpression);
+ *   generate(goof3Expression);
  */
 
-const format = require('prettier-eslint');
+const beautify = require('js-beautify');
 
 const {
     ArrayExpression,
@@ -38,13 +38,13 @@ const {
 } = require('../ast');
 
 // const Context = require('../semantics/context');
-const { StringType } = require('../semantics/builtins');
+const { StringType, NullType, BoolType } = require('../semantics/builtins');
 
 function makeOp(op) {
     return { '=': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
 }
 
-// javaScriptId(e) takes any Tiger object with an id property, such as a Variable,
+// javaScriptId(e) takes any goof3 object with an id property, such as a Variable,
 // Param, or Func, and produces a JavaScript name by appending a unique identifying
 // suffix, such as '_1' or '_503'. It uses a cache so it can return the same exact
 // string each time it is called with a particular entity.
@@ -59,36 +59,20 @@ const javaScriptId = (() => {
     };
 })();
 
-// function generateLibraryFunctions() {
-//     function generateLibraryStub(name, params, body) {
-//         // const entity = Context.INITIAL.valueMap.get(name);
-//         return `function ${javaScriptId(name)}(${params}) {${body}}`;
-//     }
-//     return [generateLibraryStub('print', 's', 'console.log(s);')].join('');
-// }
+const builtin = {
+    poof([s]) {
+        return `console.log(${s})`;
+    },
+};
 
 module.exports = function (exp) {
-    // const libraryFunctions = generateLibraryFunctions();
-    // Separate with a semicolon to avoid possible translation as a function call
-    // exp.forEach(e => e.gen());
-    const sourceCode = `${exp.gen()}`;
-    // const options = {
-    //     text: sourceCode,
-    //     filePath: './.eslintrc.json',
-    //     parser: 'babylon',
-    // };
-    // const program = format(options);
-    return sourceCode;
+    return beautify(exp.gen(), { indent_size: 2 });
 };
 
 ArrayExpression.prototype.gen = function () {
     const elements = this.elements.map(e => e.gen());
     return `Array(${this.size.gen()}).fill(${elements})`;
 };
-
-// ArrayType.prototype.gen = function () {
-//     return `${this.type.gen}`;
-// };
 
 AssignmentStatement.prototype.gen = function () {
     return `${this.target.gen()} = ${this.source.gen()}`;
@@ -101,13 +85,16 @@ BinaryExpression.prototype.gen = function () {
 Block.prototype.gen = function () {
     if (Array.isArray(this.statements)) {
         const statements = this.statements.map(s => s.gen());
-        return `${statements.join(';')};`;
+        return `${statements.join(';')}`;
     }
     return `${this.statements.gen()};`;
 };
 
 CallExpression.prototype.gen = function () {
     const args = this.args.map(a => a.gen());
+    if (this.callee.builtin) {
+        return builtin[this.callee.id](args);
+    }
     return `${javaScriptId(this.callee)}(${args.join(',')})`;
 };
 
@@ -124,15 +111,26 @@ ForStatement.prototype.gen = function () {
 
 Func.prototype.gen = function () {
     const name = javaScriptId(this);
-    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : '';
+    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : [''];
     const body = this.body.gen();
     return `function ${name} (${params.join(',')}) {${body}}`;
 };
 
 GifStatement.prototype.gen = function () {
-    const thenPart = this.consequents ? this.consequents.map(s => s.gen()) : '';
-    const elsePart = this.alternate ? this.alternate.gen() : '';
-    return `if (${this.tests[0].gen()}) {${thenPart[0]}} ${elsePart}`;
+    const tests = this.tests.map(t => t.gen());
+    let consequents;
+    if (this.consequents) {
+        consequents = this.consequents.map(s => `${s.gen()}`);
+    } else {
+        return `if (${tests[0]}) {}}`;
+    }
+    let elseIfs = '';
+    const ifPart = `if ${tests[0]} {${consequents[0]}}`;
+    for (let i = 1; i < consequents.length; i += 1) {
+        elseIfs += `else if ${tests[i]} {${consequents[i]}}`;
+    }
+    const elsePart = this.alternate ? `else {${this.alternate.gen()}}` : '';
+    return `${ifPart} ${elseIfs} ${elsePart}`;
 };
 
 IdExp.prototype.gen = function () {
@@ -140,36 +138,41 @@ IdExp.prototype.gen = function () {
 };
 
 Literal.prototype.gen = function () {
-    return this.type === StringType ? `"${this.value}"` : this.value;
+    switch (this.type) {
+    case StringType:
+        return `"${this.value}"`;
+    case NullType:
+        return 'null';
+    case BoolType:
+        if (this.value === 'toof') return 'true';
+        return 'false';
+    default:
+        return this.value;
+    }
 };
 
 MemberExpression.prototype.gen = function () {
-    return `${this.object.gen()}[${this.property.gen()}]`;
+    if (this.type === 'array') {
+        return `${this.object.gen()}[${this.property.gen()}]`;
+    }
+    return `${this.object.gen()}.${this.property.gen()}`;
 };
 
 Method.prototype.gen = function () {
     const name = javaScriptId(this);
-    const params = this.params.map(p => javaScriptId(p));
-    let body = this.body.gen();
-    if (this.body.type) {
-        // "Void" functions do not have a JS return, others do
-        body = `return ${body}`;
-    }
-    return `function ${name} (${params.join(',')}) {${body}}`;
+    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : [''];
+    const body = this.body.gen();
+    return `${name} (${params.join(',')}) {${body}}`;
 };
 
 ObjectExp.prototype.gen = function () {
     const properties = this.properties.map(p => p.gen());
-    return `${properties.join(',')}`;
+    return `{${properties.join(',')}}`;
 };
 
 Parameter.prototype.gen = function () {
     return javaScriptId(this);
 };
-
-// PrimitiveType.prototype.gen = function () {
-//     return `${this.type}`;
-// };
 
 ReturnStatement.prototype.gen = function () {
     return `return ${this.returnValue.gen()}`;
