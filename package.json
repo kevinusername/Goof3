@@ -19,9 +19,8 @@
   },
   "homepage": "https://github.com/kevinusername/Goof3#readme",
   "dependencies": {
-    "js-beautify": "^1.10.0",
     "ohm-js": "^0.14.0",
-    "pretty-js": "^0.2.0",
+    "prettier": "^1.17.0",
     "yargs": "^13.2.2"
   },
   "devDependencies": {

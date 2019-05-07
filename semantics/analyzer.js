@@ -114,7 +114,7 @@ BinaryExpression.prototype.analyze = function (context) {
 
 Block.prototype.analyze = function (context) {
     if (Array.isArray(this.statements)) this.statements.forEach(s => s.analyze(context));
-    else this.statements.analyze(context);
+    else if (this.statements) this.statements.analyze(context);
 };
 
 BreakStatement.prototype.analyze = function (context) {

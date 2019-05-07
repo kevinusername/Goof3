@@ -45,7 +45,9 @@ function handleAccess(a) {
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
     Program(body) {
-        return new Block(body.ast());
+        const bodyAst = body.ast();
+        const newBody = bodyAst.length === 0 ? new Block(null) : new Block(bodyAst);
+        return newBody;
     },
     Block(_, program, _2) {
         return new Block(program.ast());
