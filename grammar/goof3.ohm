@@ -10,6 +10,7 @@ Goof3 {
                 | (PropAccess | VarExp) "=="+ Exp                    -- reassignment
                 | "poof" "(" Exp ")"                                 -- print
                 | yeet Exp                                           -- return
+                | "boof"                                             -- break
                 | Exp                                                -- Expression
 
     Function    = "phoof" id "(" ListOf<Parameter, ","> ")" Block    -- declaration
@@ -65,7 +66,7 @@ Goof3 {
     Type        = typeid ("[" "]")?
     typeid      = "whole_number" | "true_or_false" | "array_of_chars" | "not_whole_number"
 
-    keyword     = ("goof" | yeet | "poof" | "yack" | "phoof" | "toof" | "foof" |
+    keyword     = ("goof" | yeet | "poof" | "yack" | "phoof" | "toof" | "foof" | "boof" |
                   "gif" | "four" | "wooloop" | "xD" | ";)" | "(;"| "elsegif" | "else" | "temp"
                   | typeid) ~idrest
     id          = ~keyword letter idrest*

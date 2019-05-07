@@ -20,6 +20,7 @@ const {
     AssignmentStatement,
     BinaryExpression,
     Block,
+    BreakStatement,
     CallExpression,
     Field,
     ForStatement,
@@ -88,6 +89,10 @@ Block.prototype.gen = function () {
         return `${statements.join(';')}`;
     }
     return `${this.statements.gen()};`;
+};
+
+BreakStatement.prototype.gen = function () {
+    return 'break';
 };
 
 CallExpression.prototype.gen = function () {
@@ -187,5 +192,5 @@ VariableDeclaration.prototype.gen = function () {
 };
 
 WhileStatement.prototype.gen = function () {
-    return `while (${this.test.gen()}) { ${this.body.gen()}))`;
+    return `while (${this.test.gen()}) {${this.body.gen()}}`;
 };

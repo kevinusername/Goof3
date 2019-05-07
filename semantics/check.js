@@ -86,6 +86,11 @@ module.exports = {
             args.length === params.length,
             `Expected ${params.length} args in call, got ${args.length}`,
         );
-        args.forEach((arg, i) => this.isAssignableTo(arg, params[i].type));
+        args.forEach((arg, i) => {
+            if (params[i].type === StringType && arg.type !== StringType) {
+                arg.type = StringType;
+            }
+            this.isAssignableTo(arg, params[i].type);
+        });
     },
 };

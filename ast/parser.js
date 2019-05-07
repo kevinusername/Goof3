@@ -9,6 +9,7 @@ const {
     AssignmentStatement,
     BinaryExpression,
     Block,
+    BreakStatement,
     CallExpression,
     Field,
     ForStatement,
@@ -78,6 +79,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     },
     Statement_objDec(access, id, _, obj) {
         return new VariableDeclaration(handleAccess(access.ast()), 'object', id.ast(), obj.ast());
+    },
+    Statement_break(_) {
+        return new BreakStatement();
     },
 
     // prettier-ignore

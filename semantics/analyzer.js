@@ -4,6 +4,7 @@ const {
     AssignmentStatement,
     BinaryExpression,
     Block,
+    BreakStatement,
     CallExpression,
     Field,
     ForStatement,
@@ -114,6 +115,10 @@ BinaryExpression.prototype.analyze = function (context) {
 Block.prototype.analyze = function (context) {
     if (Array.isArray(this.statements)) this.statements.forEach(s => s.analyze(context));
     else this.statements.analyze(context);
+};
+
+BreakStatement.prototype.analyze = function (context) {
+    if (!context.inLoop) throw Error('Break statement used out of loop');
 };
 
 CallExpression.prototype.analyze = function (context) {

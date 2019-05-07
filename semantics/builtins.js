@@ -7,6 +7,7 @@ const BoolType = new PrimitiveType('true_or_false');
 const NullType = new PrimitiveType('temp');
 
 const standardFunctions = [new Func('poof', [new Parameter(StringType, 's')])];
+
 standardFunctions.forEach((f) => { f.builtin = true; });
 
 module.exports = {

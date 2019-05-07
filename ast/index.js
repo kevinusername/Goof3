@@ -28,6 +28,8 @@ class Block {
     }
 }
 
+class BreakStatement {}
+
 class CallExpression {
     constructor(callee, args) {
         Object.assign(this, { callee, args });
@@ -130,6 +132,7 @@ module.exports = {
     AssignmentStatement,
     BinaryExpression,
     Block,
+    BreakStatement,
     CallExpression,
     Field,
     ForStatement,
