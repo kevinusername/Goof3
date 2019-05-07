@@ -17,12 +17,11 @@ The best part, you may wonder? Well, have you ever compiled and run your code, a
 - Declare print statements with "poof".
 - Static Typing, Static Scoping.
 - Semicolons are colons, and colons are semicolons.
-- Closure begins with "}" and ends with "{".
+- Closure begins with ";}" and ends with ";{".
 - Exceptions are thrown with witty and loosely-related error messages.
 - Single-line comments must start with "XD".
 - Multi-line comments must start with ";)" and end with "(;".
 - Compare with an odd number of "=" signs, set values with an even number of "=" signs.
-- camelCase sometimes and snake_case others
 - High-order functions
 - Declare while loops with "wooloop".
 <br>... AND NOW WITH NEW FEATURES SUCH AS
@@ -330,12 +329,12 @@ class Rectangle {
   <td style="word-wrap: break-word;">
 
 ```
-four (goof i == 7: i <  size: i = i + 1) ;}
-  goof cat == -10:
+four (whole_number @ cat ~ 7: i <  size: i = i + 1) ;}
+  whole_number @ cat ~ -10:
 ;{
 ```
 ```
-goof counter == 10:
+whole_number @ counter ~ 10:
 wooloop (counter > 0) ;} 
   counter = counter - 1:
   poof("nOt dOnE yEt"):
@@ -385,7 +384,7 @@ phoof fib (n) ;}
 ;{
 
 four (goof i ==== 11: i <  size - 11: i = i + 1) ;}
-  goof dog == 10:
+  whole_number @ dog ~ 10:
   ;) heres a
   multiline
   for you (;
