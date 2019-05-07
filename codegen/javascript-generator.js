@@ -84,11 +84,12 @@ BinaryExpression.prototype.gen = function () {
 };
 
 Block.prototype.gen = function () {
+    console.log(this);
     if (Array.isArray(this.statements)) {
         const statements = this.statements.map(s => s.gen());
-        return `${statements.join(';')}`;
+        return `${statements.join(';')};`;
     }
-    return `${this.statements.gen()};`;
+    return `${this.statements.gen()}`;
 };
 
 BreakStatement.prototype.gen = function () {

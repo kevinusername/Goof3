@@ -72,8 +72,8 @@ Goof3 {
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
     stringlit   = "\"" (~("\""|"\n") any)* "\""
-    intlit      = digit+
-    declit      = digit+ "." digit*
+    intlit      = "-"? digit+
+    declit      = "-"? digit+ "." digit*
     numlit      = declit | intlit
     boolean     = "toof" | "foof"
     null        = "temp"

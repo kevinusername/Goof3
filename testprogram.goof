@@ -1,7 +1,0 @@
-phoof swapWithoutTemp (whole_number @ a, whole_number @ b) ;}
-    a ==== a - b:
-    b == a + b:
-    a ======== b - a:
-    yeet a:
-;{
-swapWithoutTemp(30, 11):

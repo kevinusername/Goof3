@@ -165,10 +165,10 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
         }
         return new ArrayType(type.ast());
     },
-    intlit(_) {
+    intlit(_1, _2) {
         return new Literal('whole_number', this.sourceString);
     },
-    declit(_1, _2, _3) {
+    declit(_1, _2, _3, _4) {
         return new Literal('not_whole_number', this.sourceString);
     },
     stringlit(_1, chars, _6) {
