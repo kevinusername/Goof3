@@ -8,7 +8,9 @@ const NullType = new PrimitiveType('temp');
 
 const standardFunctions = [new Func('poof', [new Parameter(StringType, 's')])];
 
-standardFunctions.forEach((f) => { f.builtin = true; });
+standardFunctions.forEach((f) => {
+    f.builtin = true;
+});
 
 module.exports = {
     IntType,
