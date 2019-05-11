@@ -89,8 +89,8 @@ BinaryExpression.prototype.optimize = function () {
         if (this.op === '*') return new Literal(resultType, x * y);
         if (this.op === '/') return new Literal(resultType, x / y);
         if (/[<>]/.test(this.op)) {
-            // eslint-disable-next-line no-eval
-            return new Literal('true_or_false', eval(`${x} ${this.op} ${y}`) ? 'toof' : 'foof');
+            // eslint-disable-next-line no-new-func
+            return new Literal('true_or_false', new Function(`return ${x} ${this.op} ${y}`) ? 'toof' : 'foof');
         }
         if (/(==)|(^=$)/.test(this.op) && x === y) return new Literal('true_or_false', 'toof');
         if (this.op === '!=' && x !== y) return new Literal('true_or_false', 'foof');
