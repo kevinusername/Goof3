@@ -1,10 +1,3 @@
-/*
- * JavaScript Code Generator Tests
- *
- * These tests check that the JavaScript generator produces the target
- * JavaScript that we expect.
- */
-
 const parse = require('../../ast/parser');
 const analyze = require('../../semantics/analyzer');
 const generate = require('../../codegen/javascript-generator');
@@ -105,7 +98,7 @@ const fixture = {
     ],
 };
 
-describe('The JavaScript generator', () => {
+describe('The JavaScript generator with optimization', () => {
     Object.entries(fixture).forEach(([name, [source, expected]]) => {
         test(`produces the correct output for ${name}`, (done) => {
             const ast = parse(source);
@@ -116,12 +109,3 @@ describe('The JavaScript generator', () => {
         });
     });
 });
-
-// Object.entries(fixture).forEach(([name, [source, expected]]) => {
-//     const ast = parse(source);
-//     analyze(ast);
-//     ast.optimize();
-//     console.log(`${name}:
-//         goof: ${source}
-//         js:\n${generate(ast)}\n\n`);
-// });
