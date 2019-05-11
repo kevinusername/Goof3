@@ -50,7 +50,11 @@ Block {
        action:
         AssignmentStatement {
           target: IdExp { reference: 'i' },
-          source: Literal { type: 'whole_number', value: '1' } },
+          source:
+           BinaryExpression {
+             op: '+',
+             left: IdExp { reference: 'i' },
+             right: Literal { type: 'whole_number', value: '1' } } },
        body:
         Block {
           statements:
@@ -67,7 +71,7 @@ Block {
         [ Literal {
             type: 'array_of_chars',
             value:
-             'you should check out our \'npm run-script format\' script, its cool!' } ] },
+             "you should check out our 'npm run-script format' script, its cool!" } ] },
      CallExpression {
        callee: 'poof',
        args:

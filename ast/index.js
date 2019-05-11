@@ -66,6 +66,8 @@ class IdExp {
     }
 }
 
+class Ignore {}
+
 class Literal {
     constructor(type, value) {
         Object.assign(this, { type, value });
@@ -139,6 +141,7 @@ module.exports = {
     Func,
     GifStatement,
     IdExp,
+    Ignore,
     Literal,
     MemberExpression,
     Method,

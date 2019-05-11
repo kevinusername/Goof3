@@ -28,8 +28,8 @@ const util = require('util');
 const yargs = require('yargs');
 const parse = require('./ast/parser');
 const analyze = require('./semantics/analyzer');
-// require('./semantics/optimizer');
 const generate = require('./codegen/javascript-generator');
+require('./semantics/optimizer');
 
 // If compiling from a string, return the AST, IR, or compiled code as a string.
 function compile(sourceCode, { astOnly, frontEndOnly, shouldOptimize }) {

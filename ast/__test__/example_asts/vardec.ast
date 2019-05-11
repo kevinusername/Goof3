@@ -10,7 +10,7 @@ Block {
        type: 'array_of_chars',
        id: 'myStr',
        initializer:
-        Literal { type: 'array_of_chars', value: 'YOU CAN\'T CHANGE THIS' } },
+        Literal { type: 'array_of_chars', value: "YOU CAN'T CHANGE THIS" } },
      VariableDeclaration {
        access: 'local',
        type: 'array_of_chars',

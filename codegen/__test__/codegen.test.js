@@ -8,6 +8,7 @@
 const parse = require('../../ast/parser');
 const analyze = require('../../semantics/analyzer');
 const generate = require('../javascript-generator');
+require('../../semantics/optimizer');
 
 const fixture = {
     hello: [String.raw`poof("Hello, world\n"):`, String.raw`console.log("Hello, world\n")`],
@@ -25,7 +26,7 @@ const fixture = {
         /function f_(\d+)\(x_\d+, y_\d+\) \{\s*}\s*f_\1\(1, ""\)/,
     ],
 
-    whileLoop: [String.raw`wooloop (7 === 7) ;} boof: ;{`, /while \(7 == 7\) \{\s*break;\s*\}/],
+    whileLoop: [String.raw`wooloop (7 === 7) ;} boof: ;{`, /while \(7 === 7\) \{\s*break;\s*\}/],
 
     forLoop: [
         String.raw`whole_number @ hi == 10: four (whole_number @ i == 0: i <= hi: i == i + 1) ;} ;{`,
@@ -36,7 +37,7 @@ const fixture = {
 
     ifThenElse: [
         String.raw`gif(3 === 3) ;} 5: ;{ else ;} 8: ;{`,
-        /if \(3 == 3\) {\s*5;\s*} else {\s*8;\s*}/,
+        /if \(3 === 3\) {\s*5;\s*} else {\s*8;\s*}/,
     ],
 
     arrayAccess: [
@@ -46,7 +47,7 @@ const fixture = {
 
     objects: [
         'myObj == # whole_number @ x ~ 15, array_of_chars @ name ~ "Doofus", phoof sayHello() ;} poof("hi there"): ;{, phoof sayName(array_of_chars @ name) ;} poof(name): ;{#: myObj.x:',
-        /let myObj_(\d+) = {\s*x_(\d+): 15,\s*name_(\d+): "Doofus",\s*sayHello_(\d+)\(\) {\s*console.log\("hi there"\);\s*},\s*sayName_(\d+)\(name_(\d+)\) {\s*console.log\(name_\6\);\s*}\s*};\s*myObj_\1.x_\2;/,
+        /let myObj_(\d+) = {\s*x_(\d+): 15,\s*name_(\d+): "Doofus",\s*sayHello_(\d+)\(\) {\s*console.log\("hi there"\);\s*},\s*sayName_(\d+)\(name_(\d+)\) {\s*console.log\(name_\6\);\s*}\s*};\s*myObj_\1\["x_\2"\];/,
     ],
 
     bigBoi: [
@@ -56,7 +57,7 @@ const fixture = {
 
     bigIf: [
         'gif ( (1 > 4) ===== foof) ;} poof("troof"): ;{ elsegif (5 = 1) ;} poof(toof): ;{ else ;} poof("idk"): ;{',
-        /if \(1 > 4 == false\) {\s*console.log\("troof"\);\s*}\s*else if \(5 === 1\) {\s*console.log\("toof"\);\s*}\s*else {\s*console.log\("idk"\);\s*}/,
+        /if \(1 > 4 === false\) {\s*console.log\("troof"\);\s*}\s*else if \(5 === 1\) {\s*console.log\("toof"\);\s*}\s*else {\s*console.log\("idk"\);\s*}/,
     ],
 
     throw: [
@@ -75,3 +76,12 @@ describe('The JavaScript generator', () => {
         });
     });
 });
+
+// Object.entries(fixture).forEach(([name, [source, expected]]) => {
+//     const ast = parse(source);
+//     analyze(ast);
+//     ast.optimize();
+//     console.log(`${name}:
+//         goof: ${source}
+//         js:\n${generate(ast)}\n\n`);
+// });

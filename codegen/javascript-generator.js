@@ -27,6 +27,7 @@ const {
     Func,
     GifStatement,
     IdExp,
+    Ignore,
     Literal,
     MemberExpression,
     Method,
@@ -40,7 +41,8 @@ const {
 const { StringType, NullType, BoolType } = require('../semantics/builtins');
 
 function makeOp(op) {
-    return { '=': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
+    // eslint-disable-next-line object-curly-newline
+    return { '=': '===', '==': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
 }
 
 // javaScriptId(e) takes any goof3 object with an id property, such as a Variable,
@@ -136,6 +138,10 @@ IdExp.prototype.gen = function () {
     return javaScriptId(this.reference);
 };
 
+Ignore.prototype.gen = function () {
+    return '';
+};
+
 Literal.prototype.gen = function () {
     switch (this.type) {
     case StringType:
@@ -154,7 +160,7 @@ MemberExpression.prototype.gen = function () {
     if (this.accessType === 'array') {
         return `${this.object.gen()}[${this.property.gen()}]`;
     }
-    return `${this.object.gen()}.${this.property.gen()}`;
+    return `${this.object.gen()}['${this.property.gen()}']`;
 };
 
 Method.prototype.gen = function () {
