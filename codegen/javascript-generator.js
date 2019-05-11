@@ -27,6 +27,7 @@ const {
     Func,
     GifStatement,
     IdExp,
+    Ignore,
     Literal,
     MemberExpression,
     Method,
@@ -134,6 +135,10 @@ GifStatement.prototype.gen = function () {
 
 IdExp.prototype.gen = function () {
     return javaScriptId(this.reference);
+};
+
+Ignore.prototype.gen = function () {
+    return '';
 };
 
 Literal.prototype.gen = function () {

@@ -1,0 +1,29 @@
+Block {
+  statements:
+   [ VariableDeclaration {
+       access: 'global',
+       type: 'whole_number',
+       id: 'x',
+       initializer:
+        BinaryExpression {
+          op: '*',
+          left: Literal { type: 'whole_number', value: '2' },
+          right: Literal { type: 'whole_number', value: '8' } } },
+     GifStatement {
+       tests:
+        [ BinaryExpression {
+            op: '==',
+            left:
+             BinaryExpression {
+               op: '*',
+               left: Literal { type: 'whole_number', value: '0' },
+               right: Literal { type: 'whole_number', value: '9' } },
+            right: Literal { type: 'whole_number', value: '0' } } ],
+       consequents:
+        [ Block {
+            statements:
+             Block {
+               statements:
+                [ ReturnStatement {
+                    returnValue: Literal { type: 'array_of_chars', value: 'toof' } } ] } } ],
+       alternate: null } ] }

@@ -67,7 +67,7 @@ Block {
         [ Literal {
             type: 'array_of_chars',
             value:
-             'you should check out our \'npm run-script format\' script, its cool!' } ] },
+             "you should check out our 'npm run-script format' script, its cool!" } ] },
      CallExpression {
        callee: 'poof',
        args:

@@ -6,3 +6,7 @@ wooloop (toof) ;}
     boof:
   ;{
 ;{
+
+wooloop(foof) ;}
+  poof("the optimizer should remove this useless loop"):
+;{
