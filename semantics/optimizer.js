@@ -221,5 +221,6 @@ WhileStatement.prototype.optimize = function () {
         return new Ignore();
     }
     this.body = this.body.optimize();
+    if (!this.body.statements.statements) return new Ignore();
     return this;
 };
