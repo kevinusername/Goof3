@@ -24,4 +24,17 @@ Block {
                   tests: [ Literal { type: 'true_or_false', value: 'toof' } ],
                   consequents:
                    [ Block { statements: Block { statements: [ BreakStatement {} ] } } ],
-                  alternate: null } ] } } } ] }
+                  alternate: null } ] } } },
+     WhileStatement {
+       test: Literal { type: 'true_or_false', value: 'foof' },
+       body:
+        Block {
+          statements:
+           Block {
+             statements:
+              [ CallExpression {
+                  callee: 'poof',
+                  args:
+                   [ Literal {
+                       type: 'array_of_chars',
+                       value: 'the optimizer should remove this useless loop' } ] } ] } } } ] }

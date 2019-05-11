@@ -17,8 +17,9 @@ Goof3 {
     If          = "gif" "(" Exp ")" Block
                   ("elsegif" "(" Exp ")" Block)*
                   ("else" Block)?
-    Loop        = "four" "(" ListOf<Statement_assignment, ",">
-                  ":" Exp ":" Statement_reassignment ")" Block       -- for
+    Loop        = ("four" "(" ListOf<Statement_assignment, ","> ":"
+                  (Exp) ":"
+                  (Statement_reassignment|Exp4_increment)")" Block)  -- for
                 | "wooloop" "(" Exp ")" Block                        -- while
 
     Exp         = Exp logOp Exp1                                     -- logical

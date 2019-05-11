@@ -23,11 +23,11 @@ const {
 } = require('../ast');
 
 function isZero(e) {
-    return e instanceof Literal && e.value === 0;
+    return e instanceof Literal && e.value === '0';
 }
 
 function isOne(e) {
-    return e instanceof Literal && e.value === 1;
+    return e instanceof Literal && e.value === '1';
 }
 
 function bothLiterals(b) {
@@ -44,15 +44,16 @@ function isTrue(item) {
 
 ArrayExpression.prototype.optimize = function () {
     this.elements = this.elements.map(e => e.optimize());
-    this.size = this.size.optimize;
+    this.size = this.size.optimize();
     return this;
 };
 
 AssignmentStatement.prototype.optimize = function () {
     this.target = this.target.optimize();
     this.source = this.source.optimize();
-    if (this.target === this.source) {
-        return null;
+    // Dont need to assign something to itself
+    if (this.target instanceof IdExp && this.source instanceof IdExp) {
+        if (this.target.reference === this.source.reference) return new Ignore();
     }
     return this;
 };
@@ -64,8 +65,8 @@ BinaryExpression.prototype.optimize = function () {
     const rightType = this.right.type.type;
     if (this.op === '+' && isZero(this.right)) return this.left;
     if (this.op === '+' && isZero(this.left)) return this.right;
-    if (this.op === '*' && isZero(this.right)) return new Literal(leftType, 0);
-    if (this.op === '*' && isZero(this.left)) return new Literal(rightType, 0);
+    if (this.op === '*' && isZero(this.right)) return new Literal(leftType, '0');
+    if (this.op === '*' && isZero(this.left)) return new Literal(rightType, '0');
     if (this.op === '*' && isOne(this.right)) return this.left;
     if (this.op === '*' && isOne(this.left)) return this.right;
 
@@ -89,7 +90,7 @@ BinaryExpression.prototype.optimize = function () {
         if (this.op === '/') return new Literal(resultType, x / y);
         if (/[<>]/.test(this.op)) {
             // eslint-disable-next-line no-eval
-            return new Literal('true_or_false', eval(`${x} ${this.op} ${y}`));
+            return new Literal('true_or_false', eval(`${x} ${this.op} ${y}`) ? 'toof' : 'foof');
         }
         if (/(==)|(^=$)/.test(this.op) && x === y) return new Literal('true_or_false', 'toof');
         if (this.op === '!=' && x !== y) return new Literal('true_or_false', 'foof');
@@ -139,7 +140,7 @@ GifStatement.prototype.optimize = function () {
     let toRemove = [];
     // Find cases that are always False
     this.tests.forEach((item, i) => {
-        if (item instanceof Literal && item.value === 'foof') {
+        if (isFalse(item)) {
             toRemove.push(i);
         }
     });
@@ -163,9 +164,13 @@ GifStatement.prototype.optimize = function () {
         this.consequents.splice(i, 1);
     });
 
-    if (this.alternate) this.alternate = this.alternate.optimize();
-    // Remove empty else {} statement
-    if (!this.alternate.statements.statements) this.alternate = null;
+    if (this.alternate) {
+        this.alternate = this.alternate.optimize();
+        // Remove empty else {} statement
+        if (!this.alternate.statements.statements) this.alternate = null;
+    }
+
+    if (this.tests.length === 0) return new Ignore();
     return this;
 };
 

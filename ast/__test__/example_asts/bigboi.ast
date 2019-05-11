@@ -50,7 +50,11 @@ Block {
        action:
         AssignmentStatement {
           target: IdExp { reference: 'i' },
-          source: Literal { type: 'whole_number', value: '1' } },
+          source:
+           BinaryExpression {
+             op: '+',
+             left: IdExp { reference: 'i' },
+             right: Literal { type: 'whole_number', value: '1' } } },
        body:
         Block {
           statements:

@@ -41,6 +41,7 @@ const {
 const { StringType, NullType, BoolType } = require('../semantics/builtins');
 
 function makeOp(op) {
+    // eslint-disable-next-line object-curly-newline
     return { '=': '===', '==': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
 }
 
@@ -159,7 +160,7 @@ MemberExpression.prototype.gen = function () {
     if (this.accessType === 'array') {
         return `${this.object.gen()}[${this.property.gen()}]`;
     }
-    return `${this.object.gen()}.${this.property.gen()}`;
+    return `${this.object.gen()}['${this.property.gen()}']`;
 };
 
 Method.prototype.gen = function () {

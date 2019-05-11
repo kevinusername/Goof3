@@ -18,12 +18,57 @@ Block {
                op: '*',
                left: Literal { type: 'whole_number', value: '0' },
                right: Literal { type: 'whole_number', value: '9' } },
-            right: Literal { type: 'whole_number', value: '0' } } ],
+            right: Literal { type: 'whole_number', value: '0' } },
+          Literal { type: 'true_or_false', value: 'foof' },
+          BinaryExpression {
+            op: '||',
+            left: Literal { type: 'true_or_false', value: 'toof' },
+            right: Literal { type: 'true_or_false', value: 'foof' } },
+          BinaryExpression {
+            op: '>',
+            left: Literal { type: 'whole_number', value: '5' },
+            right: Literal { type: 'whole_number', value: '4' } } ],
        consequents:
         [ Block {
             statements:
              Block {
                statements:
                 [ ReturnStatement {
-                    returnValue: Literal { type: 'array_of_chars', value: 'toof' } } ] } } ],
-       alternate: null } ] }
+                    returnValue: Literal { type: 'array_of_chars', value: 'toof' } } ] } },
+          Block {
+            statements:
+             Block {
+               statements:
+                [ CallExpression {
+                    callee: 'poof',
+                    args:
+                     [ Literal { type: 'array_of_chars', value: 'optimizer will remove this' } ] } ] } },
+          Block {
+            statements:
+             Block {
+               statements:
+                [ CallExpression {
+                    callee: 'poof',
+                    args:
+                     [ Literal { type: 'array_of_chars', value: 'this will still happen' } ] } ] } },
+          Block { statements: Block { statements: null } } ],
+       alternate: Block { statements: Block { statements: null } } },
+     BinaryExpression {
+       op: '||',
+       left: Literal { type: 'true_or_false', value: 'foof' },
+       right: Literal { type: 'true_or_false', value: 'toof' } },
+     BinaryExpression {
+       op: '&&',
+       left: Literal { type: 'true_or_false', value: 'foof' },
+       right: Literal { type: 'true_or_false', value: 'toof' } },
+     BinaryExpression {
+       op: '<',
+       left: Literal { type: 'whole_number', value: '5' },
+       right: Literal { type: 'whole_number', value: '2' } },
+     BinaryExpression {
+       op: '==',
+       left: Literal { type: 'whole_number', value: '5' },
+       right: Literal { type: 'whole_number', value: '5' } },
+     AssignmentStatement {
+       target: IdExp { reference: 'x' },
+       source: IdExp { reference: 'x' } } ] }
