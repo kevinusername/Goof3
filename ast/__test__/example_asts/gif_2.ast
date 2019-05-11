@@ -71,4 +71,8 @@ Block {
        right: Literal { type: 'whole_number', value: '5' } },
      AssignmentStatement {
        target: IdExp { reference: 'x' },
-       source: IdExp { reference: 'x' } } ] }
+       source: IdExp { reference: 'x' } },
+     BinaryExpression {
+       op: '+',
+       left: Literal { type: 'whole_number', value: '5' },
+       right: Literal { type: 'whole_number', value: '5' } } ] }

@@ -22,6 +22,8 @@ const {
     WhileStatement,
 } = require('../ast');
 
+const { IntType, FloatType, BoolType } = require('./builtins');
+
 function isZero(e) {
     return e instanceof Literal && e.value === '0';
 }
@@ -30,8 +32,11 @@ function isOne(e) {
     return e instanceof Literal && e.value === '1';
 }
 
-function bothLiterals(b) {
-    return b.left instanceof Literal && b.right instanceof Literal;
+function bothNumLiterals(b) {
+    const areLiterals = b.left instanceof Literal && b.right instanceof Literal;
+    const leftIsNum = b.left.type === IntType || b.left.type === FloatType;
+    const rightIsNum = b.right.type === IntType || b.right.type === FloatType;
+    return areLiterals && leftIsNum && rightIsNum;
 }
 
 function isFalse(item) {
@@ -61,10 +66,11 @@ AssignmentStatement.prototype.optimize = function () {
 BinaryExpression.prototype.optimize = function () {
     this.left = this.left.optimize();
     this.right = this.right.optimize();
-    const leftType = this.left.type.type;
-    const rightType = this.right.type.type;
+    const leftType = this.left.type;
+    const rightType = this.right.type;
     if (this.op === '+' && isZero(this.right)) return this.left;
     if (this.op === '+' && isZero(this.left)) return this.right;
+    if (this.op === '-' && isZero(this.right)) return this.left;
     if (this.op === '*' && isZero(this.right)) return new Literal(leftType, '0');
     if (this.op === '*' && isZero(this.left)) return new Literal(rightType, '0');
     if (this.op === '*' && isOne(this.right)) return this.left;
@@ -76,24 +82,27 @@ BinaryExpression.prototype.optimize = function () {
     if (this.op === '||' && isTrue(this.left)) return this.left;
 
     if (this.op === '&&' && (isFalse(this.right) || isFalse(this.left))) {
-        return new Literal('true_or_false', 'foof');
+        return new Literal(BoolType, 'foof');
     }
 
-    if (bothLiterals(this)) {
-        const [x, y] = [this.left.value, this.right.value];
-        let resultType = 'whole_number';
-        if (leftType === 'not_whole_number' || rightType === 'not_whole_number') {
-            resultType = 'not_whole_number';
+    if (bothNumLiterals(this)) {
+        const [x, y] = [parseFloat(this.left.value), parseFloat(this.right.value)];
+        let resultType = IntType;
+        if (leftType === FloatType || rightType === FloatType) {
+            resultType = FloatType;
         }
         if (this.op === '+') return new Literal(resultType, x + y);
         if (this.op === '*') return new Literal(resultType, x * y);
         if (this.op === '/') return new Literal(resultType, x / y);
         if (/[<>]/.test(this.op)) {
-            // eslint-disable-next-line no-new-func
-            return new Literal('true_or_false', new Function(`return ${x} ${this.op} ${y}`) ? 'toof' : 'foof');
+            return new Literal(
+                BoolType,
+                // eslint-disable-next-line no-new-func
+                new Function(`return ${x} ${this.op} ${y}`) ? 'toof' : 'foof',
+            );
         }
-        if (/(==)|(^=$)/.test(this.op) && x === y) return new Literal('true_or_false', 'toof');
-        if (this.op === '!=' && x !== y) return new Literal('true_or_false', 'foof');
+        if (/(==)|(^=$)/.test(this.op)) return new Literal(BoolType, x === y ? 'toof' : 'foof');
+        if (this.op === '!=') return new Literal(BoolType, x !== y ? 'toof' : 'foof');
     }
     return this;
 };
