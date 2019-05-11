@@ -5,10 +5,16 @@ gif ((0 * 9) ===== 0) ;}
 elsegif (foof) ;}
   poof("optimizer will remove this"):
 ;{
-elsegif (toof) ;}
+elsegif (toof || foof) ;}
   poof("this will still happen"):
 ;{
 elsegif (5 > 4) ;}
   xD but this empty case will be removed entirely
 ;{
 else ;};{ xD but this will be also be removed in optimization
+
+foof || toof:
+foof && toof:
+5 <  2:
+
+5 === 5:

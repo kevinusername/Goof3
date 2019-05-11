@@ -41,7 +41,7 @@ const {
 const { StringType, NullType, BoolType } = require('../semantics/builtins');
 
 function makeOp(op) {
-    return { '=': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
+    return { '=': '===', '==': '===', '<>': '!==', '&': '&&', '|': '||' }[op] || op;
 }
 
 // javaScriptId(e) takes any goof3 object with an id property, such as a Variable,

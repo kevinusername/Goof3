@@ -34,7 +34,13 @@ function bothLiterals(b) {
     return b.left instanceof Literal && b.right instanceof Literal;
 }
 
-function validTest(test) {}
+function isFalse(item) {
+    return item instanceof Literal && item.value === 'foof';
+}
+
+function isTrue(item) {
+    return item instanceof Literal && item.value === 'toof';
+}
 
 ArrayExpression.prototype.optimize = function () {
     this.elements = this.elements.map(e => e.optimize());
@@ -62,6 +68,16 @@ BinaryExpression.prototype.optimize = function () {
     if (this.op === '*' && isZero(this.left)) return new Literal(rightType, 0);
     if (this.op === '*' && isOne(this.right)) return this.left;
     if (this.op === '*' && isOne(this.left)) return this.right;
+
+    if (this.op === '||' && isFalse(this.right)) return this.left;
+    if (this.op === '||' && isFalse(this.left)) return this.right;
+    if (this.op === '||' && isTrue(this.right)) return this.right;
+    if (this.op === '||' && isTrue(this.left)) return this.left;
+
+    if (this.op === '&&' && (isFalse(this.right) || isFalse(this.left))) {
+        return new Literal('true_or_false', 'foof');
+    }
+
     if (bothLiterals(this)) {
         const [x, y] = [this.left.value, this.right.value];
         let resultType = 'whole_number';
@@ -71,6 +87,12 @@ BinaryExpression.prototype.optimize = function () {
         if (this.op === '+') return new Literal(resultType, x + y);
         if (this.op === '*') return new Literal(resultType, x * y);
         if (this.op === '/') return new Literal(resultType, x / y);
+        if (/[<>]/.test(this.op)) {
+            // eslint-disable-next-line no-eval
+            return new Literal('true_or_false', eval(`${x} ${this.op} ${y}`));
+        }
+        if (/(==)|(^=$)/.test(this.op) && x === y) return new Literal('true_or_false', 'toof');
+        if (this.op === '!=' && x !== y) return new Literal('true_or_false', 'foof');
     }
     return this;
 };
@@ -115,27 +137,34 @@ Func.prototype.optimize = function () {
 GifStatement.prototype.optimize = function () {
     this.tests = this.tests.map(e => e.optimize());
     let toRemove = [];
+    // Find cases that are always False
     this.tests.forEach((item, i) => {
         if (item instanceof Literal && item.value === 'foof') {
             toRemove.push(i);
         }
     });
+    // Remove cases where the test will never happen
     toRemove.forEach((i) => {
         this.tests.splice(i, 1);
         this.consequents.splice(i, 1);
     });
+
     this.consequents = this.consequents.map(cons => cons.optimize());
     toRemove = [];
+    // Find empty bodies
     this.consequents.forEach((body, i) => {
         if (!body.statements.statements) {
             toRemove.push(i);
         }
     });
+    // Remove cases with empty bodies
     toRemove.forEach((i) => {
         this.tests.splice(i, 1);
         this.consequents.splice(i, 1);
     });
+
     if (this.alternate) this.alternate = this.alternate.optimize();
+    // Remove empty else {} statement
     if (!this.alternate.statements.statements) this.alternate = null;
     return this;
 };
