@@ -1,40 +1,58 @@
 Block {
-  statements:
-   [ VariableDeclaration {
-       access: 'global',
-       type: 'whole_number',
-       id: 'i',
-       initializer: Literal { type: 'whole_number', value: '0' } },
-     WhileStatement {
-       test: Literal { type: 'true_or_false', value: 'toof' },
-       body:
-        Block {
-          statements:
-           Block {
-             statements:
-              [ CallExpression { callee: 'poof', args: [ IdExp { reference: 'i' } ] },
-                AssignmentStatement {
-                  target: IdExp { reference: 'i' },
-                  source:
-                   BinaryExpression {
-                     op: '+',
-                     left: IdExp { reference: 'i' },
-                     right: Literal { type: 'whole_number', value: '1' } } },
-                GifStatement {
-                  tests: [ Literal { type: 'true_or_false', value: 'toof' } ],
-                  consequents:
-                   [ Block { statements: Block { statements: [ BreakStatement {} ] } } ],
-                  alternate: null } ] } } },
-     WhileStatement {
-       test: Literal { type: 'true_or_false', value: 'foof' },
-       body:
-        Block {
-          statements:
-           Block {
-             statements:
-              [ CallExpression {
-                  callee: 'poof',
-                  args:
-                   [ Literal {
-                       type: 'array_of_chars',
-                       value: 'the optimizer should remove this useless loop' } ] } ] } } } ] }
+  statements: [
+    VariableDeclaration {
+      access: 'global',
+      type: 'whole_number',
+      id: 'i',
+      initializer: Literal { type: 'whole_number', value: '0' }
+    },
+    WhileStatement {
+      test: Literal { type: 'true_or_false', value: 'toof' },
+      body: Block {
+        statements: Block {
+          statements: [
+            CallExpression {
+              callee: 'poof',
+              args: [ IdExp { reference: 'i' } ]
+            },
+            AssignmentStatement {
+              target: IdExp { reference: 'i' },
+              source: BinaryExpression {
+                op: '+',
+                left: IdExp { reference: 'i' },
+                right: Literal { type: 'whole_number', value: '1' }
+              }
+            },
+            GifStatement {
+              tests: [ Literal { type: 'true_or_false', value: 'toof' } ],
+              consequents: [
+                Block {
+                  statements: Block { statements: [ BreakStatement {} ] }
+                }
+              ],
+              alternate: null
+            }
+          ]
+        }
+      }
+    },
+    WhileStatement {
+      test: Literal { type: 'true_or_false', value: 'foof' },
+      body: Block {
+        statements: Block {
+          statements: [
+            CallExpression {
+              callee: 'poof',
+              args: [
+                Literal {
+                  type: 'array_of_chars',
+                  value: 'the optimizer should remove this useless loop'
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

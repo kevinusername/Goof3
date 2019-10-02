@@ -182,6 +182,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     boolean(v) {
         return new Literal('true_or_false', v.ast());
     },
+    // eslint-disable-next-line no-underscore-dangle
     _terminal() {
         return this.sourceString;
     },

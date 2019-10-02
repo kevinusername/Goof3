@@ -1,21 +1,26 @@
 Block {
-  statements:
-   [ VariableDeclaration {
-       access: 'global',
-       type: 'whole_number',
-       id: 'x',
-       initializer: Literal { type: 'whole_number', value: '5' } },
-     AssignmentStatement {
-       target: IdExp { reference: 'x' },
-       source:
-        BinaryExpression {
-          op: '+',
-          left: IdExp { reference: 'x' },
-          right: Literal { type: 'whole_number', value: '1' } } },
-     AssignmentStatement {
-       target: IdExp { reference: 'x' },
-       source:
-        BinaryExpression {
-          op: '+',
-          left: IdExp { reference: 'x' },
-          right: Literal { type: 'whole_number', value: '1' } } } ] }
+  statements: [
+    VariableDeclaration {
+      access: 'global',
+      type: 'whole_number',
+      id: 'x',
+      initializer: Literal { type: 'whole_number', value: '5' }
+    },
+    AssignmentStatement {
+      target: IdExp { reference: 'x' },
+      source: BinaryExpression {
+        op: '+',
+        left: IdExp { reference: 'x' },
+        right: Literal { type: 'whole_number', value: '1' }
+      }
+    },
+    AssignmentStatement {
+      target: IdExp { reference: 'x' },
+      source: BinaryExpression {
+        op: '+',
+        left: IdExp { reference: 'x' },
+        right: Literal { type: 'whole_number', value: '1' }
+      }
+    }
+  ]
+}
