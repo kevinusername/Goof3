@@ -48,7 +48,7 @@ function isTrue(item) {
 }
 
 ArrayExpression.prototype.optimize = function () {
-    this.elements = this.elements.map(e => e.optimize());
+    this.elements = this.elements.map((e) => e.optimize());
     this.size = this.size.optimize();
     return this;
 };
@@ -109,7 +109,7 @@ BinaryExpression.prototype.optimize = function () {
 
 Block.prototype.optimize = function () {
     if (Array.isArray(this.statements)) {
-        this.statements = this.statements.map(s => s.optimize());
+        this.statements = this.statements.map((s) => s.optimize());
     } else if (this.statements) {
         this.statements = this.statements.optimize();
     }
@@ -121,7 +121,7 @@ BreakStatement.prototype.optimize = function () {
 };
 
 CallExpression.prototype.optimize = function () {
-    this.args = this.args.map(a => a.optimize());
+    this.args = this.args.map((a) => a.optimize());
     this.callee = this.callee.optimize();
     return this;
 };
@@ -132,7 +132,7 @@ Field.prototype.optimize = function () {
 };
 
 ForStatement.prototype.optimize = function () {
-    this.assignments = this.assignments.map(e => e.optimize());
+    this.assignments = this.assignments.map((e) => e.optimize());
     this.test = this.test.optimize();
     this.action = this.action.optimize();
     this.body = this.body.optimize();
@@ -145,7 +145,7 @@ Func.prototype.optimize = function () {
 };
 
 GifStatement.prototype.optimize = function () {
-    this.tests = this.tests.map(e => e.optimize());
+    this.tests = this.tests.map((e) => e.optimize());
     let toRemove = [];
     // Find cases that are always False
     this.tests.forEach((item, i) => {
@@ -159,7 +159,7 @@ GifStatement.prototype.optimize = function () {
         this.consequents.splice(i, 1);
     });
 
-    this.consequents = this.consequents.map(cons => cons.optimize());
+    this.consequents = this.consequents.map((cons) => cons.optimize());
     toRemove = [];
     // Find empty bodies
     this.consequents.forEach((body, i) => {
@@ -201,7 +201,7 @@ Method.prototype.optimize = function () {
 };
 
 ObjectExp.prototype.optimize = function () {
-    this.properties = this.properties.map(p => p.optimize());
+    this.properties = this.properties.map((p) => p.optimize());
     return this;
 };
 

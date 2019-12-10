@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 class ArrayExpression {
     constructor(elements, size, type) {
         Object.assign(this, { elements, size, type });

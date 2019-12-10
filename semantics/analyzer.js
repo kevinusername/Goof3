@@ -113,7 +113,7 @@ BinaryExpression.prototype.analyze = function (context) {
 };
 
 Block.prototype.analyze = function (context) {
-    if (Array.isArray(this.statements)) this.statements.forEach(s => s.analyze(context));
+    if (Array.isArray(this.statements)) this.statements.forEach((s) => s.analyze(context));
     else if (this.statements) this.statements.analyze(context);
 };
 
@@ -124,7 +124,7 @@ BreakStatement.prototype.analyze = function (context) {
 CallExpression.prototype.analyze = function (context) {
     this.callee = context.lookupValue(this.callee);
     check.isFunction(this.callee, 'Attempt to call a non-function');
-    this.args.forEach(arg => arg.analyze(context));
+    this.args.forEach((arg) => arg.analyze(context));
     check.legalArguments(this.args, this.callee.parameters);
 };
 
@@ -137,7 +137,7 @@ Field.prototype.analyze = function (context) {
 
 ForStatement.prototype.analyze = function (context) {
     const loopContext = context.createChildContextForLoop();
-    this.assignments.forEach(e => e.analyze(loopContext));
+    this.assignments.forEach((e) => e.analyze(loopContext));
     this.test.analyze(loopContext);
     check.isBoolean(this.test);
     this.action.analyze(loopContext);
@@ -148,7 +148,7 @@ ForStatement.prototype.analyze = function (context) {
 Func.prototype.analyzeSignature = function (context) {
     this.bodyContext = context.createChildContextForFunctionBody(this);
     if (this.parameters) {
-        this.parameters.forEach(p => p.analyze(this.bodyContext));
+        this.parameters.forEach((p) => p.analyze(this.bodyContext));
     }
     context.add(this);
 };
@@ -163,7 +163,7 @@ GifStatement.prototype.analyze = function (context) {
         e.analyze(context);
         check.isBoolean(e);
     });
-    this.consequents.forEach(cons => cons.analyze(context));
+    this.consequents.forEach((cons) => cons.analyze(context));
     if (this.alternate) this.alternate.analyze(context);
 };
 
@@ -196,7 +196,7 @@ MemberExpression.prototype.analyze = function (context) {
 
 Method.prototype.analyzeSignature = function (context) {
     this.bodyContext = context.createChildContextForFunctionBody(this);
-    if (this.parameters) this.parameters.forEach(p => p.analyze(this.bodyContext));
+    if (this.parameters) this.parameters.forEach((p) => p.analyze(this.bodyContext));
     context.add(this);
 };
 
@@ -207,7 +207,7 @@ Method.prototype.analyze = function (context) {
 
 ObjectExp.prototype.analyze = function (context) {
     this.ObjContext = context.createChildContextForObject();
-    this.properties.forEach(p => p.analyze(this.ObjContext));
+    this.properties.forEach((p) => p.analyze(this.ObjContext));
 };
 
 Parameter.prototype.analyze = function (context) {

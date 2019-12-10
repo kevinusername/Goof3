@@ -71,7 +71,7 @@ module.exports = function (exp) {
 };
 
 ArrayExpression.prototype.gen = function () {
-    const elements = this.elements.map(e => e.gen());
+    const elements = this.elements.map((e) => e.gen());
     return `Array(${this.size.gen()}).fill(${elements})`;
 };
 
@@ -86,7 +86,7 @@ BinaryExpression.prototype.gen = function () {
 Block.prototype.gen = function () {
     if (this.statements) {
         if (Array.isArray(this.statements)) {
-            const statements = this.statements.map(s => s.gen());
+            const statements = this.statements.map((s) => s.gen());
             return `${statements.join(';')};`;
         }
         return `${this.statements.gen()}`;
@@ -99,7 +99,7 @@ BreakStatement.prototype.gen = function () {
 };
 
 CallExpression.prototype.gen = function () {
-    const args = this.args.map(a => a.gen());
+    const args = this.args.map((a) => a.gen());
     if (this.callee.builtin) {
         return builtin[this.callee.id](args);
     }
@@ -111,20 +111,20 @@ Field.prototype.gen = function () {
 };
 
 ForStatement.prototype.gen = function () {
-    const assignments = this.assignments.map(a => a.gen());
+    const assignments = this.assignments.map((a) => a.gen());
     const test = this.test.gen();
     return `for (${assignments}; ${test}; ${this.action.gen()}) {${this.body.gen()}}`;
 };
 
 Func.prototype.gen = function () {
     const name = javaScriptId(this);
-    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : [''];
+    const params = this.parameters ? this.parameters.map((p) => javaScriptId(p)) : [''];
     return `function ${name} (${params.join(',')}) {${this.body.gen()}}`;
 };
 
 GifStatement.prototype.gen = function () {
-    const tests = this.tests.map(t => t.gen());
-    const consequents = this.consequents.map(s => `${s.gen()}`);
+    const tests = this.tests.map((t) => t.gen());
+    const consequents = this.consequents.map((s) => `${s.gen()}`);
     let elseIfs = '';
     const ifPart = `if (${tests[0]}) {${consequents[0]}}`;
     for (let i = 1; i < consequents.length; i += 1) {
@@ -165,12 +165,12 @@ MemberExpression.prototype.gen = function () {
 
 Method.prototype.gen = function () {
     const name = javaScriptId(this);
-    const params = this.parameters ? this.parameters.map(p => javaScriptId(p)) : [''];
+    const params = this.parameters ? this.parameters.map((p) => javaScriptId(p)) : [''];
     return `${name} (${params.join(',')}) {${this.body.gen()}}`;
 };
 
 ObjectExp.prototype.gen = function () {
-    const properties = this.properties.map(p => p.gen());
+    const properties = this.properties.map((p) => p.gen());
     return `{${properties.join(',')}}`;
 };
 
